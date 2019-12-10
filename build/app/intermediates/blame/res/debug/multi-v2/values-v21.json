@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/victor/Desenvolvimento/EstagioComunica/comunica_mobile/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-v21/values-v21.xml",
+            "outputFile": "/home/victor/Desenvolvimento/EstagioComunica/comunicalab-mobile/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-v21/values-v21.xml",
             "map": [
                 {
                     "source": "/home/victor/.gradle/caches/transforms-1/files-1.1/media-1.0.0.aar/4adc8ab3b5299d070c2d45d82e8251ec/res/values-v21/values-v21.xml",

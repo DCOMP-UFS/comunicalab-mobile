@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/victor/Desenvolvimento/EstagioComunica/comunica_mobile/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/home/victor/Desenvolvimento/EstagioComunica/comunicalab-mobile/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
                 {
                     "source": "/home/victor/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-1.0.0.aar/db3ab3d294f6fb8edade13b36f6f0905/res/values/values.xml",
@@ -59,7 +59,7 @@
                     }
                 },
                 {
-                    "source": "/home/victor/Desenvolvimento/EstagioComunica/comunica_mobile/android/app/src/main/res/values/styles.xml",
+                    "source": "/home/victor/Desenvolvimento/EstagioComunica/comunicalab-mobile/android/app/src/main/res/values/styles.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

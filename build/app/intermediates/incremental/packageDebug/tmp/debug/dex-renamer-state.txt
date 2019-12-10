@@ -1,4 +1,4 @@
-#Thu Dec 05 19:28:50 BRT 2019
-base.0=/home/victor/Desenvolvimento/EstagioComunica/comunica_mobile/build/app/intermediates/transforms/dexMerger/debug/0
+#Tue Dec 10 12:12:51 BRT 2019
+base.0=/home/victor/Desenvolvimento/EstagioComunica/comunicalab-mobile/build/app/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex

@@ -1,7 +1,10 @@
 import 'package:barcode_scan/barcode_scan.dart';
+import 'package:comunica_mobile/widgets/sideBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/services.dart';
 import 'bloc/bloc.dart';
+import 'package:comunica_mobile/icons/custom_icons_icons.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,160 +15,96 @@ class HomePage extends StatefulWidget {
 
 
 class _HomePageState extends State<HomePage> {
-  final headerTextStyle = TextStyle(color: Color(0xFFFFFFFF), fontSize: 14.0);
 
-  void _handleLogout(BuildContext context) async {
-    return showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Tem certeza que deseja sair desta sessão?'),
-            content: Text('Sua sessão com este usuário será encerrada.'),
-            actions: <Widget>[
-              FlatButton(
-                child: Text('Sim'),
-                textColor: Color(0xFF000080),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  Navigator.of(context).pop();
-                  Navigator.of(context).pop();},
-              ),
-              FlatButton(
-                child: Text('Não'),
-                textColor: Color(0xFF000080),
-                onPressed: () {Navigator.of(context).pop();},
-              )
-            ],
-          );
-        });
-
+  Future scan(BuildContext context) async {
+    String _barcode;
+    try {
+      _barcode = await BarcodeScanner.scan();
+    } on PlatformException catch (e) {
+      if (e.code == BarcodeScanner.CameraAccessDenied) {
+        _barcode = '';
+        final _snackBar = SnackBar(content: Text('Não foi permitido acesso a câmera!'));
+        Scaffold.of(context).showSnackBar(_snackBar);
+      } else {
+        _barcode = 'Erro desconhecido: $e';
+      }
+    } on FormatException{ //Usuário cancelou a leitura
+      _barcode = '';
+    } catch (e) {
+      _barcode = 'Erro desconhecido: $e';
+    }
+    return _barcode;
   }
 
-  Widget handlerSideBar(BuildContext context){
-    return Drawer(
-      child: SingleChildScrollView(
-        child: Column(
+  Widget qrNav(BuildContext context){
+    return IconTheme(
+      child: Container(
+        padding: EdgeInsets.fromLTRB(0, 12, 0, 12),        
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            UserAccountsDrawerHeader(
-              accountName: Text("Exemplo"),
-              margin: EdgeInsets.all(0.0),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor: Color(0xFFFFFFFF),
-                child: Icon(Icons.person_outline,
-                    color: Color(0xFF000080),
-                    size: 64),
+            GestureDetector(
+              child: Container(
+                width: 160,
+                height: 32,
+                padding: EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                  color: Color(0xFF000080),
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Row(
+                  children: <Widget>[
+                    Icon(CustomIcons.enter),
+                    Text(
+                      "           Login",
+                      style: TextStyle(
+                        color: Colors.white
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              accountEmail: Text('email@email.com', style: headerTextStyle),
-              onDetailsPressed: (){},
+              onTap: () async {
+                String _barcode = await scan(context);
+                if(_barcode != ''){
+                  BlocProvider.of<QrBloc>(context).add(Login(code: _barcode));
+                }
+              },
             ),
-            ExpansionTile(
-              title: Text('Software'),
-              leading: Icon(Icons.directions_subway),
-              children: <Widget>[
-                ListTile(
-                  title: Text('Cadastrar software', style: TextStyle(color: Color(0xFF6A5ACD))),
-                  onTap: (){},
+            GestureDetector(
+              child: Container(
+                width: 160,
+                height: 32,
+                padding: EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                  color: Color(0xFF000080),
+                  borderRadius: BorderRadius.circular(14),
                 ),
-                ListTile(
-                  title: Text('Listar softwares', style: TextStyle(color: Color(0xFF6A5ACD))),
-                  onTap: (){},
+                child: Row(
+                  children: <Widget>[
+                    Icon(CustomIcons.magnifier_with_an_eye),
+                    Text(
+                      "  Ver informações",
+                      style: TextStyle(
+                        color: Colors.white
+                      ),
+                    ),
+                  ],
                 ),
-                ListTile(
-                  title: Text('Cadastrar categorias', style: TextStyle(color: Color(0xFF6A5ACD))),
-                  onTap: (){},
-                ),
-                ListTile(
-                  title: Text('Listar categorias', style: TextStyle(color: Color(0xFF6A5ACD))),
-                  onTap: (){},
-                ),
-                ListTile(
-                  title: Text('Registrar instalação', style: TextStyle(color: Color(0xFF6A5ACD))),
-                  onTap: (){},
-                ),
-                ListTile(
-                  title: Text('Ver instalações', style: TextStyle(color: Color(0xFF6A5ACD))),
-                  onTap: (){},
-                )
-              ],
+              ),
+              onTap: () async {
+                String _barcode = await scan(context);
+                if(_barcode != ''){
+                  BlocProvider.of<QrBloc>(context).add(Login(code: _barcode));
+                }
+              },
             ),
-            ExpansionTile(
-              title: Text('Equipamento'),
-              leading: Icon(Icons.directions_subway),
-              children: <Widget>[
-                ListTile(
-                  title: Text('Cadastrar equipamento', style: TextStyle(color: Color(0xFF6A5ACD))),
-                  onTap: (){},
-                ),
-                ListTile(
-                  title: Text('Listar equipamentos', style: TextStyle(color: Color(0xFF6A5ACD))),
-                  onTap: (){},
-                ),
-                ListTile(
-                  title: Text('Cadastrar categorias', style: TextStyle(color: Color(0xFF6A5ACD))),
-                  onTap: (){},
-                ),
-                ListTile(
-                  title: Text('Listar categorias', style: TextStyle(color: Color(0xFF6A5ACD))),
-                  onTap: (){},
-                )
-              ],
-            ),
-            ExpansionTile(
-              title: Text('Laboratório'),
-              leading: Icon(Icons.directions_subway),
-              children: <Widget>[
-                ListTile(
-                  title: Text('Cadastrar laboratório', style: TextStyle(color: Color(0xFF6A5ACD))),
-                  onTap: (){
-                    // Navigator.of(context).push(MaterialPageRoute(
-                    //     builder: (BuildContext context) =>
-                    //         CriarLaboratorioModule()));
-                  },
-                ),
-                ListTile(
-                  title: Text('Listar laboratórios', style: TextStyle(color: Color(0xFF6A5ACD))),
-                  onTap: (){
-                  },
-                )
-              ],
-            ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Configurações'),
-              onTap: (){},
-            ),
-            ListTile(
-              leading: Icon(Icons.directions_subway),
-              title: Text('Logout'),
-              onTap: () => _handleLogout(context),
-            )
           ],
         ),
       ),
-    );
-  }
-
-
-  Widget qrNav(BuildContext context){
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: <Widget>[
-        IconButton(
-          icon: Icon(Icons.redo),
-          onPressed: () async {
-            String _barcode = await BarcodeScanner.scan();//tratar de erros dps
-            BlocProvider.of<QrBloc>(context).add(Login(code: _barcode));
-          },
-        ),
-        IconButton(
-          icon: Icon(Icons.search),
-          onPressed: () async {
-            String _barcode = await BarcodeScanner.scan();//tratar de erros dps
-            BlocProvider.of<QrBloc>(context).add(Search(code: _barcode));
-          },
-        ),
-      ],
+      data: IconThemeData(
+        color: Color(0xFFFFFFFF)
+      ),
     );
   }
 
@@ -189,6 +128,40 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Widget notification(){
+    int _value = 20;
+    return Stack(
+      children: <Widget>[
+        IconButton(
+          icon: Icon(CustomIcons.notification),
+          onPressed: (){},
+        ),
+        _value != 0 ? new Positioned(
+          right: 11,
+          top: 11,
+          child: new Container(
+            padding: EdgeInsets.all(2),
+            decoration: new BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(6),
+            ),
+            constraints: BoxConstraints(
+              minWidth: 14,
+              minHeight: 14,
+            ),
+            child: Text(
+              '$_value',
+              style: TextStyle(
+                color: Color(0xFF000080),
+                fontSize: 8,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ) : new Container()
+      ],
+    );
+  }
 
 
 
@@ -198,19 +171,27 @@ class _HomePageState extends State<HomePage> {
       onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
+          leading: Builder( //Usando builder para passar o contexto correto para o openDrawer
+            builder: (context){
+              return IconButton(
+                icon: Icon(CustomIcons.ajuda),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+              );
+            },
+          ),
           title: Text("Início"),
           actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.notifications_none),
-              onPressed: (){},
-            )
+            notification()
           ],
         ),
-        drawer: ListTileTheme(
-          iconColor: Color(0xFF000080),
-          child: handlerSideBar(context)
+        drawer: handlerSideBar(context),
+        bottomNavigationBar: Builder(
+          builder: (context){
+            return qrNav(context);
+          }
         ),
-        bottomNavigationBar: qrNav(context),
         body: qrReader(context),
       ),
     );
