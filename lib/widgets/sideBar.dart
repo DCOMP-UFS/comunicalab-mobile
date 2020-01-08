@@ -1,5 +1,9 @@
-import 'package:comunica_mobile/pages/Laboratory/Lab.dart';
+import 'package:comunica_mobile/pages/Laboratory/bloc/filterlaboratory_bloc.dart';
+import 'package:comunica_mobile/pages/Laboratory/bloc/lablist_bloc.dart';
+import 'package:comunica_mobile/pages/Laboratory/lab.dart';
+import 'package:comunica_mobile/pages/Laboratory/labList.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 final headerTextStyle = TextStyle(color: Color(0xFFFFFFFF), fontSize: 14.0);
@@ -84,15 +88,29 @@ Widget handlerSideBar(BuildContext context){
                   onTap: (){
                     // Navigator.of(context).push(MaterialPageRoute(
                     //     builder: (BuildContext context) =>
-                    //         CriarLaboratorioModule()));
+                    //         LabList()));
                   },
                 ),
                 ListTile(
                   title: Text('Listar laboratórios', style: TextStyle(color: Color(0xFF6A5ACD))),
                   onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            LabPage()));
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return MultiBlocProvider(
+                            providers: [
+                              BlocProvider<LablistBloc>(
+                                create: (BuildContext context) => LablistBloc(),
+                              ),
+                              BlocProvider<FilterlaboratoryBloc>(
+                                create: (BuildContext context) => FilterlaboratoryBloc(),
+                              ),
+                            ],
+                            child: LabList(),
+                          );
+                        }
+                      )
+                    );
                   },
                 )
               ],
