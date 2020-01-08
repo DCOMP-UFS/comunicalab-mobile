@@ -115,10 +115,7 @@ class _HomePageState extends State<HomePage> {
           if(state is InitialQrState){
             return Container(
               padding: EdgeInsets.all(72),
-              child: Image.network(
-                "https://s3-alpha-sig.figma.com/img/19ba/493e/b71e8f32e8863f51c3652adfe967aa84?Expires=1576454400&Signature=In3wOT8N2eNN0zpsBrImUIGu32DUzBMrL8t4k4~U8o0-GP3z8XJ3q71Q9dJ4NnPLepq1XgShQw6sy9wwVB12eS-efiAgnhwxn2wYi2IN4vV1cLYBc-KQIq8FMEHQlPwXfwf8t0TeOVQw~TwbvdrkjDI~Puzaoeb6vxgAlu5hNpF~XllK8WdoVAfM9eL7t7iFi9at-vMSKvrfFAgwv~7xatoslKCClmznGjlfLycTe-V-KRf8OT254~VeyYfTVi9NFrijozKoD7kfljpIW7Uv~Y5G-NFYd2Ys1ZmQ9ugUlbv2Jox7nIgHMyFGXLWTOFjWCGin1~7AatMeiyTxwqxU~g__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
-                color: Colors.black,
-              ),
+              child: Icon(CustomIcons.qr_code, size: 200,)
             );
           } else {
             return Text(state.code);
