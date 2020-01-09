@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../widgets/LaboratoryWidgets/lab_detail_screen.dart';
+import '../../widgets/LaboratoryWidgets/lab_call_screen.dart';
 
 class LabPage extends StatefulWidget {
   @override
@@ -59,12 +60,7 @@ class _LabPageState extends State<LabPage> {
 
     List<Widget> _options = <Widget>[ //Colocar aqui nessa lista os widgets referentes a tela de exibir um laboratório.
       //Tela de Abrir Chamados de Laboratório
-      Center(
-        child: Text(
-          'Index 0: Abrir chamado',
-          style: optionStyle,
-        ),
-      ),
+      LabCallScreen(labData),
 
       //Tela de Listagem de Chamados do Laboratório
       listTicketBody(labData),
@@ -76,7 +72,7 @@ class _LabPageState extends State<LabPage> {
           style: optionStyle,
         ),
       ),
-      
+
       //Tela de Informações Básicas do Laboratório
       LabDetailScreen(labData),
     ];
