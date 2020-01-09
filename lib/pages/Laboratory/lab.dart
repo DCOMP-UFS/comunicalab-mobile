@@ -5,6 +5,8 @@ import 'package:comunica_mobile/widgets/ListTicket/listTicket.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../widgets/LaboratoryWidgets/lab_detail_screen.dart';
+
 class LabPage extends StatefulWidget {
   @override
   _LabPageState createState() => _LabPageState();
@@ -56,25 +58,27 @@ class _LabPageState extends State<LabPage> {
 
 
     List<Widget> _options = <Widget>[ //Colocar aqui nessa lista os widgets referentes a tela de exibir um laboratório.
+      //Tela de Abrir Chamados de Laboratório
       Center(
         child: Text(
           'Index 0: Abrir chamado',
           style: optionStyle,
         ),
       ),
+
+      //Tela de Listagem de Chamados do Laboratório
       listTicketBody(labData),
+
+      //Tela de Listagem de Equipamentos do Laboratório
       Center(
         child: Text(
           'Index 2: Listar equipamentos',
           style: optionStyle,
         ),
       ),
-      Center(
-        child: Text(
-          'Index 3: HomePage',
-          style: optionStyle,
-        ),
-      ),
+      
+      //Tela de Informações Básicas do Laboratório
+      LabDetailScreen(labData),
     ];
 
     return BlocProvider(
