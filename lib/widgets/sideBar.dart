@@ -1,11 +1,10 @@
+import 'package:comunica_mobile/pages/Ticket/ticketList/bloc/bloc.dart';
+import 'package:comunica_mobile/pages/Ticket/ticketList/ticketList.dart';
+import 'package:comunica_mobile/widgets/ListTicket/bloc/listticket_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:comunica_mobile/pages/Equipment/resources/bloc/imgSoftList_bloc.dart';
 import 'package:comunica_mobile/pages/Equipment/resources/imgSoftList.dart';
-import 'package:comunica_mobile/pages/Laboratory/bloc/filterlaboratory_bloc.dart';
-import 'package:comunica_mobile/pages/Laboratory/bloc/lablist_bloc.dart';
-import 'package:comunica_mobile/pages/Laboratory/lab.dart';
-import 'package:comunica_mobile/pages/Laboratory/labList.dart';
 import 'package:comunica_mobile/widgets/CustomBottomNavigationBar/bloc/customBottomNavigationBar_bloc.dart';
 
 final headerTextStyle = TextStyle(color: Color(0xFFFFFFFF), fontSize: 14.0);
@@ -45,7 +44,25 @@ Widget handlerSideBar(BuildContext context) {
                       color: Color(0xFF6A5ACD),
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (BuildContext context) {
+                        return MultiBlocProvider(
+                          providers: [
+                            BlocProvider<CustomBottomNavigationBarBloc>(
+                              create: (BuildContext context) =>
+                                  CustomBottomNavigationBarBloc(),
+                            ),
+                            BlocProvider<TicketListBloc>(
+                              create: (BuildContext context) =>
+                                  TicketListBloc()..add(TicketListFetch()),
+                            ),
+                          ],
+                          child: TicketList(),
+                        );
+                      }),
+                    );
+                  },
                 ),
                 ListTile(
                   title: Text(
@@ -176,23 +193,7 @@ Widget handlerSideBar(BuildContext context) {
                       color: Color(0xFF6A5ACD),
                     ),
                   ),
-                  onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (BuildContext context) {
-                      return MultiBlocProvider(
-                        providers: [
-                          BlocProvider<LablistBloc>(
-                            create: (BuildContext context) => LablistBloc(),
-                          ),
-                          BlocProvider<FilterlaboratoryBloc>(
-                            create: (BuildContext context) =>
-                                FilterlaboratoryBloc(),
-                          ),
-                        ],
-                        child: LabList(),
-                      );
-                    }));
-                  },
+                  onTap: () {},
                 )
               ],
             ),
