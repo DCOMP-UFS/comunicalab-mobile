@@ -87,23 +87,27 @@ class TicketCard extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(16, 8, 16, 0),
           child: Card(
             elevation: 5,
-            child: Container(
-              padding: EdgeInsets.fromLTRB(40, 12, 57, 7),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(title, style: TextStyle(fontSize: 20)),
-                  SizedBox(
-                    height: 3.0,
-                  ),
-                  Text(lab, style: TextStyle(fontSize: 18)),
-                  ticketTimeRow(dateTime),
-                  ticketProgressRow(status),
-                ],
-              ),
-            ),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(12))),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(12.0),
+              child: Container(
+                padding: EdgeInsets.fromLTRB(40, 12, 57, 7),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(title, style: TextStyle(fontSize: 20)),
+                    SizedBox(
+                      height: 3.0,
+                    ),
+                    Text(lab, style: TextStyle(fontSize: 18)),
+                    ticketTimeRow(dateTime),
+                    ticketProgressRow(status),
+                  ],
+                ),
+              ),
+              onTap: () {},
+            ),
           ),
         ),
         Positioned(
