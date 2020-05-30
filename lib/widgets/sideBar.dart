@@ -1,10 +1,9 @@
-import 'package:comunica_mobile/pages/Ticket/ticketList/bloc/bloc.dart';
-import 'package:comunica_mobile/pages/Ticket/ticketList/ticketList.dart';
-import 'package:comunica_mobile/widgets/ListTicket/bloc/listticket_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:comunica_mobile/pages/Equipment/resources/bloc/imgSoftList_bloc.dart';
 import 'package:comunica_mobile/pages/Equipment/resources/imgSoftList.dart';
+import 'package:comunica_mobile/pages/Equipment/tickets/ticketList/bloc/bloc.dart';
+import 'package:comunica_mobile/pages/Equipment/tickets/ticketList/ticketList.dart';
 import 'package:comunica_mobile/widgets/CustomBottomNavigationBar/bloc/customBottomNavigationBar_bloc.dart';
 
 final headerTextStyle = TextStyle(color: Color(0xFFFFFFFF), fontSize: 14.0);

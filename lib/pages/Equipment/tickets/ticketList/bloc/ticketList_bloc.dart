@@ -1,8 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:comunica_mobile/pages/Ticket/ticketList/bloc/bloc.dart';
-import 'package:comunica_mobile/widgets/loadingWidget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:comunica_mobile/pages/Equipment/tickets/ticketList/bloc/bloc.dart';
 
 class TicketListBloc extends Bloc<TicketListEvent, TicketListState> {
   @override

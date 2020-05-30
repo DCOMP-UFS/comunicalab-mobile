@@ -1,12 +1,10 @@
-import 'package:comunica_mobile/pages/Ticket/ticketList/bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:comunica_mobile/pages/Equipment/tickets/ticketList/bloc/bloc.dart';
 import 'package:comunica_mobile/widgets/CustomBottomNavigationBar/customBottomNavigationBar.dart';
 import 'package:comunica_mobile/widgets/loadingWidget.dart';
 import 'package:comunica_mobile/widgets/sideBar.dart';
 import 'package:comunica_mobile/widgets/TicketWidgets/ticketCard.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'bloc/ticketList_bloc.dart';
 
 class TicketList extends StatefulWidget {
   @override
