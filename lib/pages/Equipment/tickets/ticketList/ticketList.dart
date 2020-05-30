@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:comunica_mobile/pages/Equipment/tickets/ticketList/bloc/bloc.dart';
 import 'package:comunica_mobile/widgets/CustomBottomNavigationBar/customBottomNavigationBar.dart';
 import 'package:comunica_mobile/widgets/loadingWidget.dart';
+import 'package:comunica_mobile/widgets/errorWidget.dart';
 import 'package:comunica_mobile/widgets/sideBar.dart';
 import 'package:comunica_mobile/widgets/TicketWidgets/ticketCard.dart';
 
@@ -44,9 +45,8 @@ class _TicketListState extends State<TicketList> {
           return LoadingWidget(message: "Carregando os chamados...");
         }
         if (state is TicketListLoadFailure) {
-          return Center(
-            child: Text("Ocorreu um erro."),
-          );
+          return ErrorMessageWidget(
+              message: "Houve um erro ao carregar a lista.");
         }
         return ListView.builder(
           itemCount: 1,
