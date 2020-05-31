@@ -1,3 +1,5 @@
+import 'package:comunica_mobile/icons/custom_icons_icons.dart';
+import 'package:comunica_mobile/pages/UserTicket/userTicketList.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:comunica_mobile/pages/Equipment/resources/bloc/imgSoftList_bloc.dart';
@@ -32,6 +34,16 @@ Widget handlerSideBar(BuildContext context) {
               ),
               onDetailsPressed: () {},
             ),
+            ListTile(
+                leading:
+                    Icon(CustomIcons.running_repair_man_with_wrench_and_kit),
+                title: Text('Chamados'),
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (BuildContext context) {
+                    return UserTicketList();
+                  }));
+                }),
             ExpansionTile(
               title: Text('Software'),
               leading: Icon(Icons.directions_subway),
