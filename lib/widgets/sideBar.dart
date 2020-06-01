@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:comunica_mobile/pages/Equipment/resources/bloc/imgSoftList_bloc.dart';
-import 'package:comunica_mobile/pages/Equipment/resources/imgSoftList.dart';
 import 'package:comunica_mobile/pages/Equipment/tickets/ticketList/bloc/bloc.dart';
 import 'package:comunica_mobile/pages/Equipment/tickets/ticketList/ticketList.dart';
 import 'package:comunica_mobile/widgets/CustomBottomNavigationBar/bloc/customBottomNavigationBar_bloc.dart';
@@ -128,25 +126,7 @@ Widget handlerSideBar(BuildContext context) {
                       color: Color(0xFF6A5ACD),
                     ),
                   ),
-                  onTap: () {
-                    //new feature
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (BuildContext context) {
-                        return MultiBlocProvider(
-                          providers: [
-                            BlocProvider<ImgSoftListBloc>(
-                                create: (BuildContext context) =>
-                                    ImgSoftListBloc()),
-                            BlocProvider<CustomBottomNavigationBarBloc>(
-                              create: (BuildContext context) =>
-                                  CustomBottomNavigationBarBloc(),
-                            ),
-                          ],
-                          child: ImgSoftList(),
-                        );
-                      }),
-                    );
-                  },
+                  onTap: () {},
                 ),
                 ListTile(
                   title: Text(
