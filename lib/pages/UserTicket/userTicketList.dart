@@ -1,4 +1,5 @@
 import 'package:comunica_mobile/pages/UserTicket/bloc/filterUserTicketList/bloc.dart';
+import 'package:comunica_mobile/widgets/CustomBottomNavigationBar/customBottomNavigationBar.dart';
 import 'package:comunica_mobile/widgets/FilterWidgets/filterPin.dart';
 import 'package:comunica_mobile/widgets/FilterWidgets/menuBuilder.dart';
 import 'package:comunica_mobile/widgets/FilterWidgets/menuItem.dart';
@@ -250,6 +251,7 @@ class _UserTicketListState extends State<UserTicketList>
             ],
           ),
         ),
+        bottomNavigationBar: CustomBottomNavigationBar(),
       );
     });
   }

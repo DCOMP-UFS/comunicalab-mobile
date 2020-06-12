@@ -48,6 +48,10 @@ Widget handlerSideBar(BuildContext context) {
                           create: (BuildContext context) =>
                               FilterUserTicketListBloc(),
                         ),
+                        BlocProvider<CustomBottomNavigationBarBloc>(
+                          create: (BuildContext context) =>
+                              CustomBottomNavigationBarBloc(),
+                        ),
                       ],
                       child: UserTicketList(),
                     );

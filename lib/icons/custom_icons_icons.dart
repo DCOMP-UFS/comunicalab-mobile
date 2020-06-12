@@ -39,4 +39,6 @@ class CustomIcons {
   static const IconData user_image_with_black_background = IconData(0xe810, fontFamily: _kFontFam);
   static const IconData thumb_up = IconData(0xe811, fontFamily: _kFontFam);
   static const IconData thumb_down = IconData(0xe812, fontFamily: _kFontFam);
+  static const IconData add = IconData(0xe813, fontFamily: _kFontFam);
+  static const IconData search = IconData(0xe814, fontFamily: _kFontFam);
 }

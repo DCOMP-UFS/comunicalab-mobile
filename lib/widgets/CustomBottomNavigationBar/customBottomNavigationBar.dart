@@ -58,7 +58,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                 color: Color(0xFF000080),
               ),
               child: Icon(
-                CustomIcons.investigate,
+                CustomIcons.magnifier_with_an_eye2,
                 color: Colors.white,
               ),
             ),
@@ -77,12 +77,12 @@ class CustomBottomNavigationBar extends StatelessWidget {
                 color: Color(0xFF000080),
               ),
               child: Icon(
-                CustomIcons.aplicativo,
+                CustomIcons.computador,
                 color: Colors.white,
               ),
             ),
             icon: Icon(
-              CustomIcons.aplicativo,
+              CustomIcons.computador,
               color: Color(0xFF000080),
             ),
             title: Container(),
