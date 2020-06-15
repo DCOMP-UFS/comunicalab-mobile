@@ -11,23 +11,6 @@ class ImgSoftList extends StatefulWidget {
 }
 
 class _ImgSoftListState extends State<ImgSoftList> {
-  final List<Widget> deckCardMock = <Widget>[
-    CustomCard('Imagem 1'),
-    CustomCard('Imagem 2'),
-    CustomCard('Imagem 3'),
-  ];
-
-  final List<Widget> deckCardMock2 = <Widget>[
-    CustomCard('Software 1'),
-    CustomCard('Software 2'),
-    CustomCard('Software 3'),
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   Widget customTab(String label) {
     return Tab(
       child: Container(
@@ -46,16 +29,6 @@ class _ImgSoftListState extends State<ImgSoftList> {
         ),
       ),
     );
-  }
-
-  Widget mockADeck(option) {
-    return option
-        ? Column(
-            children: deckCardMock,
-          )
-        : Column(
-            children: deckCardMock2,
-          );
   }
 
   @override
@@ -104,8 +77,20 @@ class _ImgSoftListState extends State<ImgSoftList> {
             margin: EdgeInsets.all(20.0),
             child: TabBarView(
               children: <Widget>[
-                mockADeck(true),
-                mockADeck(false),
+                //Image Content
+                ListView.builder(
+                  itemCount: 3,
+                  itemBuilder: (context, index) {
+                    return CustomCard('Imagem ${index + 1}');
+                  },
+                ),
+                //Software Content
+                ListView.builder(
+                  itemCount: 4,
+                  itemBuilder: (context, index) {
+                    return CustomCard('Imagem ${index + 1}');
+                  },
+                ),
               ],
             ),
           ),

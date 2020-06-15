@@ -1,3 +1,4 @@
+import 'package:comunica_mobile/icons/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:comunica_mobile/pages/Equipment/resources/bloc/imgSoftList_bloc.dart';
@@ -33,6 +34,29 @@ Widget handlerSideBar(BuildContext context) {
                 style: headerTextStyle,
               ),
               onDetailsPressed: () {},
+            ),
+            ListTile(
+              leading: Icon(CustomIcons.aplicativo),
+              title: Text('Imagem e Software'),
+              onTap: () {
+                //new feature
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return MultiBlocProvider(
+                      providers: [
+                        BlocProvider<ImgSoftListBloc>(
+                            create: (BuildContext context) =>
+                                ImgSoftListBloc()),
+                        BlocProvider<CustomBottomNavigationBarBloc>(
+                          create: (BuildContext context) =>
+                              CustomBottomNavigationBarBloc(),
+                        ),
+                      ],
+                      child: ImgSoftList(),
+                    );
+                  }),
+                );
+              },
             ),
             ExpansionTile(
               title: Text('Software'),
@@ -112,25 +136,7 @@ Widget handlerSideBar(BuildContext context) {
                       color: Color(0xFF6A5ACD),
                     ),
                   ),
-                  onTap: () {
-                    //new feature
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (BuildContext context) {
-                        return MultiBlocProvider(
-                          providers: [
-                            BlocProvider<ImgSoftListBloc>(
-                                create: (BuildContext context) =>
-                                    ImgSoftListBloc()),
-                            BlocProvider<CustomBottomNavigationBarBloc>(
-                              create: (BuildContext context) =>
-                                  CustomBottomNavigationBarBloc(),
-                            ),
-                          ],
-                          child: ImgSoftList(),
-                        );
-                      }),
-                    );
-                  },
+                  onTap: () {},
                 ),
                 ListTile(
                   title: Text(
