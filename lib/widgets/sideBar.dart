@@ -41,25 +41,7 @@ Widget handlerSideBar(BuildContext context) {
                       color: Color(0xFF6A5ACD),
                     ),
                   ),
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (BuildContext context) {
-                        return MultiBlocProvider(
-                          providers: [
-                            BlocProvider<CustomBottomNavigationBarBloc>(
-                              create: (BuildContext context) =>
-                                  CustomBottomNavigationBarBloc(),
-                            ),
-                            BlocProvider<TicketListBloc>(
-                              create: (BuildContext context) =>
-                                  TicketListBloc()..add(TicketListFetch()),
-                            ),
-                          ],
-                          child: TicketList(),
-                        );
-                      }),
-                    );
-                  },
+                  onTap: () {},
                 ),
                 ListTile(
                   title: Text(
@@ -126,7 +108,25 @@ Widget handlerSideBar(BuildContext context) {
                       color: Color(0xFF6A5ACD),
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (BuildContext context) {
+                        return MultiBlocProvider(
+                          providers: [
+                            BlocProvider<CustomBottomNavigationBarBloc>(
+                              create: (BuildContext context) =>
+                                  CustomBottomNavigationBarBloc(),
+                            ),
+                            BlocProvider<TicketListBloc>(
+                              create: (BuildContext context) =>
+                                  TicketListBloc()..add(TicketListFetch()),
+                            ),
+                          ],
+                          child: TicketList(),
+                        );
+                      }),
+                    );
+                  },
                 ),
                 ListTile(
                   title: Text(
