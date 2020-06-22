@@ -1,5 +1,5 @@
 import 'package:comunica_mobile/icons/custom_icons_icons.dart';
-import 'package:comunica_mobile/pages/UserTicket/bloc/filterUserTicketList/bloc.dart';
+import 'file:///D:/comunicalab-mobile/lib/pages/UserTicket/bloc/bloc.dart';
 import 'package:comunica_mobile/pages/UserTicket/userTicketList.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,9 +44,9 @@ Widget handlerSideBar(BuildContext context) {
                       .push(MaterialPageRoute(builder: (BuildContext context) {
                     return MultiBlocProvider(
                       providers: [
-                        BlocProvider<FilterUserTicketListBloc>(
+                        BlocProvider<UserTicketListBloc>(
                           create: (BuildContext context) =>
-                              FilterUserTicketListBloc(),
+                              UserTicketListBloc(),
                         ),
                         BlocProvider<CustomBottomNavigationBarBloc>(
                           create: (BuildContext context) =>

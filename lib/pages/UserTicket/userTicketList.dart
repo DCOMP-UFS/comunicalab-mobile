@@ -1,13 +1,10 @@
-import 'package:comunica_mobile/pages/UserTicket/bloc/filterUserTicketList/bloc.dart';
-import 'package:comunica_mobile/widgets/CustomBottomNavigationBar/customBottomNavigationBar.dart';
-import 'package:comunica_mobile/widgets/FilterWidgets/filterPin.dart';
-import 'package:comunica_mobile/widgets/FilterWidgets/menuBuilder.dart';
-import 'package:comunica_mobile/widgets/FilterWidgets/menuItem.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:comunica_mobile/widgets/FilterWidgets/filterBottomSheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'file:///D:/comunicalab-mobile/lib/pages/UserTicket/bloc/bloc.dart';
+import 'package:comunica_mobile/widgets/CustomBottomNavigationBar/customBottomNavigationBar.dart';
 import 'package:comunica_mobile/widgets/sideBar.dart';
 import 'package:comunica_mobile/widgets/TicketWidgets/ticketCard.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserTicketList extends StatefulWidget {
   @override
@@ -16,243 +13,419 @@ class UserTicketList extends StatefulWidget {
 
 class _UserTicketListState extends State<UserTicketList>
     with SingleTickerProviderStateMixin {
-  final _searchController = TextEditingController();
-  bool visibility = false;
-
-  AnimationController _iconRotationController;
-
   @override
   void initState() {
     super.initState();
-    _searchController.addListener(_searchWord);
-    _iconRotationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 300),
-      reverseDuration: const Duration(milliseconds: 300),
-    );
   }
 
   @override
   void dispose() {
-    _searchController.dispose();
-    _iconRotationController.dispose();
     super.dispose();
   }
 
-  _searchWord() {
-    print('Word is: ${_searchController.text} ');
-    if (_searchController.text != "") {
-      setState(() {
-        visibility = true;
-      });
-    }
-  }
+//  MaterialColor customPrimarySwatch = MaterialColor(0xFF000080, <int, Color>{
+//    50: Color(0xFFEAE3F3),
+//    100: Color(0xFFC9BBE2),
+//    200: Color(0xFFa68fcf),
+//    300: Color(0xFF8262bc),
+//    400: Color(0xFF6841af),
+//    500: Color(0xFF4c1fa2),
+//    600: Color(0xFF431b9d),
+//    700: Color(0xFF351394),
+//    800: Color(0xFF260d8d),
+//    900: Color(0xFF000080),
+//  });
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FilterUserTicketListBloc, FilterUserTicketListState>(
-        builder: (context, state) {
-      return Scaffold(
-        appBar: AppBar(
-          leading: Builder(
-            builder: (BuildContext context) {
-              return IconButton(
-                icon: AnimatedIcon(
-                  icon: AnimatedIcons.menu_arrow,
-                  progress: _iconRotationController,
-                ),
-                onPressed: () {
-                  if (state is DefaultTab) {
-                    Scaffold.of(context).openDrawer();
-                  } else {
-                    _iconRotationController.reverse();
-                    BlocProvider.of<FilterUserTicketListBloc>(context)
-                        .add(BackIconPressed());
-                  }
-                },
-                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-              );
-            },
-          ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Visibility(
-                visible: state is FilteringWithSearchBar,
-                replacement: Text('Lista de Chamados'),
-                child: Container(
-                  width: 240,
-                  height: 40,
-                  margin: EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
-                  child: TextField(
-                    autofocus: true,
-                    controller: _searchController,
-                    textInputAction: TextInputAction.search,
-                    onSubmitted: (searchKeyword) {
-                      BlocProvider.of<FilterUserTicketListBloc>(context)
-                          .add(AddFilterPin(searchKeyword));
-                    },
-                    style: TextStyle(
-                      height: 1.3,
-                      color: Colors.black,
-                      fontSize: 14,
-                    ),
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0)),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0)),
-                      fillColor: Colors.white,
-                      filled: true,
-                      isDense: true,
-                      contentPadding: EdgeInsets.all(10.0),
-                      suffixIcon: Visibility(
-                        visible: visibility,
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.cancel,
-                          ),
-                          iconSize: 20,
-                          color: Colors.black45,
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onPressed: () {
-                            setState(() {
-                              _searchController.text = "";
-                              visibility = false;
-                            });
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text('Lista de Chamados'),
+            IconButton(
+              icon: Icon(
+                Icons.filter_list,
               ),
-              IconButton(
-                icon: Icon(
-                  Icons.search,
-                ),
-                splashColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onPressed: () {
-                  _iconRotationController.forward();
-                  BlocProvider.of<FilterUserTicketListBloc>(context)
-                      .add(SearchIconPressed());
+              onPressed: () async {
+                filterBottomSheet(context: context)
+                    .then((value) => print(value));
+//                showModalBottomSheet<void>(
+//                  //change void to the desired return type
+//                  context: context,
+//                  shape: RoundedRectangleBorder(
+//                    borderRadius: BorderRadius.vertical(
+//                      top: Radius.circular(10.0),
+//                    ),
+//                  ),
+//                  builder: (BuildContext context) {
+//                    DateTime _dateTime;
+//                    String _troubleType;
+//                    String _ticketStatus = '';
+//
+//                    return StatefulBuilder(builder:
+//                        (BuildContext context, StateSetter updatePreferences) {
+//                      return Container(
+//                        height: MediaQuery.of(context).size.height / 2,
+//                        padding: EdgeInsets.all(20.0),
+//                        child: SingleChildScrollView(
+//                          child: Column(
+//                            crossAxisAlignment: CrossAxisAlignment.start,
+//                            children: <Widget>[
+//                              Padding(
+//                                padding: const EdgeInsets.only(
+//                                  bottom: 20.0,
+//                                ),
+//                                child: Stack(
+//                                  alignment: Alignment.center,
+//                                  children: <Widget>[
+//                                    Text(
+//                                      'Filtro',
+//                                      style: TextStyle(
+//                                        color: Color(0xFF000080),
+//                                        fontSize: 20,
+//                                        fontWeight: FontWeight.bold,
+//                                      ),
+//                                    ),
+//                                    Row(
+//                                      mainAxisAlignment:
+//                                          MainAxisAlignment.spaceBetween,
+//                                      children: <Widget>[
+//                                        InkResponse(
+//                                          splashFactory:
+//                                              InkRipple.splashFactory,
+//                                          child: Container(
+//                                            child: Icon(
+//                                              Icons.close,
+//                                              color: Color(0xFF625F5F),
+//                                            ),
+//                                          ),
+//                                          onTap: () {
+//                                            Navigator.of(context).pop();
+//                                          },
+//                                        ),
+//                                        InkResponse(
+//                                          splashFactory:
+//                                              InkRipple.splashFactory,
+//                                          child: Container(
+//                                            padding: EdgeInsets.all(8.0),
+//                                            child: Text(
+//                                              'Limpar',
+//                                              style: TextStyle(
+//                                                color: Color(0xFF625F5F),
+//                                                fontSize: 16,
+//                                              ),
+//                                            ),
+//                                          ),
+//                                          onTap: () {
+//                                            updatePreferences(() {
+//                                              _dateTime = null;
+//                                              _troubleType = null;
+//                                              _ticketStatus = '';
+//                                            });
+//                                          },
+//                                        ),
+//                                      ],
+//                                    ),
+//                                  ],
+//                                ),
+//                              ),
+//                              Container(
+//                                //padding: const EdgeInsets.all(4.0),
+//                                margin: EdgeInsets.symmetric(
+//                                  vertical: 8.0,
+//                                  horizontal: 4.0,
+//                                ),
+//                                child: Text(
+//                                  'Data de abertura do chamado',
+//                                  style: TextStyle(
+//                                    fontSize: 18,
+//                                  ),
+//                                ),
+//                              ),
+//                              InkWell(
+//                                splashFactory: InkRipple.splashFactory,
+//                                borderRadius: BorderRadius.circular(8.0),
+//                                onTap: () async {
+//                                  await showDatePicker(
+//                                      context: context,
+//                                      initialDate: DateTime.now(),
+//                                      firstDate: DateTime(2020, 1, 1),
+//                                      lastDate: DateTime.now(),
+//                                      helpText: 'SELECIONE UMA DATA',
+//                                      fieldLabelText: 'Digite a data',
+//                                      fieldHintText: 'dd/mm/aaaa',
+//                                      errorFormatText: 'Formato inválido.',
+//                                      errorInvalidText:
+//                                          'Digite uma data válida.',
+//                                      builder:
+//                                          (BuildContext context, Widget child) {
+//                                        return Theme(
+//                                          data: ThemeData(
+//                                            primarySwatch: customPrimarySwatch,
+//                                          ),
+//                                          child: child,
+//                                        );
+//                                      }).then((value) {
+//                                    updatePreferences(() {
+//                                      _dateTime = value;
+//                                    });
+//                                  });
+//                                },
+//                                child: Container(
+//                                  width: double.infinity,
+//                                  height: 45,
+//                                  padding: const EdgeInsets.all(10.0),
+//                                  decoration: BoxDecoration(
+//                                    borderRadius: BorderRadius.circular(8.0),
+//                                    border: Border.all(
+//                                      color: Color(0xFFE0DFDF),
+//                                      width: 2,
+//                                    ),
+//                                  ),
+//                                  child: Row(
+//                                    mainAxisAlignment:
+//                                        MainAxisAlignment.spaceBetween,
+//                                    children: <Widget>[
+//                                      Text(
+//                                        _dateTime != null
+//                                            ? '${_dateTime.day.toString().padLeft(2, '0')}/${_dateTime.month.toString().padLeft(2, '0')}/${_dateTime.year.toString()}'
+//                                            : 'Escolha uma data',
+//                                        style: TextStyle(
+//                                          fontSize: 16,
+//                                          color: Colors.black45,
+//                                        ),
+//                                      ),
+//                                      InkResponse(
+//                                        splashFactory: InkRipple.splashFactory,
+//                                        highlightColor: Colors.transparent,
+//                                        onTap: () {},
+//                                        child: Icon(
+//                                          Icons.keyboard_arrow_down,
+//                                        ),
+//                                      ),
+//                                    ],
+//                                  ),
+//                                ),
+//                              ),
+//                              Container(
+//                                margin: EdgeInsets.symmetric(
+//                                  vertical: 8.0,
+//                                  horizontal: 4.0,
+//                                ),
+//                                child: Text(
+//                                  'Tipo de Problema',
+//                                  style: TextStyle(
+//                                    fontSize: 18,
+//                                  ),
+//                                ),
+//                              ),
+//                              InkWell(
+//                                splashFactory: InkRipple.splashFactory,
+//                                borderRadius: BorderRadius.circular(8.0),
+//                                onTap: () {},
+//                                child: Container(
+//                                  padding: const EdgeInsets.all(10.0),
+//                                  height: 45,
+//                                  decoration: BoxDecoration(
+//                                    borderRadius: BorderRadius.circular(8.0),
+//                                    border: Border.all(
+//                                      color: Color(0xFFE0DFDF),
+//                                      width: 2,
+//                                    ),
+//                                  ),
+//                                  child: DropdownButtonHideUnderline(
+//                                    child: DropdownButton<String>(
+//                                      icon: Icon(Icons.keyboard_arrow_down),
+//                                      value: _troubleType,
+//                                      hint: Text(
+//                                        'Escolha um tipo de problema',
+//                                        style: TextStyle(
+//                                          fontSize: 16,
+//                                          color: Colors.black45,
+//                                        ),
+//                                      ),
+//                                      isExpanded: true,
+//                                      onChanged: (String newValue) {
+//                                        updatePreferences(() {
+//                                          _troubleType = newValue;
+//                                        });
+//                                      },
+//                                      items: <String>[
+//                                        'Tipo de Problema 1',
+//                                        'Tipo de Problema 2',
+//                                        'Tipo de Problema 3',
+//                                        'Tipo de Problema 4'
+//                                      ].map<DropdownMenuItem<String>>(
+//                                          (String value) {
+//                                        return DropdownMenuItem<String>(
+//                                          value: value,
+//                                          child: Text(value),
+//                                        );
+//                                      }).toList(),
+//                                    ),
+//                                  ),
+//                                ),
+//                              ),
+//                              Container(
+//                                margin: EdgeInsets.symmetric(
+//                                  vertical: 8.0,
+//                                  horizontal: 4.0,
+//                                ),
+//                                child: Text(
+//                                  'Status do chamado',
+//                                  style: TextStyle(
+//                                    fontSize: 18,
+//                                  ),
+//                                ),
+//                              ),
+//                              Row(
+//                                mainAxisAlignment:
+//                                    MainAxisAlignment.spaceAround,
+//                                children: <Widget>[
+//                                  FlatButton(
+//                                    color: _ticketStatus == 'Finalizado'
+//                                        ? Color(0xFF00FF29)
+//                                        : Color(0xFFEAEAEA),
+//                                    highlightColor: Color(0xFF00FF29),
+//                                    shape: RoundedRectangleBorder(
+//                                      borderRadius: BorderRadius.circular(10.0),
+//                                    ),
+//                                    child: Text(
+//                                      'Finalizado',
+//                                      style: TextStyle(
+//                                        color: Colors.black87,
+//                                      ),
+//                                    ),
+//                                    onPressed: () {
+//                                      updatePreferences(() {
+//                                        _ticketStatus == 'Finalizado'
+//                                            ? _ticketStatus = ''
+//                                            : _ticketStatus = 'Finalizado';
+//                                      });
+//                                    },
+//                                  ),
+//                                  FlatButton(
+//                                    color: _ticketStatus == 'Andamento'
+//                                        ? Color(0xFFFFF500)
+//                                        : Color(0xFFEAEAEA),
+//                                    highlightColor: Color(0xFFFFF500),
+//                                    shape: RoundedRectangleBorder(
+//                                      borderRadius: BorderRadius.circular(10.0),
+//                                    ),
+//                                    child: Text(
+//                                      'Andamento',
+//                                      style: TextStyle(
+//                                        color: Colors.black87,
+//                                      ),
+//                                    ),
+//                                    onPressed: () {
+//                                      updatePreferences(() {
+//                                        _ticketStatus == 'Andamento'
+//                                            ? _ticketStatus = ''
+//                                            : _ticketStatus = 'Andamento';
+//                                      });
+//                                    },
+//                                  ),
+//                                  FlatButton(
+//                                    color: _ticketStatus == 'Pendente'
+//                                        ? Color(0xFFFF0000)
+//                                        : Color(0xFFEAEAEA),
+//                                    highlightColor: Color(0xFFFF0000),
+//                                    shape: RoundedRectangleBorder(
+//                                      borderRadius: BorderRadius.circular(10.0),
+//                                    ),
+//                                    child: Text(
+//                                      'Pendente',
+//                                      style: TextStyle(
+//                                        color: _ticketStatus == 'Pendente'
+//                                            ? Colors.white
+//                                            : Colors.black87,
+//                                      ),
+//                                    ),
+//                                    onPressed: () {
+//                                      updatePreferences(() {
+//                                        _ticketStatus == 'Pendente'
+//                                            ? _ticketStatus = ''
+//                                            : _ticketStatus = 'Pendente';
+//                                      });
+//                                    },
+//                                  ),
+//                                ],
+//                              ),
+//                              Container(
+//                                margin: EdgeInsets.symmetric(
+//                                  vertical: 8.0,
+//                                  horizontal: 4.0,
+//                                ),
+//                                child: SizedBox(
+//                                  width: double.infinity,
+//                                  child: FlatButton(
+//                                    color: Color(0xFF000080),
+//                                    padding:
+//                                        EdgeInsets.symmetric(vertical: 10.0),
+//                                    shape: RoundedRectangleBorder(
+//                                      borderRadius: BorderRadius.circular(10.0),
+//                                    ),
+//                                    child: Text(
+//                                      'Aplicar filtro',
+//                                      style: TextStyle(
+//                                        color: Colors.white,
+//                                        fontSize: 18,
+//                                      ),
+//                                    ),
+//                                    onPressed: () {
+//                                      final filter = {
+//                                        "dateTime": _dateTime?.toIso8601String(),
+//                                        "type": _troubleType,
+//                                        "status": _ticketStatus
+//                                      };
+//
+//                                      Navigator.pop(context, filter);
+//                                    },
+//                                  ),
+//                                ),
+//                              ),
+//                            ],
+//                          ),
+//                        ),
+//                      );
+//                    });
+//                  },
+//                );
+              },
+            ),
+          ],
+        ),
+      ),
+      drawer: handlerSideBar(context),
+      resizeToAvoidBottomInset: false,
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Flexible(
+              child: ListView.builder(
+                itemCount: 3,
+                itemBuilder: (BuildContext context, int index) {
+                  return TicketCard(
+                    title: "Fulano da Silva Santos",
+                    lab: "Hardware",
+                    status: "Pendente",
+                    dateTime: DateTime.now(),
+                    like: true,
+                    onPressedLike: () {},
+                    onPressedDislike: () {},
+                    likesNumber: 1,
+                    dislikesNumber: 2,
+                  );
                 },
-              )
-            ],
-          ),
-          bottom: PreferredSize(
-            preferredSize: Size.fromHeight(50.0),
-            child: Container(
-              height: 30,
-              margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 7.0),
-              child: AnimatedSwitcher(
-                duration: Duration(milliseconds: 100),
-                child: state is! FilteringWithStatusTab
-                    ? MenuBuilder(
-                        <MenuItem>[
-                          MenuItem(
-                            'Status',
-                            onPressed: () {
-                              _iconRotationController.forward();
-                              BlocProvider.of<FilterUserTicketListBloc>(context)
-                                  .add(FilterBy('Status'));
-                            },
-                          ),
-                          MenuItem('Data'),
-                          MenuItem('Tipo'),
-                          MenuItem('Nome'),
-                        ],
-                        key: ValueKey(1),
-                      )
-                    : MenuBuilder(
-                        <MenuItem>[
-                          MenuItem(
-                            'Finalizado',
-                            fillColor: Color(0xFF00FF29),
-                            labelColor: Colors.black,
-                          ),
-                          MenuItem(
-                            'Andamento',
-                            fillColor: Color(0xFFFFF500),
-                            labelColor: Colors.black,
-                          ),
-                          MenuItem(
-                            'Pendente',
-                            fillColor: Color(0xFFFF0000),
-                            labelColor: Colors.black,
-                          ),
-                        ],
-                        key: ValueKey(2),
-                      ),
               ),
             ),
-          ),
+          ],
         ),
-        drawer: handlerSideBar(context),
-        resizeToAvoidBottomInset: false,
-        body: SafeArea(
-          child: Column(
-            children: <Widget>[
-              Flexible(
-                fit: state is FilteringWithSearchBar && state.pinnedKeyword
-                    ? FlexFit.tight
-                    : FlexFit.loose,
-                flex: state is FilteringWithSearchBar && state.pinnedKeyword
-                    ? 1
-                    : 0,
-                child: AnimatedOpacity(
-                  opacity:
-                      state is FilteringWithSearchBar && state.pinnedKeyword
-                          ? 1.0
-                          : 0.0,
-                  duration: Duration(milliseconds: 300),
-                  child: state is FilteringWithSearchBar && state.pinnedKeyword
-                      ? ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 1,
-                          itemBuilder: (context, index) {
-                            return FilterPin(
-                              state.keyword,
-                              onTap: () {
-                                BlocProvider.of<FilterUserTicketListBloc>(
-                                        context)
-                                    .add(RemoveFilterPin());
-                              },
-                            );
-                          },
-                        )
-                      : SizedBox.shrink(),
-                ),
-              ),
-              Flexible(
-                fit: FlexFit.loose,
-                flex: state is FilteringWithSearchBar && state.pinnedKeyword
-                    ? 9
-                    : 1,
-                child: ListView.builder(
-                  itemCount: 3,
-                  itemBuilder: (BuildContext context, int index) {
-                    return TicketCard(
-                      title: "Fulano da Silva Santos",
-                      lab: "Hardware",
-                      status: "Pendente",
-                      dateTime: DateTime.now(),
-                      like: true,
-                      onPressedLike: () {},
-                      onPressedDislike: () {},
-                      likesNumber: 1,
-                      dislikesNumber: 2,
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
-        bottomNavigationBar: CustomBottomNavigationBar(),
-      );
-    });
+      ),
+      bottomNavigationBar: CustomBottomNavigationBar(),
+    );
   }
 }
