@@ -165,6 +165,7 @@ Future filterBottomSheet<Map>(
                           onTap: () {},
                           child: Icon(
                             Icons.keyboard_arrow_down,
+                            color: Colors.grey.shade700,
                           ),
                         ),
                       ],
@@ -188,7 +189,7 @@ Future filterBottomSheet<Map>(
                   borderRadius: BorderRadius.circular(8.0),
                   onTap: () {},
                   child: Container(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     height: 45,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
