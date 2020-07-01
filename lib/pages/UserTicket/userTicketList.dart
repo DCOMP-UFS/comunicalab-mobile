@@ -1,3 +1,4 @@
+import 'package:comunica_mobile/models/ticket.dart';
 import 'package:comunica_mobile/widgets/errorWidget.dart';
 import 'package:comunica_mobile/widgets/loadingWidget.dart';
 import 'package:flutter/material.dart';
@@ -423,36 +424,25 @@ class _UserTicketListState extends State<UserTicketList>
           body: SafeArea(
             child: state is UserTicketListLoadInProgress
                 ? LoadingWidget(message: "Carregando os chamados...")
-                : state is UserTicketListLoadFailure
-                    ? ErrorMessageWidget(
-                        message: "Houve um erro ao carregar a lista.")
-                    : ListView.builder(
-                        itemCount: 3,
+                : state is UserTicketListLoadSuccess
+                    ? ListView.builder(
+                        itemCount: state?.userTickets?.length,
                         itemBuilder: (BuildContext context, int index) {
                           return TicketCard(
-                            title: "Fulano da Silva Santos",
-                            lab: "Hardware",
-                            status: "Pendente",
-                            dateTime: DateTime.now(),
-                            like: BlocProvider.of<UserTicketListBloc>(context)
-                                .like,
-                            likesNumber:
-                                BlocProvider.of<UserTicketListBloc>(context)
-                                    .likes,
-                            dislikesNumber:
-                                BlocProvider.of<UserTicketListBloc>(context)
-                                    .dislikes,
+                            ticket: state.userTickets[index],
                             onPressedLike: () {
-                              BlocProvider.of<UserTicketListBloc>(context)
-                                  .add(UserTicketLiked());
+                              BlocProvider.of<UserTicketListBloc>(context).add(
+                                  UserTicketLiked(state.userTickets[index]));
                             },
                             onPressedDislike: () {
-                              BlocProvider.of<UserTicketListBloc>(context)
-                                  .add(UserTicketDisliked());
+                              BlocProvider.of<UserTicketListBloc>(context).add(
+                                  UserTicketDisliked(state.userTickets[index]));
                             },
                           );
                         },
-                      ),
+                      )
+                    : ErrorMessageWidget(
+                        message: "Houve um erro ao carregar a lista."),
           ),
           bottomNavigationBar: CustomBottomNavigationBar(),
         );

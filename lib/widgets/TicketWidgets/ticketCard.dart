@@ -1,29 +1,21 @@
 import 'package:comunica_mobile/icons/custom_icons_icons.dart';
+import 'package:comunica_mobile/models/ticket.dart';
 import 'package:flutter/material.dart';
 
 class TicketCard extends StatelessWidget {
-  final String title;
-  final String lab;
-  final String status;
-  final DateTime dateTime;
-  final bool like;
-  final int likesNumber;
-  final int dislikesNumber;
+  final Ticket ticket;
   final Function onPressedLike;
   final Function onPressedDislike;
+  final Function onTap;
 
-  TicketCard(
-      {this.title,
-      this.lab,
-      this.status,
-      this.dateTime,
-      this.like,
-      this.likesNumber,
-      this.dislikesNumber,
-      this.onPressedLike,
-      this.onPressedDislike});
+  TicketCard({
+    this.ticket,
+    this.onPressedLike,
+    this.onPressedDislike,
+    this.onTap,
+  });
 
-  Widget ticketProgressRow(String status) {
+  Widget ticketProgressRow(BuildContext context, String status) {
     return Row(
       children: <Widget>[
         Container(
@@ -37,41 +29,42 @@ class TicketCard extends StatelessWidget {
           ),
           child: Container(
             height: 5,
-            width:
-                (status == "Pendente") ? 11 : (status == "Andamento") ? 26 : 37,
+            width: (ticket.status == "Pendente")
+                ? 11
+                : (ticket.status == "Andamento") ? 26 : 37,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.horizontal(left: Radius.circular(12)),
-              color: (status == "Pendente")
+              color: (ticket.status == "Pendente")
                   ? Color(0xFFF41616)
-                  : (status == "Andamento")
+                  : (ticket.status == "Andamento")
                       ? Color(0xFFFFF500)
                       : Color(0xFF00FF29),
             ),
           ),
         ),
         Text(
-          status,
-          style: TextStyle(fontSize: 11),
+          ticket.status,
+          textScaleFactor: MediaQuery.of(context).size.width * 0.0020,
         ),
       ],
     );
   }
 
-  Widget ticketTimeRow(DateTime date) {
+  Widget ticketTimeRow(BuildContext context, DateTime date) {
     return Container(
-      margin: EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 8.0),
+      margin: EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: <Widget>[
           Icon(Icons.brightness_1, color: Colors.black26, size: 13),
           Text(
             " ${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year.toString()} ",
-            style: TextStyle(fontSize: 11),
+            textScaleFactor: MediaQuery.of(context).size.width * 0.0020,
           ),
           SizedBox(width: 7.0),
           Icon(Icons.access_time, size: 13),
           Text(
             " ${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}",
-            style: TextStyle(fontSize: 11),
+            textScaleFactor: MediaQuery.of(context).size.width * 0.0020,
           ),
         ],
       ),
@@ -96,23 +89,31 @@ class TicketCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(title, style: TextStyle(fontSize: 20)),
+                    Text(
+                      ticket.requestingUser,
+                      textScaleFactor:
+                          MediaQuery.of(context).size.width * 0.0035,
+                    ),
                     SizedBox(
                       height: 3.0,
                     ),
-                    Text(lab, style: TextStyle(fontSize: 18)),
-                    ticketTimeRow(dateTime),
-                    ticketProgressRow(status),
+                    Text(
+                      ticket.type,
+                      textScaleFactor:
+                          MediaQuery.of(context).size.width * 0.0030,
+                    ),
+                    ticketTimeRow(context, ticket.dateTime),
+                    ticketProgressRow(context, ticket.status),
                   ],
                 ),
               ),
-              onTap: () {},
+              onTap: onTap ?? () {},
             ),
           ),
         ),
         Positioned(
-          bottom: 5,
-          right: 40,
+          bottom: MediaQuery.of(context).size.width * 0.0125,
+          right: MediaQuery.of(context).size.width * 0.08,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
@@ -121,38 +122,48 @@ class TicketCard extends StatelessWidget {
                 shape: CircleBorder(),
                 child: Icon(
                   CustomIcons.thumb_up,
-                  size: 18.0,
-                  color: like ?? false ? Color(0xFF000080) : Colors.black38,
+                  size: MediaQuery.of(context).size.width * 0.05,
+                  color: ticket.liked ?? false
+                      ? Color(0xFF000080)
+                      : Colors.black38,
                 ),
-                onPressed: onPressedLike,
+                onPressed: (){print('O');},
               ),
-              Text(
-                likesNumber.toString(),
-                style: TextStyle(
-                  color: Colors.black38,
-                  fontSize: 11,
-                  fontWeight: FontWeight.bold,
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                  minWidth: MediaQuery.of(context).size.width * 0.08,
                 ),
-              ),
-              SizedBox(
-                width: 10.0,
+                child: Text(
+                  ticket.likes.toString(),
+                  textScaleFactor: MediaQuery.of(context).size.width * 0.002,
+                  style: TextStyle(
+                    color: Colors.black38,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
               RawMaterialButton(
                 constraints: BoxConstraints.tight(Size(40.0, 40.0)),
                 shape: CircleBorder(),
                 child: Icon(
                   CustomIcons.thumb_down,
-                  size: 18.0,
-                  color: like ?? true ? Colors.black38 : Color(0xFF000080),
+                  size: MediaQuery.of(context).size.width * 0.05,
+                  color:
+                      ticket.liked ?? true ? Colors.black38 : Color(0xFF000080),
                 ),
                 onPressed: onPressedDislike,
               ),
-              Text(
-                dislikesNumber.toString(),
-                style: TextStyle(
-                  color: Colors.black38,
-                  fontSize: 11,
-                  fontWeight: FontWeight.bold,
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                  minWidth: MediaQuery.of(context).size.width * 0.08,
+                ),
+                child: Text(
+                  ticket.dislikes.toString(),
+                  textScaleFactor: MediaQuery.of(context).size.width * 0.002,
+                  style: TextStyle(
+                    color: Colors.black38,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],

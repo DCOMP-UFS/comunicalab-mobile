@@ -51,21 +51,22 @@ class _TicketListState extends State<TicketList> {
         return ListView.builder(
           itemCount: 1,
           itemBuilder: (BuildContext context, int index) {
-            return TicketCard(
-              title: "Fulano da Silva Santos",
-              lab: "Hardware",
-              status: "Pendente",
-              dateTime: DateTime.now(),
-              like: BlocProvider.of<TicketListBloc>(context).like,
-              likesNumber: BlocProvider.of<TicketListBloc>(context).likes,
-              dislikesNumber: BlocProvider.of<TicketListBloc>(context).dislikes,
-              onPressedLike: () {
-                BlocProvider.of<TicketListBloc>(context).add(TicketLiked());
-              },
-              onPressedDislike: () {
-                BlocProvider.of<TicketListBloc>(context).add(TicketDisliked());
-              },
-            );
+            return Text('Oi');
+//            return TicketCard(
+//              title: "Fulano da Silva Santos",
+//              lab: "Hardware",
+//              status: "Pendente",
+//              dateTime: DateTime.now(),
+//              like: BlocProvider.of<TicketListBloc>(context).like,
+//              likesNumber: BlocProvider.of<TicketListBloc>(context).likes,
+//              dislikesNumber: BlocProvider.of<TicketListBloc>(context).dislikes,
+//              onPressedLike: () {
+//                BlocProvider.of<TicketListBloc>(context).add(TicketLiked());
+//              },
+//              onPressedDislike: () {
+//                BlocProvider.of<TicketListBloc>(context).add(TicketDisliked());
+//              },
+//            );
           },
         );
       }),

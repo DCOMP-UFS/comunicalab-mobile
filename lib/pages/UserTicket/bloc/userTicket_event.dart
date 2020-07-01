@@ -1,3 +1,4 @@
+import 'package:comunica_mobile/models/ticket.dart';
 import 'package:meta/meta.dart';
 
 @immutable
@@ -18,6 +19,14 @@ class ApplyFilter extends UserTicketListEvent {
 
 class CleanFilter extends UserTicketListEvent {}
 
-class UserTicketLiked extends UserTicketListEvent {}
+class UserTicketLiked extends UserTicketListEvent {
+  final Ticket ticket;
 
-class UserTicketDisliked extends UserTicketListEvent {}
+  UserTicketLiked(this.ticket);
+}
+
+class UserTicketDisliked extends UserTicketListEvent {
+  final Ticket ticket;
+
+  UserTicketDisliked(this.ticket);
+}

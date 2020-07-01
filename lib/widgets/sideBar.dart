@@ -1,5 +1,6 @@
 import 'package:comunica_mobile/icons/custom_icons_icons.dart';
 import 'package:comunica_mobile/pages/UserTicket/bloc/bloc.dart';
+import 'package:comunica_mobile/pages/UserTicket/userTicket.dart';
 import 'package:comunica_mobile/pages/UserTicket/userTicketList.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -95,7 +96,13 @@ Widget handlerSideBar(BuildContext context) {
                       color: Color(0xFF6A5ACD),
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (BuildContext context) {
+                        return UserTicket();
+                      }),
+                    );
+                  },
                 ),
                 ListTile(
                   title: Text(
