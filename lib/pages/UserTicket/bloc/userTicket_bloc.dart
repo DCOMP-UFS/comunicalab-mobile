@@ -14,7 +14,6 @@ class UserTicketListBloc
     try {
       if (event is FetchUserTickets) {
         if (currentState is UserTicketListLoadInProgress) {
-          //await Future.delayed(Duration(seconds: 2));
           final tickets = await _fetchUserTickets();
           yield UserTicketListLoadSuccess(userTickets: tickets);
         }
@@ -79,7 +78,7 @@ class UserTicketListBloc
         false,
       ),
     ];
-    //await Future.delayed(Duration(seconds: 3)); //simula latência
+    await Future.delayed(Duration(seconds: 3)); //simula latência
     return response;
   }
 }
