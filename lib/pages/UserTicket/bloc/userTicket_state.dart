@@ -10,29 +10,21 @@ class UserTicketListLoadSuccess extends UserTicketListState {
   //Chamados
   final List<Ticket> userTickets;
 
-  //Filtros
-  final DateTime dateTime;
-  final String troubleType;
-  final String ticketStatus;
+  //Filtro
+  final Map<String, dynamic> filter;
 
   const UserTicketListLoadSuccess({
     this.userTickets,
-    this.dateTime,
-    this.troubleType,
-    this.ticketStatus,
+    this.filter,
   });
 
   UserTicketListLoadSuccess copyWith({
     final List<Ticket> userTickets,
-    final DateTime dateTime,
-    final String troubleType,
-    final String ticketStatus,
+    final Map<String, dynamic> filter,
   }) {
     return UserTicketListLoadSuccess(
       userTickets: userTickets ?? this.userTickets,
-      dateTime: dateTime ?? this.dateTime,
-      troubleType: troubleType ?? this.troubleType,
-      ticketStatus: ticketStatus ?? this.ticketStatus,
+      filter: filter ?? this.filter,
     );
   }
 }

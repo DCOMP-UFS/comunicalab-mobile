@@ -20,7 +20,6 @@ Future filterBottomSheet<Map>(
     String troubleType,
     String ticketStatus}) async {
   return showModalBottomSheet<Map>(
-    //change void to the desired return type
     context: context,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
@@ -335,7 +334,7 @@ Future filterBottomSheet<Map>(
                           fontSize: 18,
                         ),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         Navigator.pop(context, filter);
                       },
                     ),

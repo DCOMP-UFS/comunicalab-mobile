@@ -123,11 +123,10 @@ class TicketCard extends StatelessWidget {
                 child: Icon(
                   CustomIcons.thumb_up,
                   size: MediaQuery.of(context).size.width * 0.05,
-                  color: ticket.liked ?? false
-                      ? Color(0xFF000080)
-                      : Colors.black38,
+                  color:
+                      ticket?.liked == 'S' ? Color(0xFF000080) : Colors.black38,
                 ),
-                onPressed: (){print('O');},
+                onPressed: onPressedLike,
               ),
               ConstrainedBox(
                 constraints: BoxConstraints(
@@ -149,7 +148,7 @@ class TicketCard extends StatelessWidget {
                   CustomIcons.thumb_down,
                   size: MediaQuery.of(context).size.width * 0.05,
                   color:
-                      ticket.liked ?? true ? Colors.black38 : Color(0xFF000080),
+                      ticket?.liked == 'N' ? Color(0xFF000080) : Colors.black38,
                 ),
                 onPressed: onPressedDislike,
               ),

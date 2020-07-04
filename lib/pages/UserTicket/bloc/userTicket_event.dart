@@ -10,14 +10,10 @@ class FetchUserTickets extends UserTicketListEvent {}
 
 class ApplyFilter extends UserTicketListEvent {
   //Futuramente, esses parâmetros podem ser substituídos pela model que trata a integração com a API
-  final DateTime dateTime;
-  final String troubleType;
-  final String ticketStatus;
+  final Map<String, dynamic> filter;
 
-  const ApplyFilter(this.dateTime, this.troubleType, this.ticketStatus);
+  const ApplyFilter(this.filter);
 }
-
-class CleanFilter extends UserTicketListEvent {}
 
 class UserTicketLiked extends UserTicketListEvent {
   final Ticket ticket;

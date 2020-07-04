@@ -15,31 +15,7 @@ class UserTicketList extends StatefulWidget {
   _UserTicketListState createState() => _UserTicketListState();
 }
 
-class _UserTicketListState extends State<UserTicketList>
-    with SingleTickerProviderStateMixin {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-//  MaterialColor customPrimarySwatch = MaterialColor(0xFF000080, <int, Color>{
-//    50: Color(0xFFEAE3F3),
-//    100: Color(0xFFC9BBE2),
-//    200: Color(0xFFa68fcf),
-//    300: Color(0xFF8262bc),
-//    400: Color(0xFF6841af),
-//    500: Color(0xFF4c1fa2),
-//    600: Color(0xFF431b9d),
-//    700: Color(0xFF351394),
-//    800: Color(0xFF260d8d),
-//    900: Color(0xFF000080),
-//  });
-
+class _UserTicketListState extends State<UserTicketList> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<UserTicketListBloc, UserTicketListState>(
@@ -60,16 +36,12 @@ class _UserTicketListState extends State<UserTicketList>
                           if (state is UserTicketListLoadSuccess) {
                             filterBottomSheet(
                               context: context,
-                              dateTime: state?.dateTime,
-                              troubleType: state?.troubleType,
-                              ticketStatus: state?.ticketStatus,
+                              dateTime: state?.filter['dateTime'],
+                              troubleType: state?.filter['troubleType'],
+                              ticketStatus: state?.filter['ticketStatus'],
                             ).then((filter) {
                               BlocProvider.of<UserTicketListBloc>(context)
-                                  .add(ApplyFilter(
-                                filter['dateTime'],
-                                filter['troubleType'],
-                                filter['ticketStatus'],
-                              ));
+                                  .add(ApplyFilter(filter));
                             });
                           }
                         },
@@ -97,12 +69,16 @@ class _UserTicketListState extends State<UserTicketList>
                               );
                             },
                             onPressedLike: () {
-                              BlocProvider.of<UserTicketListBloc>(context).add(
-                                  UserTicketLiked(state.userTickets[index]));
+                              BlocProvider.of<UserTicketListBloc>(context)
+                                  .add(UserTicketLiked(
+                                state.userTickets[index],
+                              ));
                             },
                             onPressedDislike: () {
-                              BlocProvider.of<UserTicketListBloc>(context).add(
-                                  UserTicketDisliked(state.userTickets[index]));
+                              BlocProvider.of<UserTicketListBloc>(context)
+                                  .add(UserTicketDisliked(
+                                state.userTickets[index],
+                              ));
                             },
                           );
                         },
