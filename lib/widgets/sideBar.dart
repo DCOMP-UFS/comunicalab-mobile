@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:comunica_mobile/pages/Equipment/tickets/ticketList/bloc/bloc.dart';
-import 'package:comunica_mobile/pages/Equipment/tickets/ticketList/ticketList.dart';
+import 'package:comunica_mobile/pages/Equipment/tickets/ticketList/equipmentTicketList.dart';
 import 'package:comunica_mobile/widgets/CustomBottomNavigationBar/bloc/customBottomNavigationBar_bloc.dart';
 
 final headerTextStyle = TextStyle(color: Color(0xFFFFFFFF), fontSize: 14.0);
@@ -117,9 +117,9 @@ Widget handlerSideBar(BuildContext context) {
                               create: (BuildContext context) =>
                                   CustomBottomNavigationBarBloc(),
                             ),
-                            BlocProvider<TicketListBloc>(
+                            BlocProvider<EquipmentTicketListBloc>(
                               create: (BuildContext context) =>
-                                  TicketListBloc()..add(TicketListFetch()),
+                                  EquipmentTicketListBloc()..add(FetchEquipmentTickets()),
                             ),
                           ],
                           child: TicketList(),

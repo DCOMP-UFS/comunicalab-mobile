@@ -1,3 +1,3 @@
-export 'ticketList_bloc.dart';
-export 'ticketList_event.dart';
-export 'ticketList_state.dart';
+export 'equipmentTicketList_bloc.dart';
+export 'equipmentTicketList_event.dart';
+export 'equipmentTicketList_state.dart';
