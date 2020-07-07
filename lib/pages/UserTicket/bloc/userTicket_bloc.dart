@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:comunica_mobile/pages/UserTicket/bloc/bloc.dart';
+import 'package:comunica_mobile/models/user.dart';
 import 'package:comunica_mobile/models/ticket.dart';
 
 class UserTicketListBloc
@@ -63,6 +64,8 @@ class UserTicketListBloc
   }
 
   Future<List<Ticket>> _fetchUserTickets() async {
+    User user = User();
+
     //Simula a resposta do servidor.
     var response = <Ticket>[
       Ticket(
@@ -110,6 +113,24 @@ class UserTicketListBloc
         liked: 'N',
       ),
     ];
+
+    switch (user.getUserType) {
+      case Users.technician:
+        //Especificidades do usuário técnico.
+        break;
+      case Users.student:
+        //Especificidades do usuário estudante.
+        response = response
+            .where((element) => element.requestingUser == user.getUser)
+            .toList();
+        break;
+      case Users.teacher:
+        //Especificidades do usuário professor.
+        response = response
+            .where((element) => element.requestingUser == user.getUser)
+            .toList();
+        break;
+    }
 
     response.sort(); //Ordena os chamados de acordo com o seu status;
     await Future.delayed(Duration(seconds: 3)); //simula latência
