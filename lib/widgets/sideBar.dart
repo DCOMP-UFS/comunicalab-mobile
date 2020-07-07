@@ -56,19 +56,21 @@ Widget handlerSideBar(BuildContext context) {
                   onTap: () {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return MultiBlocProvider(
-                            providers: [
-                              BlocProvider<SoftwareTicketListBloc>(
-                                create: (BuildContext context) => SoftwareTicketListBloc(),
-                              ),
-                              BlocProvider<CustomBottomNavigationBarBloc>(
-                                create: (BuildContext context) =>
-                                    CustomBottomNavigationBarBloc(),
-                              ),
-                            ],
-                            child: SoftwareTicketList(),
-                          );
-                        }));
+                      return MultiBlocProvider(
+                        providers: [
+                          BlocProvider<CustomBottomNavigationBarBloc>(
+                            create: (BuildContext context) =>
+                                CustomBottomNavigationBarBloc(),
+                          ),
+                          BlocProvider<SoftwareTicketListBloc>(
+                            create: (BuildContext context) =>
+                                SoftwareTicketListBloc()
+                                  ..add(FetchSoftwareTickets()),
+                          ),
+                        ],
+                        child: SoftwareTicketList(),
+                      );
+                    }));
                   },
                 ),
                 ListTile(
