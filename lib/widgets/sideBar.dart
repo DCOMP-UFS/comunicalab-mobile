@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:comunica_mobile/icons/custom_icons_icons.dart';
 import 'package:comunica_mobile/pages/UserTicket/bloc/bloc.dart';
-import 'package:comunica_mobile/pages/UserTicket/userTicket.dart';
 import 'package:comunica_mobile/pages/UserTicket/userTicketList.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/filterlaboratory_bloc.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/lablist_bloc.dart';
@@ -77,13 +76,7 @@ Widget handlerSideBar(BuildContext context) {
                       color: Color(0xFF6A5ACD),
                     ),
                   ),
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (BuildContext context) {
-                        return UserTicket();
-                      }),
-                    );
-                  },
+                  onTap: () {},
                 ),
                 ListTile(
                   title: Text(
@@ -190,19 +183,19 @@ Widget handlerSideBar(BuildContext context) {
                   onTap: () {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return MultiBlocProvider(
-                            providers: [
-                              BlocProvider<LablistBloc>(
-                                create: (BuildContext context) => LablistBloc(),
-                              ),
-                              BlocProvider<FilterlaboratoryBloc>(
-                                create: (BuildContext context) =>
-                                    FilterlaboratoryBloc(),
-                              ),
-                            ],
-                            child: LabList(),
-                          );
-                        }));
+                      return MultiBlocProvider(
+                        providers: [
+                          BlocProvider<LablistBloc>(
+                            create: (BuildContext context) => LablistBloc(),
+                          ),
+                          BlocProvider<FilterlaboratoryBloc>(
+                            create: (BuildContext context) =>
+                                FilterlaboratoryBloc(),
+                          ),
+                        ],
+                        child: LabList(),
+                      );
+                    }));
                   },
                 )
               ],
