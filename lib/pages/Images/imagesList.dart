@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:comunica_mobile/pages/Equipment/resources/bloc/imgSoftList_bloc.dart';
 import 'package:comunica_mobile/widgets/sideBar.dart';
 import 'package:comunica_mobile/widgets/customCard.dart';
-import 'package:comunica_mobile/widgets/CustomBottomNavigationBar/customBottomNavigationBar.dart';
 
-class ImgSoftList extends StatefulWidget {
+class ImagesList extends StatefulWidget {
   @override
-  _ImgSoftListState createState() => _ImgSoftListState();
+  _ImagesListState createState() => _ImagesListState();
 }
 
-class _ImgSoftListState extends State<ImgSoftList> {
+class _ImagesListState extends State<ImagesList> {
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +17,6 @@ class _ImgSoftListState extends State<ImgSoftList> {
       ),
       drawer: handlerSideBar(context),
       body: Container(
-        width: 400,
-        height: 400,
         margin: EdgeInsets.all(20.0),
         child: ListView.builder(
           itemCount: 8,
