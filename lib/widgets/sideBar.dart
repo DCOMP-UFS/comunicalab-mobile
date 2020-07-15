@@ -1,3 +1,4 @@
+import 'package:comunica_mobile/Software/Software.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/filterlaboratory_bloc.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/lablist_bloc.dart';
 import 'package:comunica_mobile/pages/Laboratory/lab.dart';
@@ -33,7 +34,24 @@ Widget handlerSideBar(BuildContext context){
               children: <Widget>[
                 ListTile(
                   title: Text('Cadastrar software', style: TextStyle(color: Color(0xFF6A5ACD))),
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context){
+                        return MultiBlocProvider(
+                            providers: [
+                              BlocProvider<LablistBloc>(
+                                create: (BuildContext context) => LablistBloc(),
+                              ),
+                              BlocProvider<FilterlaboratoryBloc>(
+                                create: (BuildContext context) => FilterlaboratoryBloc(),
+                              ),
+                            ],
+                            child: Software()
+                        );
+                      }
+                    )
+                    );
+                  },
                 ),
                 ListTile(
                   title: Text('Listar softwares', style: TextStyle(color: Color(0xFF6A5ACD))),
