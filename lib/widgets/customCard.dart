@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 
-class CustomCard extends StatelessWidget {
+class CustomCard extends StatefulWidget {
   final String softwareName;
 
-  CustomCard(this.softwareName);
+  CustomCard(this.softwareName,);
+
+  @override
+  _CustomCardState createState() => _CustomCardState();
+}
+
+class _CustomCardState extends State<CustomCard> {
+  bool valor = true;
+  int contador = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +24,31 @@ class CustomCard extends StatelessWidget {
         ),
         child: InkWell(
           borderRadius: BorderRadius.circular(10.0),
-          onTap: (){},
+          onTap: () {},
           child: Container(
-            padding: EdgeInsets.all(12.0),
-            child: Text(softwareName),
-          ),
+              padding: EdgeInsets.all(1.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Checkbox(
+                    onChanged: (marcacao) {
+                      setState(() {
+                        valor = marcacao;
+                        if (valor == true) {
+                          contador += 1;
+                        } else {
+                          contador -= 1;
+                        }
+                      });
+                    },
+                    value: valor,
+                  ),
+                  SizedBox(
+                    width: 80,
+                  ),
+                  Text(widget.softwareName),
+                ],
+              )),
         ),
       ),
     );
