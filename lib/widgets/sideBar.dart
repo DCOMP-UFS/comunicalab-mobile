@@ -1,8 +1,8 @@
-import 'package:comunica_mobile/Software/Software.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/filterlaboratory_bloc.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/lablist_bloc.dart';
 import 'package:comunica_mobile/pages/Laboratory/lab.dart';
 import 'package:comunica_mobile/pages/Laboratory/labList.dart';
+import 'package:comunica_mobile/pages/Software/Software.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
