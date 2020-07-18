@@ -1,4 +1,4 @@
-class SoftwareModel{
+class SoftwareModel implements Comparable<SoftwareModel>{
 
   int _id;
   String _name;
@@ -13,5 +13,13 @@ class SoftwareModel{
   String get license => _license;
   bool get is_actived => _is_actived;
   bool get is_deleted => _is_deleted;
+
+  SoftwareModel(this._id, this._name, this._version, this._license, this._is_actived, this._is_deleted);
+
+  @override
+  int compareTo(SoftwareModel other) {
+    // TODO: implement compareTo
+    throw UnimplementedError();
+  }
 
 }
