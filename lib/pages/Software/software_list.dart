@@ -1,19 +1,23 @@
-import 'package:comunica_mobile/pages/Software/Software.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'bloc/software_bloc.dart';
 
 class SoftwareList extends StatelessWidget {
 
-  PageController controller = new PageController();
   bool _chekBoxValue = false;
   String nomeSoft;
 
-  SoftwareList(this.nomeSoft, this._chekBoxValue);
+  SoftwareList(this.nomeSoft);
+
+  SoftwareBloc bloc = SoftwareBloc();
 
   @override
-  Widget build(BuildContext context){
-    // TODO: implement build
+  void dispose(){
+    bloc.close();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -29,13 +33,17 @@ class SoftwareList extends StatelessWidget {
                       color: Color(0xFF000080))),
               child: Row(
                 children: [
-                  Checkbox(
-                    value: _chekBoxValue,
-                    onChanged: (bool value) {
-                      // setState = setState(() {
-                      _chekBoxValue = value;
-                      //});
-                    },
+                  StreamBuilder<bool>(
+                    stream: bloc,
+                    builder: (context, snapshot){
+                      return Checkbox(
+                        value: _chekBoxValue,
+                        onChanged: (bool value ) {
+                          bloc.add(value);
+                          _chekBoxValue = value;
+                        },
+                      );
+                    }
                   ),
                   SizedBox(
                     width: 90,
@@ -51,8 +59,4 @@ class SoftwareList extends StatelessWidget {
       ],
     );
   }
-
-
-
-
 }
