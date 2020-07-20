@@ -1,6 +1,7 @@
+import 'package:comunica_mobile/pages/Images/imagesDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:comunica_mobile/widgets/sideBar.dart';
-import 'package:comunica_mobile/widgets/customCard.dart';
+import 'package:comunica_mobile/pages/Images/widgets/customCard.dart';
 
 class ImagesList extends StatefulWidget {
   @override
@@ -21,7 +22,10 @@ class _ImagesListState extends State<ImagesList> {
         child: ListView.builder(
           itemCount: 8,
           itemBuilder: (context, index) {
-            return CustomCard('Imagem ${index + 1}');
+            return  CustomCard('Imagem ${index + 1}');
+
+
+
           },
         ),
       ),

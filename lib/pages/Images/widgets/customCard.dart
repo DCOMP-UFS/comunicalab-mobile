@@ -18,7 +18,9 @@ class CustomCard extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(10.0),
           onTap: (){
-
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context)=>imagesDetails(softwareName)
+            ));
           },
           child: Container(
             padding: EdgeInsets.all(12.0),
