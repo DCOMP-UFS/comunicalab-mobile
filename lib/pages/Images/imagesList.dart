@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:comunica_mobile/widgets/sideBar.dart';
 import 'package:comunica_mobile/pages/Images/widgets/customCard.dart';
 
+
 class ImagesList extends StatefulWidget {
   @override
   _ImagesListState createState() => _ImagesListState();

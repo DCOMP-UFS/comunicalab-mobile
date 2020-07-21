@@ -2,6 +2,7 @@ import 'package:comunica_mobile/pages/Images/infoTela.dart';
 import 'package:comunica_mobile/pages/Images/softwareTela.dart';
 import 'package:flutter/material.dart';
 
+
 class imagesDetails extends StatefulWidget {
 
   final String softwareName;

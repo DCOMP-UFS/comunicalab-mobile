@@ -2,6 +2,7 @@ import 'package:comunica_mobile/pages/Images/widgets/customCard.dart';
 import 'package:flutter/material.dart';
 
 
+
 class softwareTela extends StatefulWidget {
   @override
   _softwareTelaState createState() => _softwareTelaState();
