@@ -95,7 +95,7 @@ class _AddToEquipmentState extends State<AddToEquipment> {
                                     showDialog(
                                         context: context,
                                         builder: (context) => AlertDialog(
-                                              title: Text('Seu pedido foi solicitado'),
+                                              title: Text('Seu pedido foi solicitado!'),
                                             ));
                                   },
                                   child: Text(
