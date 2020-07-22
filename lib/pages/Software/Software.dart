@@ -78,7 +78,7 @@ class _SoftwareState extends State<Software> {
           title: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Adcionar Softwares"),
+              Text("Adicionar Softwares"),
             ],
           ),
           actions: [
