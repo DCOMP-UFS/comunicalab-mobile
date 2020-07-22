@@ -12,6 +12,64 @@ class _SoftwareState extends State<Software> {
 
 
   bool _chekBoxValue = false;
+  SoftwareBloc bloc = SoftwareBloc();
+
+  showAlertDialog1(BuildContext context)
+  {
+    // configura o button
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.of(context).pop();
+        },
+    );
+    // configura o  AlertDialog
+    AlertDialog alerta = AlertDialog(
+      elevation: 100,
+      title: Text(""),
+      content: Text("Seu pedido foi solicitado!", style: TextStyle(fontSize: 20, ), textAlign: TextAlign.center),
+      actions: [
+        okButton,
+      ],
+    );
+    // exibe o dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alerta;
+      },
+    );
+  }
+
+  showAlertDialog2(BuildContext context) {
+    Widget cancelaButton = FlatButton(
+      child: Text("Cancelar"),
+      onPressed:  () {Navigator.of(context).pop();},
+    );
+    Widget continuaButton = FlatButton(
+      child: Text("OK"),
+      onPressed:  () {
+        Navigator.of(context).pop();
+        showAlertDialog1(context);
+        },
+    );
+    //configura o AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("AlertDialog"),
+      content: Text("Deseja requisitar os Softwares selecionados para \"Imagem 1\""),
+      actions: [
+        cancelaButton,
+        continuaButton,
+      ],
+    );
+    //exibe o diálogo
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +102,7 @@ class _SoftwareState extends State<Software> {
               SizedBox(
                   width: 250,
                   child: RaisedButton(
-                    onPressed: () {},
+                    onPressed: () { showAlertDialog2(context);},
                     color: Color(0xFF000080),
                     shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0)),

@@ -19,7 +19,7 @@ environment:
 dependencies:
   dio:
   flutter_bloc:
-  barcode_scan:
+  barcode_scan: ^2.0.2
   flutter:
     sdk: flutter
 
