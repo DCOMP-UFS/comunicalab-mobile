@@ -1,5 +1,3 @@
-import 'package:comunica_mobile/models/ticket.dart';
-import 'package:comunica_mobile/pages/UserTicket/userTicket.dart';
 import 'package:comunica_mobile/widgets/errorWidget.dart';
 import 'package:comunica_mobile/widgets/loadingWidget.dart';
 import 'package:flutter/material.dart';
@@ -61,12 +59,7 @@ class _UserTicketListState extends State<UserTicketList> {
                           return TicketCard(
                             ticket: state.userTickets[index],
                             onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) {
-                                  return UserTicket();
-                                }),
-                              );
+                              print('Ticket tapped');
                             },
                             onPressedLike: () {
                               BlocProvider.of<UserTicketListBloc>(context)
