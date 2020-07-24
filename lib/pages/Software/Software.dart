@@ -2,17 +2,10 @@ import 'package:comunica_mobile/pages/Software/bloc/software_bloc.dart';
 import 'package:comunica_mobile/pages/Software/software_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-class Software extends StatefulWidget {
-  @override
-  _SoftwareState createState() => _SoftwareState();
-}
-
-class _SoftwareState extends State<Software> {
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 
-  bool _chekBoxValue = false;
-  SoftwareBloc bloc = SoftwareBloc();
+class Software extends StatelessWidget{
 
   showAlertDialog1(BuildContext context)
   {
@@ -101,16 +94,23 @@ class _SoftwareState extends State<Software> {
               SoftwareList("Software 7"),
               SizedBox(
                   width: 250,
-                  child: RaisedButton(
-                    onPressed: () { showAlertDialog2(context);},
-                    color: Color(0xFF000080),
-                    shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0)),
-                    child: Text(
-                      "Adicionar",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ))
+                  child: BlocBuilder<SoftwareBloc, int>(
+                    builder: (context, state){
+                      return RaisedButton(
+                        onPressed: state > 0 ? () {
+                          showAlertDialog2(context);
+                        }: null,
+                        color: Color(0xFF000080),
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(30.0)),
+                        child: Text(
+                          "Adicionar",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      );
+                    },
+                  )
+              )
             ],
           ),
           /* floatingActionButton: FloatingActionButton(

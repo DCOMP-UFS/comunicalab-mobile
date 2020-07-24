@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/software_bloc.dart';
 
 class SoftwareList extends StatelessWidget {
-
-  bool _chekBoxValue = false;
-  String nomeSoft;
+  final String nomeSoft;
 
   SoftwareList(this.nomeSoft);
 
-  SoftwareBloc bloc = SoftwareBloc();
-
-  @override
-  void dispose(){
-    bloc.close();
-  }
+  bool _chekBoxValue = false;
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -27,21 +22,35 @@ class SoftwareList extends StatelessWidget {
               width: 350,
               height: 50,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  border: Border.all(
-                      style: BorderStyle.solid,
-                      color: Color(0xFF000080))),
+                color: Colors.white,
+                  borderRadius: BorderRadius.circular(14),
+                  boxShadow: [BoxShadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.25),
+                    offset: Offset(4, 4),
+                  )],
+              ),
               child: Row(
                 children: [
-                  StreamBuilder<bool>(
-                    stream: bloc,
-                    builder: (context, snapshot){
-                      return Checkbox(
-                        value: _chekBoxValue,
-                        onChanged: (bool value ) {
-                          bloc.add(value);
-                          _chekBoxValue = value;
-                        },
+                  BlocBuilder<SoftwareBloc, int>(
+                    builder: (context, _ ) {
+                      return Theme(
+                        data: ThemeData(
+                          unselectedWidgetColor: Colors.black
+                        ),
+                        child: Checkbox(
+                          value: _chekBoxValue,
+                          checkColor: Colors.white,
+                          activeColor: Theme.of(context).primaryColor,
+                          onChanged: (bool value) {
+                            _chekBoxValue = value;
+                            if (value)
+                              BlocProvider.of<SoftwareBloc>(context)
+                                  .add(SoftwareEvent.increment);
+                            else
+                              BlocProvider.of<SoftwareBloc>(context)
+                                  .add(SoftwareEvent.decrement);
+                          },
+                        ),
                       );
                     }
                   ),
@@ -50,8 +59,7 @@ class SoftwareList extends StatelessWidget {
                   ),
                   Text(
                     nomeSoft,
-                    style:
-                    TextStyle(fontSize: 16, color: Color(0xFF000080)),
+                    style: TextStyle(fontSize: 16, color: Color(0xFF000080)),
                   )
                 ],
               )),

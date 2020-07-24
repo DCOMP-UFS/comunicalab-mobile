@@ -3,6 +3,7 @@ import 'package:comunica_mobile/pages/Laboratory/bloc/lablist_bloc.dart';
 import 'package:comunica_mobile/pages/Laboratory/lab.dart';
 import 'package:comunica_mobile/pages/Laboratory/labList.dart';
 import 'package:comunica_mobile/pages/Software/Software.dart';
+import 'package:comunica_mobile/pages/Software/bloc/software_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,15 +38,8 @@ Widget handlerSideBar(BuildContext context){
                   onTap: (){
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context){
-                        return MultiBlocProvider(
-                            providers: [
-                              BlocProvider<LablistBloc>(
-                                create: (BuildContext context) => LablistBloc(),
-                              ),
-                              BlocProvider<FilterlaboratoryBloc>(
-                                create: (BuildContext context) => FilterlaboratoryBloc(),
-                              ),
-                            ],
+                        return BlocProvider<SoftwareBloc>(
+                            create: (_) => SoftwareBloc(),
                             child: Software()
                         );
                       }
