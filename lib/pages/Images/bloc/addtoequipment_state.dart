@@ -1,18 +1,27 @@
+import 'package:comunica_mobile/models/equipment.dart';
 import 'package:meta/meta.dart';
 
 @immutable
-abstract class AddtoequipmentState {}
+abstract class AddToEquipmentState {}
 
-class AddtoequipmentInitial extends AddtoequipmentState {}
+class AddToEquipmentLoading extends AddToEquipmentState {}
 
-class AddtoequipmentLoading extends AddtoequipmentState {
+class AddToEquipmentSuccess extends AddToEquipmentState {
+  final List<Equipment> equipments;
 
+  AddToEquipmentSuccess({this.equipments});
 }
 
-class AddtoequipmentSuccess extends AddtoequipmentState {
-  
+class AddToEquipmentMethod extends AddToEquipmentState {
+  final List<Equipment> equipments;
+
+  AddToEquipmentMethod({this.equipments});
 }
 
-class AddtoequipmentError extends AddtoequipmentState {
-  
+class OneEquipmentSelected extends AddToEquipmentState{
+  final Equipment equipment;
+
+  OneEquipmentSelected({this.equipment});
 }
+
+class AddtoequipmentError extends AddToEquipmentState {}

@@ -1,17 +1,22 @@
+import 'package:comunica_mobile/models/equipment.dart';
+import 'package:comunica_mobile/pages/Images/bloc/addtoequipment_bloc.dart';
+import 'package:comunica_mobile/pages/Images/bloc/addtoequipment_event.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomCard extends StatefulWidget {
   final String softwareName;
+  final Equipment equipment;
   final void Function(int) quandoSelecionar;
 
-  CustomCard(this.softwareName, this.quandoSelecionar);
+  CustomCard({this.softwareName, this.equipment, this.quandoSelecionar});
 
   @override
   _CustomCardState createState() => _CustomCardState();
 }
 
 class _CustomCardState extends State<CustomCard> {
-  bool valor = false;
+  // bool valor = false;
 
   @override
   Widget build(BuildContext context) {
@@ -31,23 +36,29 @@ class _CustomCardState extends State<CustomCard> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Checkbox(
-                    onChanged: (marcacao) {
+                    onChanged: (isMarked) {
                       setState(() {
-                        valor = marcacao;
-                        if (valor == true) {
-                          widget.quandoSelecionar(1);
-                        } else {
-                          widget.quandoSelecionar(-1);
-                        }
+                        widget.equipment.isMarked = isMarked;
                       });
+                      BlocProvider.of<AddToEquipmentBloc>(context).add(EquipmentSelected(equipment: widget.equipment));
                     },
-                    value: valor,
+                    // (marcacao) {
+                    //   setState(() {
+                    //     valor = marcacao;
+                    //     if (valor == true) {
+                    //       widget.quandoSelecionar(1);
+                    //     } else {
+                    //       widget.quandoSelecionar(-1);
+                    //     }
+                    //   });
+                    // },
+                    value: widget.equipment.isMarked,
                     activeColor: Color(0xFF000080),
                   ),
                   SizedBox(
                     width: 80,
                   ),
-                  Text(widget.softwareName),
+                  Text(widget.equipment.name),
                 ],
               )),
         ),
