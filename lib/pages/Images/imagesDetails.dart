@@ -78,7 +78,6 @@ class _imagesDetailsState extends State<imagesDetails> {
               ],
             ),
           ),
-          //bottomNavigationBar: CustomBottomNavigationBar(),
         ),
       );
   }
