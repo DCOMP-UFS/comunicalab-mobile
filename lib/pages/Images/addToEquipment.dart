@@ -59,7 +59,6 @@ class _AddToEquipmentState extends State<AddToEquipment> {
                     value: BlocProvider.of<AddToEquipmentBloc>(context),
                     child: CustomCard(equipment: state.equipments[index]),
                   );
-                  // return CustomCard('${state.equipments[index].name}', verificarSelecionado);
                 },
               ),
             );
@@ -67,20 +66,6 @@ class _AddToEquipmentState extends State<AddToEquipment> {
             return Center(
               child: CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation(Colors.blue),
-              ),
-            );
-          } else if (state is AddToEquipmentMethod) {
-            return Container(
-              margin: EdgeInsets.all(20.0),
-              child: ListView.builder(
-                itemCount: state.equipments.length,
-                itemBuilder: (context, index) {
-                  return BlocProvider.value(
-                    value: BlocProvider.of<AddToEquipmentBloc>(context),
-                    child: CustomCard(equipment: state.equipments[index]),
-                  );
-                  // return CustomCard('${state.equipments[index].name}', verificarSelecionado);
-                },
               ),
             );
           } else {
@@ -102,8 +87,7 @@ class _AddToEquipmentState extends State<AddToEquipment> {
                 if (state.equipments.where((e) => e.isMarked == true).toList().length > 0) {
                   return GestureDetector(
                     onTap: () {
-                      openDialog(context);
-                      state.equipments.map((eqp) => eqp.isMarked = false);
+                      openDialog(context, BlocProvider.of<AddToEquipmentBloc>(context));
                     },
                     child: Container(
                       height: 32,
@@ -181,7 +165,7 @@ class _AddToEquipmentState extends State<AddToEquipment> {
   }
 }
 
-openDialog(BuildContext context) {
+openDialog(BuildContext context, AddToEquipmentBloc bloc) {
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
@@ -206,10 +190,11 @@ openDialog(BuildContext context) {
           onPressed: () {
             Navigator.of(context).pop();
             showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                      title: Text('Seu pedido foi solicitado!'),
-                    ));
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Text('Seu pedido foi solicitado!'),
+              ),
+            ).then((value) => bloc.add(ClearMarkedEquipments()));
           },
           child: Text(
             'Ok',

@@ -16,7 +16,6 @@ class CustomCard extends StatefulWidget {
 }
 
 class _CustomCardState extends State<CustomCard> {
-  // bool valor = false;
 
   @override
   Widget build(BuildContext context) {
@@ -37,21 +36,9 @@ class _CustomCardState extends State<CustomCard> {
                 children: <Widget>[
                   Checkbox(
                     onChanged: (isMarked) {
-                      setState(() {
-                        widget.equipment.isMarked = isMarked;
-                      });
+                      widget.equipment.isMarked = isMarked;
                       BlocProvider.of<AddToEquipmentBloc>(context).add(EquipmentSelected(equipment: widget.equipment));
                     },
-                    // (marcacao) {
-                    //   setState(() {
-                    //     valor = marcacao;
-                    //     if (valor == true) {
-                    //       widget.quandoSelecionar(1);
-                    //     } else {
-                    //       widget.quandoSelecionar(-1);
-                    //     }
-                    //   });
-                    // },
                     value: widget.equipment.isMarked,
                     activeColor: Color(0xFF000080),
                   ),

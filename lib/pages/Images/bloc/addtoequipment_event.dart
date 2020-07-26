@@ -12,6 +12,8 @@ class AddImageToEquipments extends AddToEquipmentEvent {
   AddImageToEquipments({this.equipments});
 }
 
+class ClearMarkedEquipments extends AddToEquipmentEvent {}
+
 class EquipmentSelected extends AddToEquipmentEvent {
   final Equipment equipment;
 
