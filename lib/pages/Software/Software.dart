@@ -7,23 +7,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Software extends StatelessWidget{
 
-  showAlertDialog1(BuildContext context)
+ showAlertDialog1(BuildContext context)
   {
-    // configura o button
-    Widget okButton = FlatButton(
-      child: Text("OK"),
-      onPressed: () {
-        Navigator.of(context).pop();
-        },
-    );
     // configura o  AlertDialog
     AlertDialog alerta = AlertDialog(
+      shape: new RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(15)
+      ),
       elevation: 100,
-      title: Text(""),
-      content: Text("Seu pedido foi solicitado!", style: TextStyle(fontSize: 20, ), textAlign: TextAlign.center),
-      actions: [
-        okButton,
-      ],
+      title: Text(
+          "Seu pedido foi solicitado!",
+          style: TextStyle(fontSize: 20, ),
+          textAlign: TextAlign.center
+      ),
     );
     // exibe o dialog
     showDialog(
@@ -36,11 +32,11 @@ class Software extends StatelessWidget{
 
   showAlertDialog2(BuildContext context) {
     Widget cancelaButton = FlatButton(
-      child: Text("Cancelar"),
+      child: Text("Cancelar", style: TextStyle(fontSize: 20, color: Colors.black54),),
       onPressed:  () {Navigator.of(context).pop();},
     );
     Widget continuaButton = FlatButton(
-      child: Text("OK"),
+      child: Text("OK", style: TextStyle(fontSize: 20, color: Colors.black54),),
       onPressed:  () {
         Navigator.of(context).pop();
         showAlertDialog1(context);
@@ -48,8 +44,14 @@ class Software extends StatelessWidget{
     );
     //configura o AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("AlertDialog"),
-      content: Text("Deseja requisitar os Softwares selecionados para \"Imagem 1\""),
+      title: Text(
+        "Deseja requisitar os Softwares selecionados para \"Imagem 1\"",
+        style: TextStyle(),
+        textAlign: TextAlign.center,
+      ),
+      shape: new RoundedRectangleBorder(
+        borderRadius: new BorderRadius.circular(15)
+      ),
       actions: [
         cancelaButton,
         continuaButton,
@@ -68,12 +70,13 @@ class Software extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text("Adicionar Softwares"),
-            ],
-          ),
+          title:Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text("Adicionar Softwares"),
+                  Text("Imagem 1", style: TextStyle(fontSize: 10),),
+                ],
+              ),
           actions: [
             IconButton(
               icon: Icon(Icons.filter_list),
@@ -81,38 +84,44 @@ class Software extends StatelessWidget{
             )
           ],
         ),
+        bottomNavigationBar: BlocBuilder<SoftwareBloc, int>(
+          builder: (context, state){
+            return Padding(
+              padding: EdgeInsets.only(bottom: 10, left: 55, right: 55,),
+              child: RaisedButton(
+                onPressed: state > 0 ? () {
+                  showAlertDialog2(context);
+                }: null,
+                color: Color(0xFF000080),
+                shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(30.0)),
+                child: Text(
+                  "Adicionar",
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+                padding: EdgeInsets.all(10),
+              ),
+            );
+          },
+        ),
         body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SoftwareList("Software 1"),
-              SoftwareList("Software 2"),
-              SoftwareList("Software 3"),
-              SoftwareList("Software 4"),
-              SoftwareList("Software 5"),
-              SoftwareList("Software 6"),
-              SoftwareList("Software 7"),
-              SizedBox(
-                  width: 250,
-                  child: BlocBuilder<SoftwareBloc, int>(
-                    builder: (context, state){
-                      return RaisedButton(
-                        onPressed: state > 0 ? () {
-                          showAlertDialog2(context);
-                        }: null,
-                        color: Color(0xFF000080),
-                        shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(30.0)),
-                        child: Text(
-                          "Adicionar",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      );
-                    },
-                  )
-              )
-            ],
-          ),
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.only(top: 10, left: 3, right: 3),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SoftwareList("Software 1"),
+                  SoftwareList("Software 1"),
+                  SoftwareList("Software 1"),
+                  SoftwareList("Software 1"),
+                  SoftwareList("Software 1"),
+                  SoftwareList("Software 1"),
+                  SoftwareList("Software 1"),
+                ],
+              ),
+            ),
+          )
           /* floatingActionButton: FloatingActionButton(
         child: Icon(
           Icons.add,
