@@ -1,4 +1,4 @@
-import 'package:comunica_mobile/pages/Images/widgets/customCard.dart';
+import 'package:comunica_mobile/widgets/customCard.dart';
 import 'package:flutter/material.dart';
 
 
