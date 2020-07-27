@@ -13,11 +13,6 @@ class _AddToEquipmentState extends State<AddToEquipment> {
   bool valor = false;
   int contador = 0;
 
-  // verificarSelecionado() {
-  //   final bloc = BlocProvider.of<AddToEquipmentBloc>(context);
-  //   bloc.
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,6 +128,8 @@ class _AddToEquipmentState extends State<AddToEquipment> {
                     ),
                   );
                 }
+              } else if (state is AddToEquipmentLoading) {
+                return Container(width: 0, height: 0);
               } else {
                 return GestureDetector(
                   onTap: () {},
@@ -169,6 +166,7 @@ openDialog(BuildContext context, AddToEquipmentBloc bloc) {
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       title: Text(
         'Deseja requisitar "Imagem 1" nos Equipamentos selecionados?',
         style: TextStyle(fontWeight: FontWeight.w900),
@@ -192,7 +190,11 @@ openDialog(BuildContext context, AddToEquipmentBloc bloc) {
             showDialog(
               context: context,
               builder: (context) => AlertDialog(
-                title: Text('Seu pedido foi solicitado!'),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                title: Text(
+                  'Seu pedido foi solicitado!',
+                  style: TextStyle(fontWeight: FontWeight.w900),
+                ),
               ),
             ).then((value) => bloc.add(ClearMarkedEquipments()));
           },

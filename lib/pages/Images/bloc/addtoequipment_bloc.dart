@@ -21,7 +21,9 @@ class AddToEquipmentBloc extends Bloc<AddToEquipmentEvent, AddToEquipmentState> 
       if (currentState is AddToEquipmentSuccess) {
         final List<Equipment> updateEquipments = currentState.equipments
             .map(
-              (eqp) => eqp.id == event.equipment.id ? eqp.copyWith(isMarked: event.equipment.isMarked) : eqp,
+              (eqp) => eqp.id == event.equipment.id 
+              ? eqp.copyWith(isMarked: event.equipment.isMarked) 
+              : eqp,
             )
             .toList();
         yield AddToEquipmentSuccess(equipments: updateEquipments);
