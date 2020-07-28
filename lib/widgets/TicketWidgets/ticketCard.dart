@@ -15,7 +15,8 @@ class TicketCard extends StatelessWidget {
     this.onTap,
   });
 
-  Widget ticketProgressRow(BuildContext context, String status) {
+  Widget ticketProgressRow(
+      BuildContext context, String status, double screenWidth) {
     return Row(
       children: <Widget>[
         Container(
@@ -44,13 +45,14 @@ class TicketCard extends StatelessWidget {
         ),
         Text(
           ticket.status,
-          textScaleFactor: MediaQuery.of(context).size.width * 0.0020,
+          textScaleFactor: screenWidth * 0.0020,
         ),
       ],
     );
   }
 
-  Widget ticketTimeRow(BuildContext context, DateTime date) {
+  Widget ticketTimeRow(
+      BuildContext context, DateTime date, double screenWidth) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
@@ -58,13 +60,13 @@ class TicketCard extends StatelessWidget {
           Icon(Icons.brightness_1, color: Colors.black26, size: 13),
           Text(
             " ${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year.toString()} ",
-            textScaleFactor: MediaQuery.of(context).size.width * 0.0020,
+            textScaleFactor: screenWidth * 0.0020,
           ),
           SizedBox(width: 7.0),
           Icon(Icons.access_time, size: 13),
           Text(
             " ${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}",
-            textScaleFactor: MediaQuery.of(context).size.width * 0.0020,
+            textScaleFactor: screenWidth * 0.0020,
           ),
         ],
       ),
@@ -73,11 +75,24 @@ class TicketCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isPortrait =
+        MediaQuery.of(context).orientation == Orientation.portrait;
+    final screenHeight = isPortrait
+        ? MediaQuery.of(context).size.height
+        : MediaQuery.of(context).size.width;
+
+    final screenWidth = isPortrait
+        ? MediaQuery.of(context).size.width
+        : MediaQuery.of(context).size.height;
+
     return Stack(
       children: <Widget>[
         Container(
           height: 130,
-          padding: EdgeInsets.fromLTRB(16, 8, 16, 0),
+          padding: isPortrait
+              ? EdgeInsets.fromLTRB(
+                  screenWidth * 0.04, 8, screenWidth * 0.04, 0)
+              : EdgeInsets.fromLTRB(screenWidth * 0.4, 8, screenWidth * 0.4, 0),
           child: Card(
             elevation: 5,
             shape: RoundedRectangleBorder(
@@ -91,19 +106,17 @@ class TicketCard extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       ticket.requestingUser,
-                      textScaleFactor:
-                          MediaQuery.of(context).size.width * 0.0035,
+                      textScaleFactor: screenWidth * 0.0035,
                     ),
                     SizedBox(
                       height: 3.0,
                     ),
                     Text(
                       ticket.type,
-                      textScaleFactor:
-                          MediaQuery.of(context).size.width * 0.0030,
+                      textScaleFactor: screenWidth * 0.0030,
                     ),
-                    ticketTimeRow(context, ticket.dateTime),
-                    ticketProgressRow(context, ticket.status),
+                    ticketTimeRow(context, ticket.dateTime, screenWidth),
+                    ticketProgressRow(context, ticket.status, screenWidth),
                   ],
                 ),
               ),
@@ -112,8 +125,8 @@ class TicketCard extends StatelessWidget {
           ),
         ),
         Positioned(
-          bottom: MediaQuery.of(context).size.width * 0.0125,
-          right: MediaQuery.of(context).size.width * 0.08,
+          bottom: screenWidth * 0.0125,
+          right: isPortrait ? screenWidth * 0.08 : screenWidth * 0.42,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
@@ -122,7 +135,7 @@ class TicketCard extends StatelessWidget {
                 shape: CircleBorder(),
                 child: Icon(
                   CustomIcons.thumb_up,
-                  size: MediaQuery.of(context).size.width * 0.05,
+                  size: screenWidth * 0.05,
                   color:
                       ticket?.liked == 'S' ? Color(0xFF000080) : Colors.black38,
                 ),
@@ -130,11 +143,11 @@ class TicketCard extends StatelessWidget {
               ),
               ConstrainedBox(
                 constraints: BoxConstraints(
-                  minWidth: MediaQuery.of(context).size.width * 0.08,
+                  minWidth: screenWidth * 0.08,
                 ),
                 child: Text(
                   ticket.likes.toString(),
-                  textScaleFactor: MediaQuery.of(context).size.width * 0.002,
+                  textScaleFactor: screenWidth * 0.002,
                   style: TextStyle(
                     color: Colors.black38,
                     fontWeight: FontWeight.bold,
@@ -146,7 +159,7 @@ class TicketCard extends StatelessWidget {
                 shape: CircleBorder(),
                 child: Icon(
                   CustomIcons.thumb_down,
-                  size: MediaQuery.of(context).size.width * 0.05,
+                  size: screenWidth * 0.05,
                   color:
                       ticket?.liked == 'N' ? Color(0xFF000080) : Colors.black38,
                 ),
@@ -154,11 +167,11 @@ class TicketCard extends StatelessWidget {
               ),
               ConstrainedBox(
                 constraints: BoxConstraints(
-                  minWidth: MediaQuery.of(context).size.width * 0.08,
+                  minWidth: screenWidth * 0.08,
                 ),
                 child: Text(
                   ticket.dislikes.toString(),
-                  textScaleFactor: MediaQuery.of(context).size.width * 0.002,
+                  textScaleFactor: screenWidth * 0.002,
                   style: TextStyle(
                     color: Colors.black38,
                     fontWeight: FontWeight.bold,
