@@ -14,9 +14,13 @@ class CustomCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        child: Container(
-          padding: EdgeInsets.all(12.0),
-          child: Text(softwareName),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(10.0),
+          onTap: (){},
+          child: Container(
+            padding: EdgeInsets.all(12.0),
+            child: Text(softwareName),
+          ),
         ),
       ),
     );
