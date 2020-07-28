@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:comunica_mobile/pages/Equipment/tickets/ticketList/bloc/bloc.dart';
 import 'package:comunica_mobile/pages/Equipment/tickets/ticketList/equipmentTicketList.dart';
+import 'package:comunica_mobile/pages/Images/imagesList.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/filterlaboratory_bloc.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/lablist_bloc.dart';
-import 'package:comunica_mobile/pages/Laboratory/lab.dart';
 import 'package:comunica_mobile/pages/Laboratory/labList.dart';
 import 'package:comunica_mobile/widgets/CustomBottomNavigationBar/bloc/customBottomNavigationBar_bloc.dart';
 
@@ -33,6 +33,18 @@ Widget handlerSideBar(BuildContext context) {
                 style: headerTextStyle,
               ),
               onDetailsPressed: () {},
+            ),
+            ListTile(
+              leading: Icon(CustomIcons.aplicativo),
+              title: Text('Imagem e Software'),
+              onTap: () {
+                //new feature
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return ImagesList();
+                  }),
+                );
+              },
             ),
             ExpansionTile(
               title: Text('Software'),
