@@ -3,6 +3,8 @@ import 'package:comunica_mobile/pages/Images/addToEquipment.dart';
 import 'package:comunica_mobile/pages/Images/bloc/addtoequipment_bloc.dart';
 import 'package:comunica_mobile/pages/Images/bloc/addtoequipment_event.dart';
 import 'package:comunica_mobile/pages/Images/imagesList.dart';
+import 'package:comunica_mobile/pages/Software/bloc/software_bloc.dart';
+import 'package:comunica_mobile/pages/Software/software.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/filterlaboratory_bloc.dart';
@@ -52,13 +54,18 @@ Widget handlerSideBar(BuildContext context) {
               leading: Icon(Icons.directions_subway),
               children: <Widget>[
                 ListTile(
-                  title: Text(
-                    'Cadastrar software',
-                    style: TextStyle(
-                      color: Color(0xFF6A5ACD),
-                    ),
-                  ),
-                  onTap: () {},
+                  title: Text('Cadastrar software', style: TextStyle(color: Color(0xFF6A5ACD))),
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context){
+                          return BlocProvider<SoftwareBloc>(
+                              create: (_) => SoftwareBloc(),
+                              child: Software()
+                          );
+                        }
+                    )
+                    );
+                  },
                 ),
                 ListTile(
                   title: Text(
