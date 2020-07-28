@@ -6,6 +6,7 @@ import 'package:comunica_mobile/pages/Images/imagesList.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/filterlaboratory_bloc.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/lablist_bloc.dart';
 import 'package:comunica_mobile/pages/Laboratory/labList.dart';
+import 'package:comunica_mobile/icons/custom_icons_icons.dart';
 import 'package:comunica_mobile/widgets/CustomBottomNavigationBar/bloc/customBottomNavigationBar_bloc.dart';
 
 final headerTextStyle = TextStyle(color: Color(0xFFFFFFFF), fontSize: 14.0);
