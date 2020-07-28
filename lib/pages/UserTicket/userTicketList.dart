@@ -34,9 +34,9 @@ class _UserTicketListState extends State<UserTicketList> {
                           if (state is UserTicketListLoadSuccess) {
                             filterBottomSheet(
                               context: context,
-                              dateTime: state?.filter['dateTime'],
-                              troubleType: state?.filter['troubleType'],
-                              ticketStatus: state?.filter['ticketStatus'],
+                              dateTime: state.filter['dateTime'],
+                              troubleType: state.filter['troubleType'],
+                              ticketStatus: state.filter['ticketStatus'],
                             ).then((filter) {
                               BlocProvider.of<UserTicketListBloc>(context)
                                   .add(ApplyFilter(filter));

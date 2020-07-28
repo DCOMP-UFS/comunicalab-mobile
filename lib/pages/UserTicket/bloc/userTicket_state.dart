@@ -15,7 +15,11 @@ class UserTicketListLoadSuccess extends UserTicketListState {
 
   const UserTicketListLoadSuccess({
     this.userTickets,
-    this.filter,
+    this.filter = const <String, dynamic>{
+      "dateTime": null,
+      "troubleType": null,
+      "ticketStatus": null,
+    }, //inicializa o Map caso não haja filtro
   });
 
   UserTicketListLoadSuccess copyWith({
