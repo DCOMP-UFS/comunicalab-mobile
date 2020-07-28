@@ -4,9 +4,12 @@ import 'package:comunica_mobile/icons/custom_icons_icons.dart';
 import 'package:comunica_mobile/widgets/CustomBottomNavigationBar/bloc/customBottomNavigationBar_bloc.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).orientation == Orientation.portrait
+        ? MediaQuery.of(context).size.width
+        : MediaQuery.of(context).size.height;
+
     return BlocBuilder<CustomBottomNavigationBarBloc, int>(
         builder: (context, index) {
       return BottomNavigationBar(
@@ -34,21 +37,21 @@ class CustomBottomNavigationBar extends StatelessWidget {
           BottomNavigationBarItem(
             icon: Icon(
               CustomIcons.running_repair_man_with_wrench_and_kit,
-              size: MediaQuery.of(context).size.width * 0.08,
+              size: width * 0.08,
             ),
             title: Text('Abrir Chamado'),
           ),
           BottomNavigationBarItem(
             icon: Icon(
               CustomIcons.ticket_magnifier,
-              size: MediaQuery.of(context).size.width * 0.08,
+              size: width * 0.08,
             ),
             title: Text('Ver Chamados'),
           ),
           BottomNavigationBarItem(
             icon: Icon(
               CustomIcons.computador,
-              size: MediaQuery.of(context).size.width * 0.08,
+              size: width * 0.08,
             ),
             title: Text('Equipamentos'),
           ),
