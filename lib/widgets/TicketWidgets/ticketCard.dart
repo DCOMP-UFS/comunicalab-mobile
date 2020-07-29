@@ -100,7 +100,12 @@ class TicketCard extends StatelessWidget {
             child: InkWell(
               borderRadius: BorderRadius.circular(12.0),
               child: Container(
-                padding: EdgeInsets.fromLTRB(40, 12, 57, 7),
+                padding: EdgeInsets.fromLTRB(
+                  screenWidth * 0.1,
+                  screenWidth * 0.03,
+                  screenWidth * 0.15,
+                  screenWidth * 0.02,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
