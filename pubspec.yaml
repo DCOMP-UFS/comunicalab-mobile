@@ -20,7 +20,7 @@ dependencies:
   dio:
   bloc: ^4.0.0
   flutter_bloc: ^4.0.0
-  barcode_scan: 2.0.2
+  barcode_scan: 2.0.2 #Versões superiores a esta quebram o projeto. É necessário refatorar as classes que utilizam esta dependência.
   flutter:
     sdk: flutter
 
