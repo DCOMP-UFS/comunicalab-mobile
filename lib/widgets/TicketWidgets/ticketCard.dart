@@ -21,7 +21,7 @@ class TicketCard extends StatelessWidget {
       children: <Widget>[
         Container(
           margin: EdgeInsets.only(right: 8),
-          height: 5,
+          height: screenWidth * 0.015,
           width: 37,
           alignment: AlignmentDirectional.centerStart,
           decoration: BoxDecoration(
@@ -29,10 +29,10 @@ class TicketCard extends StatelessWidget {
             color: Color(0xFFC4C4C4),
           ),
           child: Container(
-            height: 5,
+            height: screenWidth * 0.015,
             width: (ticket.status == "Pendente")
                 ? 11
-                : (ticket.status == "Andamento") ? 26 : 37,
+                : (ticket.status == "Andamento") ? screenWidth * 0.07 : screenWidth * 0.1,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.horizontal(left: Radius.circular(12)),
               color: (ticket.status == "Pendente")
@@ -45,7 +45,7 @@ class TicketCard extends StatelessWidget {
         ),
         Text(
           ticket.status,
-          textScaleFactor: screenWidth * 0.0020,
+          textScaleFactor: screenWidth * 0.002,
         ),
       ],
     );
@@ -54,19 +54,19 @@ class TicketCard extends StatelessWidget {
   Widget ticketTimeRow(
       BuildContext context, DateTime date, double screenWidth) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 8.0),
+      margin: EdgeInsets.symmetric(vertical: screenWidth * 0.02),
       child: Row(
         children: <Widget>[
-          Icon(Icons.brightness_1, color: Colors.black26, size: 13),
+          Icon(Icons.brightness_1, color: Colors.black26, size: screenWidth * 0.04),
           Text(
             " ${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year.toString()} ",
-            textScaleFactor: screenWidth * 0.0020,
+            textScaleFactor: screenWidth * 0.002,
           ),
           SizedBox(width: 7.0),
-          Icon(Icons.access_time, size: 13),
+          Icon(Icons.access_time, size: screenWidth * 0.04),
           Text(
             " ${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}",
-            textScaleFactor: screenWidth * 0.0020,
+            textScaleFactor: screenWidth * 0.002,
           ),
         ],
       ),
@@ -91,7 +91,7 @@ class TicketCard extends StatelessWidget {
           height: 130,
           padding: isPortrait
               ? EdgeInsets.fromLTRB(
-                  screenWidth * 0.04, 8, screenWidth * 0.04, 0)
+                  screenWidth * 0.035, 8, screenWidth * 0.035, 0)
               : EdgeInsets.fromLTRB(screenWidth * 0.4, 8, screenWidth * 0.4, 0),
           child: Card(
             elevation: 5,
@@ -114,7 +114,7 @@ class TicketCard extends StatelessWidget {
                       textScaleFactor: screenWidth * 0.0035,
                     ),
                     SizedBox(
-                      height: 3.0,
+                      height: screenWidth * 0.008,
                     ),
                     Text(
                       ticket.type,
@@ -130,13 +130,13 @@ class TicketCard extends StatelessWidget {
           ),
         ),
         Positioned(
-          bottom: screenWidth * 0.0125,
+          bottom: 5,
           right: isPortrait ? screenWidth * 0.08 : screenWidth * 0.42,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               RawMaterialButton(
-                constraints: BoxConstraints.tight(Size(40.0, 40.0)),
+                constraints: BoxConstraints.tight(Size(screenWidth * 0.1, screenWidth * 0.1)),
                 shape: CircleBorder(),
                 child: Icon(
                   CustomIcons.thumb_up,
@@ -160,7 +160,7 @@ class TicketCard extends StatelessWidget {
                 ),
               ),
               RawMaterialButton(
-                constraints: BoxConstraints.tight(Size(40.0, 40.0)),
+                constraints: BoxConstraints.tight(Size(screenWidth * 0.1, screenWidth * 0.1)),
                 shape: CircleBorder(),
                 child: Icon(
                   CustomIcons.thumb_down,
