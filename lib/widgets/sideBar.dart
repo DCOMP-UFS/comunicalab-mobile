@@ -38,25 +38,7 @@ Widget handlerSideBar(BuildContext context) {
             ListTile(
               leading: Icon(CustomIcons.aplicativo),
               title: Text('Imagem e Software'),
-              onTap: () {
-                //new feature
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (BuildContext context) {
-                    return MultiBlocProvider(
-                      providers: [
-                        BlocProvider<ImgSoftListBloc>(
-                            create: (BuildContext context) =>
-                                ImgSoftListBloc()),
-                        BlocProvider<CustomBottomNavigationBarBloc>(
-                          create: (BuildContext context) =>
-                              CustomBottomNavigationBarBloc(),
-                        ),
-                      ],
-                      child: ImgSoftList(),
-                    );
-                  }),
-                );
-              },
+              onTap: () {},
             ),
             ExpansionTile(
               title: Text('Software'),
@@ -112,7 +94,24 @@ Widget handlerSideBar(BuildContext context) {
                     'Ver instalações',
                     style: TextStyle(color: Color(0xFF6A5ACD)),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (BuildContext context) {
+                        return MultiBlocProvider(
+                          providers: [
+                            BlocProvider<ImgSoftListBloc>(
+                                create: (BuildContext context) =>
+                                    ImgSoftListBloc()),
+                            BlocProvider<CustomBottomNavigationBarBloc>(
+                              create: (BuildContext context) =>
+                                  CustomBottomNavigationBarBloc(),
+                            ),
+                          ],
+                          child: ImgSoftList(),
+                        );
+                      }),
+                    );
+                  },
                 )
               ],
             ),
