@@ -19,7 +19,7 @@ class UserTicketListLoadSuccess extends UserTicketListState {
       "dateTime": null,
       "troubleType": null,
       "ticketStatus": null,
-    },  //inicializa o Map caso não haja filtro
+    }, //inicializa o Map caso não haja filtro
   });
 
   UserTicketListLoadSuccess copyWith({
