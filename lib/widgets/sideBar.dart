@@ -9,6 +9,9 @@ import 'package:comunica_mobile/pages/Software/bloc/software_bloc.dart';
 import 'package:comunica_mobile/pages/Software/software.dart';
 import 'package:comunica_mobile/pages/Equipment/tickets/ticketList/bloc/bloc.dart';
 import 'package:comunica_mobile/pages/Equipment/tickets/ticketList/equipmentTicketList.dart';
+import 'package:comunica_mobile/pages/UserTicket/bloc/bloc.dart';
+import 'package:comunica_mobile/pages/UserTicket/userTicketList.dart';
+import 'package:comunica_mobile/pages/Images/imagesList.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/filterlaboratory_bloc.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/lablist_bloc.dart';
 import 'package:comunica_mobile/pages/Laboratory/labList.dart';
@@ -42,6 +45,28 @@ Widget handlerSideBar(BuildContext context) {
               ),
               onDetailsPressed: () {},
             ),
+            ListTile(
+                leading:
+                    Icon(CustomIcons.running_repair_man_with_wrench_and_kit),
+                title: Text('Chamados'),
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (BuildContext context) {
+                    return MultiBlocProvider(
+                      providers: [
+                        BlocProvider<UserTicketListBloc>(
+                          create: (BuildContext context) =>
+                              UserTicketListBloc()..add(FetchUserTickets()),
+                        ),
+                        BlocProvider<CustomBottomNavigationBarBloc>(
+                          create: (BuildContext context) =>
+                              CustomBottomNavigationBarBloc(),
+                        ),
+                      ],
+                      child: UserTicketList(),
+                    );
+                  }));
+                }),
             ListTile(
               leading: Icon(CustomIcons.aplicativo),
               title: Text('Imagem e Software'),
