@@ -5,7 +5,6 @@ import 'package:comunica_mobile/pages/Equipment/resources/bloc/imgSoftList_bloc.
 import 'package:comunica_mobile/pages/Equipment/resources/imgSoftList.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/filterlaboratory_bloc.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/lablist_bloc.dart';
-import 'package:comunica_mobile/pages/Laboratory/lab.dart';
 import 'package:comunica_mobile/pages/Laboratory/labList.dart';
 import 'package:comunica_mobile/widgets/CustomBottomNavigationBar/bloc/customBottomNavigationBar_bloc.dart';
 
@@ -38,7 +37,14 @@ Widget handlerSideBar(BuildContext context) {
             ListTile(
               leading: Icon(CustomIcons.aplicativo),
               title: Text('Imagem e Software'),
-              onTap: () {},
+              onTap: () {
+                //new feature
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return ImagesList();
+                  }),
+                );
+              },
             ),
             ExpansionTile(
               title: Text('Software'),
