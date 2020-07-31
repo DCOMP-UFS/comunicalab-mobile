@@ -1,3 +1,5 @@
+import 'package:comunica_mobile/widgets/errorWidget.dart';
+import 'package:comunica_mobile/widgets/loadingWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:comunica_mobile/pages/UserTicket/bloc/bloc.dart';
@@ -58,7 +60,9 @@ class _UserTicketListState extends State<UserTicketList> {
                         itemBuilder: (BuildContext context, int index) {
                           return TicketCard(
                             ticket: state.userTickets[index],
-                            onTap: () {},
+                            onTap: () {
+                              print('Ticket tapped');
+                            },
                             onPressedLike: () {
                               BlocProvider.of<UserTicketListBloc>(context)
                                   .add(UserTicketLiked(
