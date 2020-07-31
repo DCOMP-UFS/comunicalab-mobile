@@ -4,15 +4,19 @@ import 'package:comunica_mobile/icons/custom_icons_icons.dart';
 import 'package:comunica_mobile/widgets/CustomBottomNavigationBar/bloc/customBottomNavigationBar_bloc.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).orientation == Orientation.portrait
+        ? MediaQuery.of(context).size.width
+        : MediaQuery.of(context).size.height;
+
     return BlocBuilder<CustomBottomNavigationBarBloc, int>(
         builder: (context, index) {
       return BottomNavigationBar(
         currentIndex: index,
         //Recupera do BLoC a opção selecionada da Bottom Navigation Bar
-        selectedItemColor: Color(0xFF000080),
+        selectedItemColor: Color(0xFF4B8CED),
+        unselectedItemColor: Color(0xFF000080),
         onTap: (newIndex) {
           switch (newIndex) {
             case 0:
@@ -31,61 +35,25 @@ class CustomBottomNavigationBar extends StatelessWidget {
         },
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            activeIcon: Container(
-              width: 350,
-              height: 40,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Color(0xFF000080),
-              ),
-              child: Icon(
-                CustomIcons.running_repair_man_with_wrench_and_kit,
-                color: Colors.white,
-              ),
-            ),
             icon: Icon(
               CustomIcons.running_repair_man_with_wrench_and_kit,
-              color: Color(0xFF000080),
+              size: width * 0.08,
             ),
-            title: Container(),
+            title: Text('Abrir Chamado'),
           ),
           BottomNavigationBarItem(
-            activeIcon: Container(
-              width: 350,
-              height: 40,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Color(0xFF000080),
-              ),
-              child: Icon(
-                CustomIcons.investigate,
-                color: Colors.white,
-              ),
-            ),
             icon: Icon(
-              CustomIcons.investigate,
-              color: Color(0xFF000080),
+              CustomIcons.ticket_magnifier,
+              size: width * 0.08,
             ),
-            title: Container(),
+            title: Text('Ver Chamados'),
           ),
           BottomNavigationBarItem(
-            activeIcon: Container(
-              width: 350,
-              height: 40,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Color(0xFF000080),
-              ),
-              child: Icon(
-                CustomIcons.aplicativo,
-                color: Colors.white,
-              ),
-            ),
             icon: Icon(
-              CustomIcons.aplicativo,
-              color: Color(0xFF000080),
+              CustomIcons.computador,
+              size: width * 0.08,
             ),
-            title: Container(),
+            title: Text('Equipamentos'),
           ),
         ],
       );

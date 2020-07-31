@@ -7,11 +7,13 @@ import 'package:comunica_mobile/pages/Images/bloc/addtoequipment_event.dart';
 import 'package:comunica_mobile/pages/Images/imagesList.dart';
 import 'package:comunica_mobile/pages/Software/bloc/software_bloc.dart';
 import 'package:comunica_mobile/pages/Software/software.dart';
-import 'package:comunica_mobile/pages/Equipment/resources/bloc/imgSoftList_bloc.dart';
-import 'package:comunica_mobile/pages/Equipment/resources/imgSoftList.dart';
+import 'package:comunica_mobile/pages/Equipment/tickets/ticketList/bloc/bloc.dart';
+import 'package:comunica_mobile/pages/Equipment/tickets/ticketList/equipmentTicketList.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/filterlaboratory_bloc.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/lablist_bloc.dart';
 import 'package:comunica_mobile/pages/Laboratory/labList.dart';
+import 'package:comunica_mobile/pages/Equipment/resources/bloc/imgSoftList_bloc.dart';
+import 'package:comunica_mobile/pages/Equipment/resources/imgSoftList.dart';
 import 'package:comunica_mobile/widgets/CustomBottomNavigationBar/bloc/customBottomNavigationBar_bloc.dart';
 
 final headerTextStyle = TextStyle(color: Color(0xFFFFFFFF), fontSize: 14.0);
@@ -167,7 +169,26 @@ Widget handlerSideBar(BuildContext context) {
                       color: Color(0xFF6A5ACD),
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (BuildContext context) {
+                        return MultiBlocProvider(
+                          providers: [
+                            BlocProvider<CustomBottomNavigationBarBloc>(
+                              create: (BuildContext context) =>
+                                  CustomBottomNavigationBarBloc(),
+                            ),
+                            BlocProvider<EquipmentTicketListBloc>(
+                              create: (BuildContext context) =>
+                                  EquipmentTicketListBloc()
+                                    ..add(FetchEquipmentTickets()),
+                            ),
+                          ],
+                          child: TicketList(),
+                        );
+                      }),
+                    );
+                  },
                 ),
                 ListTile(
                   title: Text(
