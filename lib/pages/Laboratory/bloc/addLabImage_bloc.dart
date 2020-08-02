@@ -1,14 +1,26 @@
 import 'package:bloc/bloc.dart';
 
-class AddLabImage_Bloc extends Bloc{
-  @override
-  // TODO: implement initialState
-  get initialState => throw UnimplementedError();
+enum AddLabImageEvent {increment, decrement}
+
+class AddLabImage_Bloc extends Bloc<AddLabImageEvent, int>{
 
   @override
-  Stream mapEventToState(event) {
-    // TODO: implement mapEventToState
-    throw UnimplementedError();
+  int get initialState => 0;
+
+
+  @override
+  Stream<int> mapEventToState(AddLabImageEvent event) async*{
+    switch(event){
+      case AddLabImageEvent.increment:
+        yield state + 1;
+        break;
+      case AddLabImageEvent.decrement:
+        yield state - 1;
+        break;
+    }
+
   }
+
+
   
 }
