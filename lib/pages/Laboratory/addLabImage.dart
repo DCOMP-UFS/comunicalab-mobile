@@ -118,12 +118,12 @@ class AddLabImage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    AddLabImage_List("Software 1"),
-                    AddLabImage_List("Software 1"),
-                    AddLabImage_List("Software 1"),
-                    AddLabImage_List("Software 1"),
-                    AddLabImage_List("Software 1"),
-                    AddLabImage_List("Software 1"),
+                    AddLabImage_List("Laboratório 1"),
+                    AddLabImage_List("Laboratório 1"),
+                    AddLabImage_List("Laboratório 1"),
+                    AddLabImage_List("Laboratório 1"),
+                    AddLabImage_List("Laboratório 1"),
+                    AddLabImage_List("Laboratório 1"),
                   ],
                 ),
               ),
