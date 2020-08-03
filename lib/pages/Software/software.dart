@@ -84,25 +84,30 @@ class Software extends StatelessWidget{
             )
           ],
         ),
-        bottomNavigationBar: BlocBuilder<SoftwareBloc, int>(
-          builder: (context, state){
-            return Padding(
-              padding: EdgeInsets.only(bottom: 10, left: 55, right: 55,),
-              child: RaisedButton(
-                onPressed: state > 0 ? () {
-                  showAlertDialog2(context);
-                }: null,
-                color: Color(0xFF000080),
-                shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(30.0)),
-                child: Text(
-                  "Adicionar",
-                  style: TextStyle(color: Colors.white, fontSize: 15),
-                ),
-                padding: EdgeInsets.all(10),
-              ),
-            );
-          },
+        bottomNavigationBar: Card(
+          elevation: 8,
+          child: Container(
+            padding: EdgeInsets.fromLTRB(130, 10, 130, 10),
+            height: 60,
+            width: 90,
+            child: BlocBuilder<SoftwareBloc, int>(
+              builder: (context, state){
+                return  RaisedButton(
+                  onPressed: state > 0 ? () {
+                    showAlertDialog2(context);
+                  }: null,
+                  color: Color(0xFF000080),
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0)),
+                  child: Text(
+                    "Adicionar",
+                    style: TextStyle(color: Colors.white, fontSize: 15),
+                  ),
+                  padding: EdgeInsets.all(10),
+                );
+              },
+            ),
+          ),
         ),
         body: SingleChildScrollView(
             child: Center(

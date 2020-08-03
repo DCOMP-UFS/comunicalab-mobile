@@ -45,7 +45,7 @@ class AddLabImage extends StatelessWidget {
     //configura o AlertDialog
     AlertDialog alert = AlertDialog(
       title: Text(
-        "Deseja requisitar os Softwares selecionados para \"Imagem 1\"",
+        "Deseja requisitar \"Imagem 1\" nos Laboratórios selecionados?",
         style: TextStyle(),
         textAlign: TextAlign.center,
       ),
@@ -75,7 +75,7 @@ class AddLabImage extends StatelessWidget {
           title:Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text("Adicionar Softwares"),
+              Text("Adicionar à Laboratórios"),
               Text("Imagem 1", style: TextStyle(fontSize: 10),),
             ],
           ),
@@ -86,25 +86,30 @@ class AddLabImage extends StatelessWidget {
             )
           ],
         ),
-        bottomNavigationBar: BlocBuilder<AddLabImage_Bloc, int>(
-          builder: (context, state){
-            return Padding(
-              padding: EdgeInsets.only(bottom: 10, left: 55, right: 55,),
-              child: RaisedButton(
-                onPressed: state > 0 ? () {
-                  showAlertDialog2(context);
-                }: null,
-                color: Color(0xFF000080),
-                shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(30.0)),
-                child: Text(
-                  "Adicionar",
-                  style: TextStyle(color: Colors.white, fontSize: 15),
-                ),
-                padding: EdgeInsets.all(10),
-              ),
-            );
-          },
+        bottomNavigationBar: Card(
+          elevation: 8,
+          child: Container(
+            padding: EdgeInsets.fromLTRB(130, 10, 130, 10),
+            height: 60,
+            width: 90,
+            child: BlocBuilder<AddLabImage_Bloc, int>(
+              builder: (context, state){
+                return  RaisedButton(
+                    onPressed: state > 0 ? () {
+                      showAlertDialog2(context);
+                    }: null,
+                    color: Color(0xFF000080),
+                    shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(30.0)),
+                    child: Text(
+                      "Adicionar",
+                      style: TextStyle(color: Colors.white, fontSize: 15),
+                    ),
+                    padding: EdgeInsets.all(10),
+                  );
+              },
+            ),
+          ),
         ),
         body: SingleChildScrollView(
             child: Center(
