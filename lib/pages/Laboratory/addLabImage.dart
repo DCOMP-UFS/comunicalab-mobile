@@ -1,11 +1,11 @@
-import 'package:comunica_mobile/pages/Software/bloc/software_bloc.dart';
-import 'package:comunica_mobile/pages/Software/software_list.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'addLabImage_List.dart';
+import 'bloc/addLabImage_bloc.dart';
 
 
-class Software extends StatelessWidget{
+class AddLabImage extends StatelessWidget {
+
 
   showAlertDialog1(BuildContext context)
   {
@@ -45,7 +45,7 @@ class Software extends StatelessWidget{
     //configura o AlertDialog
     AlertDialog alert = AlertDialog(
       title: Text(
-        "Deseja requisitar os Softwares selecionados para \"Imagem 1\"",
+        "Deseja requisitar \"Imagem 1\" nos Laboratórios selecionados?",
         style: TextStyle(),
         textAlign: TextAlign.center,
       ),
@@ -66,6 +66,8 @@ class Software extends StatelessWidget{
     );
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +75,7 @@ class Software extends StatelessWidget{
           title:Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text("Adicionar Softwares"),
+              Text("Adicionar à Laboratórios"),
               Text("Imagem 1", style: TextStyle(fontSize: 10),),
             ],
           ),
@@ -90,21 +92,21 @@ class Software extends StatelessWidget{
             padding: EdgeInsets.fromLTRB(130, 10, 130, 10),
             height: 60,
             width: 90,
-            child: BlocBuilder<SoftwareBloc, int>(
+            child: BlocBuilder<AddLabImage_Bloc, int>(
               builder: (context, state){
                 return  RaisedButton(
-                  onPressed: state > 0 ? () {
-                    showAlertDialog2(context);
-                  }: null,
-                  color: Color(0xFF000080),
-                  shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(30.0)),
-                  child: Text(
-                    "Adicionar",
-                    style: TextStyle(color: Colors.white, fontSize: 15),
-                  ),
-                  padding: EdgeInsets.all(10),
-                );
+                    onPressed: state > 0 ? () {
+                      showAlertDialog2(context);
+                    }: null,
+                    color: Color(0xFF000080),
+                    shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(30.0)),
+                    child: Text(
+                      "Adicionar",
+                      style: TextStyle(color: Colors.white, fontSize: 15),
+                    ),
+                    padding: EdgeInsets.all(10),
+                  );
               },
             ),
           ),
@@ -116,26 +118,17 @@ class Software extends StatelessWidget{
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SoftwareList("Software 1"),
-                    SoftwareList("Software 1"),
-                    SoftwareList("Software 1"),
-                    SoftwareList("Software 1"),
-                    SoftwareList("Software 1"),
-                    SoftwareList("Software 1"),
-                    SoftwareList("Software 1"),
+                    AddLabImage_List("Laboratório 1"),
+                    AddLabImage_List("Laboratório 1"),
+                    AddLabImage_List("Laboratório 1"),
+                    AddLabImage_List("Laboratório 1"),
+                    AddLabImage_List("Laboratório 1"),
+                    AddLabImage_List("Laboratório 1"),
                   ],
                 ),
               ),
             )
-          /* floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.add,
-        ),
-        onPressed: () {},
-        elevation: 0,
-        backgroundColor: Color(0xFF000080),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,*/ //fimmmmmmmmmmmmmm
-        ));
+        )
+    );
   }
 }
