@@ -1,6 +1,8 @@
 import 'package:comunica_mobile/icons/custom_icons_icons.dart';
 import 'package:comunica_mobile/pages/Images/addToEquipment.dart';
 import 'package:comunica_mobile/pages/Images/bloc/bloc.dart';
+import 'package:comunica_mobile/pages/Laboratory/addLabImage.dart';
+import 'package:comunica_mobile/pages/Laboratory/bloc/addLabImage_bloc.dart';
 import 'package:comunica_mobile/pages/Software/bloc/software_bloc.dart';
 import 'package:comunica_mobile/pages/Software/software.dart';
 import 'package:flutter/material.dart';
@@ -118,7 +120,22 @@ class CustomDialog extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return MultiBlocProvider(
+                              providers: [
+                                BlocProvider<AddLabImage_Bloc>(
+                                  create: (BuildContext context) => AddLabImage_Bloc(),
+                                ),
+                              ],
+                              child: AddLabImage(),
+                            );
+                          },
+                        ),
+                      );
+                    },
                     child: CircleAvatar(
                       backgroundColor: Color(0xFF000080),
                       child: Icon(

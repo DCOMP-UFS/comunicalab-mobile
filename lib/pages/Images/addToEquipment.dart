@@ -41,7 +41,6 @@ class _AddToEquipmentState extends State<AddToEquipment> {
           )
         ],
       ),
-      drawer: handlerSideBar(context),
       body: BlocBuilder<AddToEquipmentBloc, AddToEquipmentState>(
         builder: (context, state) {
           if (state is AddToEquipmentSuccess) {
