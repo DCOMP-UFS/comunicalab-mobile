@@ -16,9 +16,9 @@ class CustomCard extends StatefulWidget {
 }
 
 class _CustomCardState extends State<CustomCard> {
-
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context).size;
     return Container(
       width: MediaQuery.of(context).size.width * 0.9,
       child: Card(
@@ -42,10 +42,20 @@ class _CustomCardState extends State<CustomCard> {
                     value: widget.equipment.isMarked,
                     activeColor: Color(0xFF000080),
                   ),
-                  SizedBox(
-                    width: 80,
+                  // SizedBox(
+                  //   width: MediaQuery.of(context).size.width * 0.20,
+                  // ),
+                  Expanded(
+                    child: Padding(
+                      padding: mediaQuery.width > 400 
+                      ? EdgeInsets.fromLTRB(mediaQuery.width * 0.20, 0, mediaQuery.width * 0.20, 0)
+                      : EdgeInsets.fromLTRB(mediaQuery.width * 0.15, 0, mediaQuery.width * 0.15, 0),
+                      child: Text(
+                        widget.equipment.name,
+                        style: TextStyle(),
+                      ),
+                    ),
                   ),
-                  Text(widget.equipment.name),
                 ],
               )),
         ),

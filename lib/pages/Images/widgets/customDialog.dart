@@ -13,6 +13,7 @@ class CustomDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context).size;
     return AlertDialog(
       title: Text(
         'Opções',
@@ -51,9 +52,16 @@ class CustomDialog extends StatelessWidget {
                   ),
                   ConstrainedBox(
                     constraints: BoxConstraints(maxHeight: altura),
-                    child: Text(
+                    child: mediaQuery.width > 400 ? Text(
                       'Adicionar Softwares',
                       style: TextStyle(fontSize: 13),
+                      textAlign: TextAlign.center,
+                      softWrap: true,
+                      maxLines: 2,
+                    ) :
+                    Text(
+                      'Adicionar Softwares',
+                      style: TextStyle(fontSize: 8),
                       textAlign: TextAlign.center,
                       softWrap: true,
                       maxLines: 2,
@@ -101,11 +109,18 @@ class CustomDialog extends StatelessWidget {
                   ),
                   ConstrainedBox(
                     constraints: BoxConstraints(maxHeight: altura),
-                    child: Text(
+                    child: mediaQuery.width > 400 ? Text(
                       'Adicionar à Equipamentos',
                       style: TextStyle(fontSize: 13),
                       textAlign: TextAlign.center,
-                      maxLines: 3,
+                      maxLines: 2,
+                      softWrap: true,
+                    ) :
+                    Text(
+                      'Adicionar à Equipamentos',
+                      style: TextStyle(fontSize: 8),
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
                       softWrap: true,
                     ),
                   )
@@ -151,9 +166,15 @@ class CustomDialog extends StatelessWidget {
                   ),
                   ConstrainedBox(
                     constraints: BoxConstraints(maxHeight: altura),
-                    child: Text(
+                    child: mediaQuery.width > 400 ? Text(
                       'Adicionar à Laboratorios',
                       style: TextStyle(fontSize: 13),
+                      textAlign: TextAlign.center,
+                      softWrap: true,
+                      maxLines: 2,
+                    ) : Text(
+                      'Adicionar à Laboratorios',
+                      style: TextStyle(fontSize: 8),
                       textAlign: TextAlign.center,
                       softWrap: true,
                       maxLines: 2,
