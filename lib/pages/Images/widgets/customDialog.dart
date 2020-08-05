@@ -9,11 +9,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomDialog extends StatelessWidget {
+  
+
   double altura = 35;
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context).size;
+    final mediaq = MediaQuery.of(context);
+    final size = mediaq.size;
+    final screenWidth = size.width * mediaq.devicePixelRatio;
     return AlertDialog(
       title: Text(
         'Opções',
@@ -52,7 +56,7 @@ class CustomDialog extends StatelessWidget {
                   ),
                   ConstrainedBox(
                     constraints: BoxConstraints(maxHeight: altura),
-                    child: mediaQuery.width > 400 ? Text(
+                    child: screenWidth > 700 ? Text(
                       'Adicionar Softwares',
                       style: TextStyle(fontSize: 13),
                       textAlign: TextAlign.center,
@@ -109,7 +113,7 @@ class CustomDialog extends StatelessWidget {
                   ),
                   ConstrainedBox(
                     constraints: BoxConstraints(maxHeight: altura),
-                    child: mediaQuery.width > 400 ? Text(
+                    child: screenWidth > 700 ? Text(
                       'Adicionar à Equipamentos',
                       style: TextStyle(fontSize: 13),
                       textAlign: TextAlign.center,
@@ -166,7 +170,7 @@ class CustomDialog extends StatelessWidget {
                   ),
                   ConstrainedBox(
                     constraints: BoxConstraints(maxHeight: altura),
-                    child: mediaQuery.width > 400 ? Text(
+                    child: screenWidth > 700 ? Text(
                       'Adicionar à Laboratorios',
                       style: TextStyle(fontSize: 13),
                       textAlign: TextAlign.center,
