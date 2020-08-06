@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class customBackground extends CustomPaint{
+class customBackground extends CustomPainter{
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint();
@@ -12,6 +12,7 @@ class customBackground extends CustomPaint{
 
     path.lineTo(-550, size.height);
     path.lineTo(size.width,0);
+    path.lineTo(0, 0);
     path.close();
     canvas.drawPath(path, paint);
 
