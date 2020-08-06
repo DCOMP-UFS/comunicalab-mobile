@@ -10,8 +10,108 @@ class _infoTelaState extends State<infoTela> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text(""),
+        backgroundColor: Color(0xFF000080),
+      body: Container(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment:CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(
+              width: 400,
+              height: 100,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)
+                ),
+                child: SizedBox(
+                  width: 30,
+                  height: 50,
+                  child: Card(
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  SizedBox(
+                    width: 160,
+                    height: 100,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)
+                      ),
+                      child: Text(
+                          "Data de criação",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          )
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 160,
+                    height: 100,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)
+                      ),
+                      child: Text(
+                          "N de instalações",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          )
+                      ),
+                    ),
+                  ),
+                  //SizedBox(),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  SizedBox(
+                    width: 160,
+                    height: 100,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)
+                      ),
+                      child: Text(
+                          "N de Softwares Instalados",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          )
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 160,
+                    height: 100,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)
+                      ),
+                      child: Text(
+                          "Última Atualização",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          )
+                      ),
+                    ),
+                  ),
+                  //SizedBox(),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
         bottomNavigationBar: Container(
             height: 60,

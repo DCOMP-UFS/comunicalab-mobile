@@ -11,11 +11,57 @@ class ImagesList extends StatefulWidget {
 
 class _ImagesListState extends State<ImagesList> {
 
+  TextEditingController editingController = TextEditingController();
+
+  //final itens = List<String>.generate(8, (index) => null);
+
+
+  bool isSearchEnabled = false;
+
+  switchSearchBarState(){
+    setState(() {
+      isSearchEnabled = !isSearchEnabled;
+    });
+  }
+
   @override
+
+
+
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Lista de Imagens"),
+        title: !isSearchEnabled ? Text("Lista de Imagens"): TextField(
+          //onChanged
+          controller: editingController,
+          style: TextStyle(
+            color: Colors.white,
+          ),
+          decoration: InputDecoration(
+              hintText: "Digite o nome da imagem",
+              hintStyle: TextStyle(color: Colors.black),
+
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(50),
+            ),
+
+            enabledBorder: UnderlineInputBorder(
+              borderRadius: BorderRadius.circular(50),
+            ),
+
+
+            filled: true,
+            fillColor: Colors.grey,
+            contentPadding: EdgeInsets.all(10),
+          ),
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(isSearchEnabled ? Icons.close : Icons.search),
+            onPressed: switchSearchBarState,
+          ),
+        ],
       ),
       drawer: handlerSideBar(context),
       body: Container(
@@ -24,8 +70,6 @@ class _ImagesListState extends State<ImagesList> {
           itemCount: 8,
           itemBuilder: (context, index) {
             return  CustomCard('Imagem ${index + 1}');
-
-
 
           },
         ),
