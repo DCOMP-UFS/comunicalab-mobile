@@ -13,6 +13,9 @@ class _ImagesListState extends State<ImagesList> {
 
   TextEditingController editingController = TextEditingController();
 
+
+
+
   //final itens = List<String>.generate(8, (index) => null);
 
 
@@ -24,6 +27,9 @@ class _ImagesListState extends State<ImagesList> {
     });
   }
 
+
+
+
   @override
 
 
@@ -34,6 +40,9 @@ class _ImagesListState extends State<ImagesList> {
       appBar: AppBar(
         title: !isSearchEnabled ? Text("Lista de Imagens"): TextField(
           //onChanged
+          onChanged: (String str){
+            print(str);
+          },
           controller: editingController,
           style: TextStyle(
             color: Colors.white,
@@ -41,6 +50,7 @@ class _ImagesListState extends State<ImagesList> {
           decoration: InputDecoration(
               hintText: "Digite o nome da imagem",
               hintStyle: TextStyle(color: Colors.black),
+
 
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(50),

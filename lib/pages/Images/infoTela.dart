@@ -1,4 +1,5 @@
 import 'package:comunica_mobile/pages/Images/widgets/customBackground.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -18,45 +19,74 @@ class _infoTelaState extends State<infoTela> {
           child: Container(
             padding: EdgeInsets.all(16),
             child: Column(
-              crossAxisAlignment:CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(
+                Container(
                   width: 400,
                   height: 100,
+
+                  //margin: EdgeInsets.fromLTRB(30,30,30,30),
+                  decoration: new BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: const Radius.circular(20.0),
+                        bottomLeft: const Radius.circular(20.0),
+                        bottomRight: const Radius.circular(20.0),
+                        topRight: const Radius.circular(20.0),
+                      )),
                   child: Card(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)
+                      borderRadius: BorderRadius.circular(10.0),
+                      side: BorderSide(color: Colors.black, width: 1.0 )
                     ),
-                    child: SizedBox(
-                      width: 30,
-                      height: 50,
-                      child: Card(
+                    elevation: 5,
+                    margin: EdgeInsets.fromLTRB(15,35,15,10),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                          "Nome",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          )
                       ),
                     ),
                   ),
+
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      SizedBox(
+                      Container(
                         width: 160,
                         height: 100,
+                        decoration: new BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                              topLeft: const Radius.circular(20.0),
+                              bottomLeft: const Radius.circular(20.0),
+                              bottomRight: const Radius.circular(20.0),
+                              topRight: const Radius.circular(20.0),
+                            )),
                         child: Card(
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)
+                              borderRadius: BorderRadius.circular(10.0),
+                              side: BorderSide(color: Colors.black, width: 1.0 )
                           ),
-                          child: Text(
-                              "Data de criação",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              )
+                          elevation: 5,
+                          margin: EdgeInsets.fromLTRB(15,35,15,10),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                                "Data de criação",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                )
+                            ),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      Container(
                         width: 160,
                         height: 100,
                         child: Card(
