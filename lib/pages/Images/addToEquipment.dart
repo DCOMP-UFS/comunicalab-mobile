@@ -15,6 +15,7 @@ class _AddToEquipmentState extends State<AddToEquipment> {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Column(
@@ -41,7 +42,6 @@ class _AddToEquipmentState extends State<AddToEquipment> {
           )
         ],
       ),
-      drawer: handlerSideBar(context),
       body: BlocBuilder<AddToEquipmentBloc, AddToEquipmentState>(
         builder: (context, state) {
           if (state is AddToEquipmentSuccess) {
@@ -72,91 +72,102 @@ class _AddToEquipmentState extends State<AddToEquipment> {
           }
         },
       ),
-      bottomNavigationBar: Card(
-        elevation: 8,
-        child: Container(
-          padding: EdgeInsets.fromLTRB(130, 10, 130, 10),
-          child: BlocBuilder<AddToEquipmentBloc, AddToEquipmentState>(
-            builder: (context, state) {
-              if (state is AddToEquipmentSuccess) {
-                if (state.equipments.where((e) => e.isMarked == true).toList().length > 0) {
-                  return GestureDetector(
-                    onTap: () {
-                      openDialog(context, BlocProvider.of<AddToEquipmentBloc>(context));
-                    },
-                    child: Container(
-                      height: 32,
-                      width: 60,
-                      padding: EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                        color: Color(0xFF000080),
-                        borderRadius: BorderRadius.circular(14),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            'Adicionar',
-                            style: TextStyle(color: Colors.white),
-                            textAlign: TextAlign.center,
+      bottomNavigationBar: BlocBuilder<AddToEquipmentBloc, AddToEquipmentState>(
+        builder: (context, state) {
+          if (state is AddToEquipmentLoading) {
+            return Container(
+              width: 0,
+              height: 0,
+            );
+          } else {
+            return Card(
+              elevation: 8,
+              child: Container(
+                padding: EdgeInsets.fromLTRB(mediaQuery.width * 0.30, 10, mediaQuery.width * 0.30, 10),
+                child: BlocBuilder<AddToEquipmentBloc, AddToEquipmentState>(
+                  builder: (context, state) {
+                    if (state is AddToEquipmentSuccess) {
+                      if (state.equipments.where((e) => e.isMarked == true).toList().length > 0 && state.equipments != null) {
+                        return GestureDetector(
+                          onTap: () {
+                            openDialog(context, BlocProvider.of<AddToEquipmentBloc>(context));
+                          },
+                          child: Container(
+                            height: 32,
+                            width: 60,
+                            padding: EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              color: Color(0xFF000080),
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  'Adicionar',
+                                  style: TextStyle(color: Colors.white),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
                           ),
-                        ],
-                      ),
-                    ),
-                  );
-                } else {
-                  return GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      height: 32,
-                      width: 60,
-                      padding: EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                        color: Color(0xFF000080),
-                        borderRadius: BorderRadius.circular(14),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            'Adicionar',
-                            style: TextStyle(color: Colors.white),
-                            textAlign: TextAlign.center,
+                        );
+                      } else {
+                        return GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            height: 32,
+                            width: 60,
+                            padding: EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              color: Color(0xFF000080),
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  'Adicionar',
+                                  style: TextStyle(color: Colors.white),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
                           ),
-                        ],
-                      ),
-                    ),
-                  );
-                }
-              } else if (state is AddToEquipmentLoading) {
-                return Container(width: 0, height: 0);
-              } else {
-                return GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 32,
-                    width: 60,
-                    padding: EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                      color: Color(0xFF000080),
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          'Adicionar',
-                          style: TextStyle(color: Colors.white),
-                          textAlign: TextAlign.center,
+                        );
+                      }
+                    } else if (state is AddToEquipmentLoading) {
+                      return Container(width: 0, height: 0);
+                    } else {
+                      return GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          height: 32,
+                          width: 60,
+                          padding: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: Color(0xFF000080),
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                'Adicionar',
+                                style: TextStyle(color: Colors.white),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
-                  ),
-                );
-              }
-            },
-          ),
-        ),
+                      );
+                    }
+                  },
+                ),
+              ),
+            );
+          }
+        },
       ),
     );
   }
