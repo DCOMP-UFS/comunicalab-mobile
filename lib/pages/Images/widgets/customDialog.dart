@@ -9,15 +9,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomDialog extends StatelessWidget {
-  
-
-  double altura = 35;
 
   @override
   Widget build(BuildContext context) {
     final mediaq = MediaQuery.of(context);
     final size = mediaq.size;
     final screenWidth = size.width * mediaq.devicePixelRatio;
+    final screenHeight = size.height * mediaq.devicePixelRatio;
+
+    double percentage1 = 0.05;
+    double percentage2 = 0.005;
+
     return AlertDialog(
       title: Text(
         'Opções',
@@ -52,10 +54,10 @@ class CustomDialog extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: screenHeight * percentage2,
                   ),
                   ConstrainedBox(
-                    constraints: BoxConstraints(maxHeight: altura),
+                    constraints: BoxConstraints(maxHeight: screenHeight * percentage1),
                     child: screenWidth > 700 ? Text(
                       'Adicionar Softwares',
                       style: TextStyle(fontSize: 13),
@@ -109,10 +111,10 @@ class CustomDialog extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: screenHeight * percentage2,
                   ),
                   ConstrainedBox(
-                    constraints: BoxConstraints(maxHeight: altura),
+                    constraints: BoxConstraints(maxHeight: screenHeight * percentage1),
                     child: screenWidth > 700 ? Text(
                       'Adicionar à Equipamentos',
                       style: TextStyle(fontSize: 13),
@@ -166,10 +168,10 @@ class CustomDialog extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: screenHeight * percentage2,
                   ),
                   ConstrainedBox(
-                    constraints: BoxConstraints(maxHeight: altura),
+                    constraints: BoxConstraints(maxHeight: screenHeight * percentage1),
                     child: screenWidth > 700 ? Text(
                       'Adicionar à Laboratorios',
                       style: TextStyle(fontSize: 13),
