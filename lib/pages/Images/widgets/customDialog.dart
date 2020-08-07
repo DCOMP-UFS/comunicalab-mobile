@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomDialog extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     final mediaq = MediaQuery.of(context);
@@ -32,159 +31,166 @@ class CustomDialog extends StatelessWidget {
       content: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          Container(
-            width: screenWidth > 700 ? screenWidth * 0.08 : screenWidth * 0.11,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
-                      return BlocProvider<SoftwareBloc>(create: (_) => SoftwareBloc(), child: Software());
-                    }));
-                  },
-                  child: CircleAvatar(
-                    backgroundColor: Color(0xFF000080),
-                    child: Icon(
-                      CustomIcons.aplicativo,
-                      color: Colors.white,
-                      size: 45,
+          Flexible(
+            child: Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
+                        return BlocProvider<SoftwareBloc>(create: (_) => SoftwareBloc(), child: Software());
+                      }));
+                    },
+                    child: CircleAvatar(
+                      backgroundColor: Color(0xFF000080),
+                      child: Icon(
+                        CustomIcons.aplicativo,
+                        color: Colors.white,
+                        size: 45,
+                      ),
+                      radius: 40,
                     ),
-                    radius: 40,
                   ),
-                ),
-                SizedBox(
-                  height: screenHeight * percentage2,
-                ),
-                ConstrainedBox(
-                  constraints: BoxConstraints(maxHeight: screenHeight * percentage1),
-                  child: screenWidth > 700 ? Text(
-                    'Adicionar Softwares',
-                    style: TextStyle(fontSize: 13),
-                    textAlign: TextAlign.center,
-                    softWrap: true,
-                    maxLines: 2,
-                  ) :
-                  Text(
-                    'Adicionar Softwares',
-                    style: TextStyle(fontSize: 8),
-                    textAlign: TextAlign.center,
-                    softWrap: true,
-                    maxLines: 2,
+                  SizedBox(
+                    height: screenHeight * percentage2,
                   ),
-                )
-              ],
+                  ConstrainedBox(
+                    constraints: BoxConstraints(maxHeight: screenHeight * percentage1),
+                    child: screenWidth > 700
+                        ? Text(
+                            'Adicionar Softwares',
+                            style: TextStyle(fontSize: 13),
+                            textAlign: TextAlign.center,
+                            softWrap: true,
+                            maxLines: 2,
+                          )
+                        : Text(
+                            'Adicionar Softwares',
+                            style: TextStyle(fontSize: 8),
+                            textAlign: TextAlign.center,
+                            softWrap: true,
+                            maxLines: 2,
+                          ),
+                  )
+                ],
+              ),
             ),
           ),
           SizedBox(width: 10),
-          Container(
-            width: screenWidth > 700 ? screenWidth * 0.08 : screenWidth * 0.11,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (BuildContext context) {
-                          return MultiBlocProvider(
-                            providers: [
-                              BlocProvider<AddToEquipmentBloc>(
-                                create: (BuildContext context) => AddToEquipmentBloc()..add(FetchEquipments()),
-                              ),
-                            ],
-                            child: AddToEquipment(),
-                          );
-                        },
+          Flexible(
+            child: Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return MultiBlocProvider(
+                              providers: [
+                                BlocProvider<AddToEquipmentBloc>(
+                                  create: (BuildContext context) => AddToEquipmentBloc()..add(FetchEquipments()),
+                                ),
+                              ],
+                              child: AddToEquipment(),
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    child: CircleAvatar(
+                      backgroundColor: Color(0xFF000080),
+                      child: Icon(
+                        CustomIcons.computador,
+                        color: Colors.white,
+                        size: 45,
                       ),
-                    );
-                  },
-                  child: CircleAvatar(
-                    backgroundColor: Color(0xFF000080),
-                    child: Icon(
-                      CustomIcons.computador,
-                      color: Colors.white,
-                      size: 45,
+                      radius: 40,
                     ),
-                    radius: 40,
                   ),
-                ),
-                SizedBox(
-                  height: screenHeight * percentage2,
-                ),
-                ConstrainedBox(
-                  constraints: BoxConstraints(maxHeight: screenHeight * percentage1),
-                  child: screenWidth > 700 ? Text(
-                    'Adicionar à Equipamentos',
-                    style: TextStyle(fontSize: 13),
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    softWrap: true,
-                  ) :
-                  Text(
-                    'Adicionar à Equipamentos',
-                    style: TextStyle(fontSize: 8),
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    softWrap: true,
+                  SizedBox(
+                    height: screenHeight * percentage2,
                   ),
-                )
-              ],
+                  ConstrainedBox(
+                    constraints: BoxConstraints(maxHeight: screenHeight * percentage1),
+                    child: screenWidth > 700
+                        ? Text(
+                            'Adicionar à Equipamentos',
+                            style: TextStyle(fontSize: 13),
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            softWrap: true,
+                          )
+                        : Text(
+                            'Adicionar à Equipamentos',
+                            style: TextStyle(fontSize: 8),
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            softWrap: true,
+                          ),
+                  )
+                ],
+              ),
             ),
           ),
           SizedBox(width: 10),
-          Container(
-            width: screenWidth > 700 ? screenWidth * 0.08 : screenWidth * 0.11,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (BuildContext context) {
-                          return MultiBlocProvider(
-                            providers: [
-                              BlocProvider<AddLabImage_Bloc>(
-                                create: (BuildContext context) => AddLabImage_Bloc(),
-                              ),
-                            ],
-                            child: AddLabImage(),
-                          );
-                        },
+          Flexible(
+            child: Container(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return MultiBlocProvider(
+                              providers: [
+                                BlocProvider<AddLabImage_Bloc>(
+                                  create: (BuildContext context) => AddLabImage_Bloc(),
+                                ),
+                              ],
+                              child: AddLabImage(),
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    child: CircleAvatar(
+                      backgroundColor: Color(0xFF000080),
+                      child: Icon(
+                        CustomIcons.door,
+                        color: Colors.white,
+                        size: 45,
                       ),
-                    );
-                  },
-                  child: CircleAvatar(
-                    backgroundColor: Color(0xFF000080),
-                    child: Icon(
-                      CustomIcons.door,
-                      color: Colors.white,
-                      size: 45,
+                      radius: 40,
                     ),
-                    radius: 40,
                   ),
-                ),
-                SizedBox(
-                  height: screenHeight * percentage2,
-                ),
-                ConstrainedBox(
-                  constraints: BoxConstraints(maxHeight: screenHeight * percentage1),
-                  child: screenWidth > 700 ? Text(
-                    'Adicionar à Laboratorios',
-                    style: TextStyle(fontSize: 13),
-                    textAlign: TextAlign.center,
-                    softWrap: true,
-                    maxLines: 2,
-                  ) : Text(
-                    'Adicionar à Laboratorios',
-                    style: TextStyle(fontSize: 8),
-                    textAlign: TextAlign.center,
-                    softWrap: true,
-                    maxLines: 2,
+                  SizedBox(
+                    height: screenHeight * percentage2,
                   ),
-                )
-              ],
+                  ConstrainedBox(
+                    constraints: BoxConstraints(maxHeight: screenHeight * percentage1),
+                    child: screenWidth > 700
+                        ? Text(
+                            'Adicionar à Laboratorios',
+                            style: TextStyle(fontSize: 13),
+                            textAlign: TextAlign.center,
+                            softWrap: true,
+                            maxLines: 2,
+                          )
+                        : Text(
+                            'Adicionar à Laboratorios',
+                            style: TextStyle(fontSize: 8),
+                            textAlign: TextAlign.center,
+                            softWrap: true,
+                            maxLines: 2,
+                          ),
+                  )
+                ],
+              ),
             ),
           ),
         ],
