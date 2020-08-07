@@ -38,32 +38,35 @@ class _ImagesListState extends State<ImagesList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: !isSearchEnabled ? Text("Lista de Imagens"): TextField(
-          //onChanged
-          onChanged: (String str){
-            print(str);
-          },
-          controller: editingController,
-          style: TextStyle(
-            color: Colors.white,
-          ),
-          decoration: InputDecoration(
-              hintText: "Digite o nome da imagem",
-              hintStyle: TextStyle(color: Colors.black),
-
-
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50),
+        title: !isSearchEnabled ? Text("Lista de Imagens"): Container(
+          margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+          child: TextField(
+            //onChanged
+            onChanged: (String str){
+              print(str);
+            },
+            controller: editingController,
+            style: TextStyle(
+              color: Colors.white,
             ),
+            decoration: InputDecoration(
+                hintText: "Digite o nome da imagem",
+                hintStyle: TextStyle(color: Colors.black),
 
-            enabledBorder: UnderlineInputBorder(
-              borderRadius: BorderRadius.circular(50),
+
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(50),
+              ),
+
+              enabledBorder: UnderlineInputBorder(
+                borderRadius: BorderRadius.circular(50),
+              ),
+
+
+              filled: true,
+              fillColor: Colors.grey,
+              contentPadding: EdgeInsets.all(10),
             ),
-
-
-            filled: true,
-            fillColor: Colors.grey,
-            contentPadding: EdgeInsets.all(10),
           ),
         ),
         actions: <Widget>[

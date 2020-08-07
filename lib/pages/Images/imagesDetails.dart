@@ -68,7 +68,7 @@ class _imagesDetailsState extends State<imagesDetails> {
               ),
             ),
           ),
-          drawer: handlerSideBar(context),
+          //drawer: handlerSideBar(context),
           body: Container(
             margin: EdgeInsets.all(0.0),
             child: TabBarView(

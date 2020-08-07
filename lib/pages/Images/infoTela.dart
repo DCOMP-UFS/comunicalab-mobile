@@ -26,29 +26,37 @@ class _infoTelaState extends State<infoTela> {
 
                   //margin: EdgeInsets.fromLTRB(30,30,30,30),
                   decoration: new BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: const Radius.circular(20.0),
-                        bottomLeft: const Radius.circular(20.0),
-                        bottomRight: const Radius.circular(20.0),
-                        topRight: const Radius.circular(20.0),
+                      color: Color(0xFFF9FDFF),
+                      borderRadius: BorderRadius.circular(20
                       )),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      side: BorderSide(color: Colors.black, width: 1.0 )
-                    ),
-                    elevation: 5,
-                    margin: EdgeInsets.fromLTRB(15,35,15,10),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                          "Nome",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          )
+                  child: Column(
+                    children: <Widget>[
+                      Expanded(
+                        child: Center(
+
+                          child: Text("Nome",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  )),
+                        ),
                       ),
-                    ),
+                      Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          side: BorderSide(color: Colors.black, width: 0.3 )
+                        ),
+                        elevation: 5,
+                        margin: EdgeInsets.fromLTRB(15,0,15,8),
+                        child: Container(
+                          height: 50,
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                                "Imagem 1"
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
 
                 ),
@@ -58,50 +66,80 @@ class _infoTelaState extends State<infoTela> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       Container(
-                        width: 160,
+                        width: 152,
                         height: 100,
                         decoration: new BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                              topLeft: const Radius.circular(20.0),
-                              bottomLeft: const Radius.circular(20.0),
-                              bottomRight: const Radius.circular(20.0),
-                              topRight: const Radius.circular(20.0),
+                            color: Color(0xFFF9FDFF),
+                            borderRadius: BorderRadius.circular(20
                             )),
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              side: BorderSide(color: Colors.black, width: 1.0 )
-                          ),
-                          elevation: 5,
-                          margin: EdgeInsets.fromLTRB(15,35,15,10),
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                                "Data de criação",
-                                style: TextStyle(
+                        child: Column(
+                          children: <Widget>[
+                            Expanded(
+                              child: Center(
+                                child: Text("Data de Criação",style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                )
+                                )),
+                              ),
+                            ),
+                           Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                                side: BorderSide(color: Colors.black, width: 0.3 )
+                            ),
+                            elevation: 5,
+                            margin: EdgeInsets.fromLTRB(15,0,15,8),
+                            child: Container(
+                              height: 50,
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                    "10/07/20",
+                                ),
+                              ),
                             ),
                           ),
+                          ],
                         ),
                       ),
                       Container(
-                        width: 160,
-                        height: 100,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)
-                          ),
-                          child: Text(
-                              "N de instalações",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              )
-                          ),
-                        ),
+                        width: 10,
                       ),
-                      //SizedBox(),
+                      Container(
+                        width: 152,
+                        height: 100,
+                        decoration: new BoxDecoration(
+                            color: Color(0xFFF9FDFF),
+                            borderRadius: BorderRadius.circular(20
+                            )),
+                        child: Column(
+                          children: <Widget>[
+                            Expanded(
+                              child: Center(
+                                child: Text("N de instalações",style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                )),
+                              ),
+                            ),
+                            Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  side: BorderSide(color: Colors.black, width: 0.3 )
+                              ),
+                              elevation: 5,
+                              margin: EdgeInsets.fromLTRB(15,0,15,8),
+                              child: Container(
+                                height: 50,
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                      "20",
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),
@@ -110,37 +148,81 @@ class _infoTelaState extends State<infoTela> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      SizedBox(
-                        width: 160,
+                      Container(
+                        width: 152,
                         height: 100,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)
-                          ),
-                          child: Text(
-                              "N de Softwares Instalados",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              )
-                          ),
+                        decoration: new BoxDecoration(
+                            color: Color(0xFFF9FDFF),
+                            borderRadius: BorderRadius.circular(20
+                            )),
+                        child: Column(
+                          children: <Widget>[
+                            Expanded(
+                              child: Center(
+                                child: Text("N de Softwares\n    Instalados",style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                )),
+                              ),
+                            ),
+                            Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  side: BorderSide(color: Colors.black, width: 0.3 )
+                              ),
+                              elevation: 5,
+                              margin: EdgeInsets.fromLTRB(15,0,15,8),
+                              child: Container(
+                                height: 50,
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    "25",
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      SizedBox(
-                        width: 160,
-                        height: 100,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)
-                          ),
-                          child: Text(
-                              "Última Atualização",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              )
-                          ),
-                        ),
+                      Container(
+                        width: 10,
                       ),
-                      //SizedBox(),
+                      Container(
+                        width: 152,
+                        height: 100,
+                        decoration: new BoxDecoration(
+                            color: Color(0xFFF9FDFF),
+                            borderRadius: BorderRadius.circular(20
+                            )),
+                        child: Column(
+                          children: <Widget>[
+                            Expanded(
+                              child: Center(
+                                child: Text("    Última \nAtualização",style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                )),
+                              ),
+                            ),
+                            Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  side: BorderSide(color: Colors.black, width: 0.3 )
+                              ),
+                              elevation: 5,
+                              margin: EdgeInsets.fromLTRB(15,0,15,8),
+                              child: Container(
+                                height: 50,
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    "24/07/20",
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),
