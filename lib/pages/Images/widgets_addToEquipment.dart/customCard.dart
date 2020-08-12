@@ -69,7 +69,7 @@ class _CustomCardState extends State<CustomCard> {
                                     backgroundColor: Colors.red,
                                     radius: 10,
                                   ),
-                                  Text("Rede")
+                                  Text(widget.equipment.option)
                                 ],
                               ),
                             ),
@@ -82,7 +82,7 @@ class _CustomCardState extends State<CustomCard> {
                                     backgroundColor: Colors.green,
                                     radius: 10,
                                   ),
-                                  Text("Indisponível")
+                                  Text(widget.equipment.disponibility)
                                 ],
                               ),
                             ),
