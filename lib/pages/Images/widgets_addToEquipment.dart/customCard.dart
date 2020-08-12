@@ -16,9 +16,12 @@ class CustomCard extends StatefulWidget {
 }
 
 class _CustomCardState extends State<CustomCard> {
-
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context).size;
+    final devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
+
+    final screenWidth = mediaQuery.width * devicePixelRatio;
     return Container(
       width: MediaQuery.of(context).size.width * 0.9,
       child: Card(
@@ -42,10 +45,54 @@ class _CustomCardState extends State<CustomCard> {
                     value: widget.equipment.isMarked,
                     activeColor: Color(0xFF000080),
                   ),
-                  SizedBox(
-                    width: 80,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(height: mediaQuery.height * 0.005),
+                        Text(
+                          widget.equipment.name,
+                          style: TextStyle(),
+                        ),
+                        SizedBox(height: mediaQuery.height * 0.005),
+                        Text("Ar Condicionado"),
+                        SizedBox(height: mediaQuery.height * 0.02),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Container(
+                              width:  screenWidth > 700 ? mediaQuery.width * 0.15 : mediaQuery.width * 0.20 ,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundColor: Colors.red,
+                                    radius: 10,
+                                  ),
+                                  Text("Rede")
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: screenWidth > 700 ? mediaQuery.width * 0.25 : mediaQuery.width * 0.33 ,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundColor: Colors.green,
+                                    radius: 10,
+                                  ),
+                                  Text("Indisponível")
+                                ],
+                              ),
+                            ),
+                            SizedBox(width: screenWidth > 700 ? mediaQuery.width * 0.1 : 0)
+                          ],
+                        ),
+                        SizedBox(height: mediaQuery.height * 0.01),
+                      ],
+                    ),
                   ),
-                  Text(widget.equipment.name),
                 ],
               )),
         ),
