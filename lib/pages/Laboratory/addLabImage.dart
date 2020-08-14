@@ -1,3 +1,4 @@
+import 'package:comunica_mobile/widgets/TicketWidgets/ticketCardLaboratoryImage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'addLabImage_List.dart';
@@ -118,12 +119,7 @@ class AddLabImage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    AddLabImage_List("Laboratório 1"),
-                    AddLabImage_List("Laboratório 1"),
-                    AddLabImage_List("Laboratório 1"),
-                    AddLabImage_List("Laboratório 1"),
-                    AddLabImage_List("Laboratório 1"),
-                    AddLabImage_List("Laboratório 1"),
+                    TicketCardLaboratoryImage("Laboratório 1")
                   ],
                 ),
               ),
