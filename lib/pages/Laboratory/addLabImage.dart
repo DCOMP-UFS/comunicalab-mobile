@@ -1,3 +1,4 @@
+import 'package:comunica_mobile/models/ticket.dart';
 import 'package:comunica_mobile/widgets/TicketWidgets/ticketCardLaboratoryImage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +7,10 @@ import 'bloc/addLabImage_bloc.dart';
 
 
 class AddLabImage extends StatelessWidget {
+
+   Ticket _ticket1 = new Ticket(status: "Livre");
+   Ticket _ticket2 = new Ticket(status: "Reservado");
+   Ticket _ticket3 = new Ticket(status: "Ocupado");
 
 
   showAlertDialog1(BuildContext context)
@@ -71,6 +76,8 @@ class AddLabImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
         appBar: AppBar(
           title:Column(
@@ -119,8 +126,12 @@ class AddLabImage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    TicketCardLaboratoryImage("Laboratório de Hardware", "Departamento"),
-                    TicketCardLaboratoryImage("Laboratório de Hardware 2", "Departamento")
+                    TicketCardLaboratoryImage(_ticket1, "Laboratório de Hardware", "Departamento"),
+                    TicketCardLaboratoryImage(_ticket1, "Laboratório de Hardware 2", "Departamento"),
+                    TicketCardLaboratoryImage(_ticket2, "Laboratório de Hardware", "Departamento"),
+                    TicketCardLaboratoryImage(_ticket2, "Laboratório de Hardware", "Departamento"),
+                    TicketCardLaboratoryImage(_ticket3, "Laboratório de Hardware", "Departamento"),
+
                   ],
                 ),
               ),
