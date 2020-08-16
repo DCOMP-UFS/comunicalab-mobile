@@ -49,7 +49,7 @@ class _CustomCardState extends State<CustomCard> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        SizedBox(height: mediaQuery.height * 0.005),
+                        SizedBox(height: mediaQuery.height * 0.015),
                         Text(
                           widget.equipment.name,
                           style: TextStyle(),
@@ -61,26 +61,30 @@ class _CustomCardState extends State<CustomCard> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Container(
-                              width:  screenWidth > 700 ? mediaQuery.width * 0.15 : mediaQuery.width * 0.20 ,
+                              width: screenWidth > 700 ? mediaQuery.width * 0.15 : mediaQuery.width * 0.20,
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   CircleAvatar(
-                                    backgroundColor: Colors.red,
+                                    backgroundColor: chooseColor(widget.equipment.option),
                                     radius: 10,
+                                  ),
+                                  SizedBox(
+                                    width: mediaQuery.width * 0.01,
                                   ),
                                   Text(widget.equipment.option)
                                 ],
                               ),
                             ),
                             Container(
-                              width: screenWidth > 700 ? mediaQuery.width * 0.25 : mediaQuery.width * 0.33 ,
+                              width: screenWidth > 700 ? mediaQuery.width * 0.25 : mediaQuery.width * 0.33,
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   CircleAvatar(
-                                    backgroundColor: Colors.green,
+                                    backgroundColor: chooseColor(widget.equipment.disponibility),
                                     radius: 10,
+                                  ),
+                                  SizedBox(
+                                    width: mediaQuery.width * 0.01,
                                   ),
                                   Text(widget.equipment.disponibility)
                                 ],
@@ -89,7 +93,7 @@ class _CustomCardState extends State<CustomCard> {
                             SizedBox(width: screenWidth > 700 ? mediaQuery.width * 0.1 : 0)
                           ],
                         ),
-                        SizedBox(height: mediaQuery.height * 0.01),
+                        SizedBox(height: mediaQuery.height * 0.015),
                       ],
                     ),
                   ),
@@ -98,5 +102,14 @@ class _CustomCardState extends State<CustomCard> {
         ),
       ),
     );
+  }
+
+  Color chooseColor(String option) {
+    List<String> listOptions = ["Indisponível"];
+    if (listOptions.contains(option)) {
+      return Colors.red;
+    } else {
+      return Colors.green;
+    }
   }
 }
