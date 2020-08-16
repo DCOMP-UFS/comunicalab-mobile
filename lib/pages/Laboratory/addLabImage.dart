@@ -119,7 +119,8 @@ class AddLabImage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    TicketCardLaboratoryImage("Laboratório 1")
+                    TicketCardLaboratoryImage("Laboratório de Hardware", "Departamento"),
+                    TicketCardLaboratoryImage("Laboratório de Hardware 2", "Departamento")
                   ],
                 ),
               ),

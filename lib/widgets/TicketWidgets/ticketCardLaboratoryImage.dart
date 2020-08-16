@@ -4,9 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TicketCardLaboratoryImage extends StatelessWidget{
 
-  final String nomeLab;
+  final String nameLab;
+  final String nameDepart;
 
-  TicketCardLaboratoryImage(this.nomeLab);
+  TicketCardLaboratoryImage(this.nameLab, this.nameDepart);
 
   bool _chekBoxValue = false;
 
@@ -20,7 +21,7 @@ class TicketCardLaboratoryImage extends StatelessWidget{
             child: Center(
               child: Container(
                   width: 350,
-                  height: 50,
+                  height: 70,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(14),
@@ -55,11 +56,37 @@ class TicketCardLaboratoryImage extends StatelessWidget{
                           }
                       ),
                       SizedBox(
-                        width: 90,
+                        width: 10,
                       ),
-                      Text(
-                        nomeLab,
-                        style: TextStyle(fontSize: 16, color: Color(0xFF000080)),
+                      Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              nameLab,
+                              style: TextStyle(fontSize: 16, color: Color(0xFF000080)),
+                            ),
+                            Text(
+                              nameDepart,
+                              style: TextStyle(fontSize: 14, color: Color(0xFF000080)),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 10),
+                              child: Row(
+                                children: [
+                                  Icon(Icons.brightness_1, color: Colors.green, size: 14),
+                                  SizedBox(
+                                    width: 3,
+                                  ),
+                                  Text("Livre",
+                                    style: TextStyle(fontSize: 10),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       )
                     ],
                   )
