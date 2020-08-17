@@ -1,14 +1,23 @@
+import 'package:comunica_mobile/pages/Images/imagesDetails.dart';
+import 'package:comunica_mobile/pages/Images/imagesInfo.dart';
 import 'package:comunica_mobile/pages/Images/widgets/customBackground.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
 class infoTela extends StatefulWidget {
+
+final imagesInfo imag;
+infoTela(this.imag);
+
   @override
   _infoTelaState createState() => _infoTelaState();
 }
 
 class _infoTelaState extends State<infoTela> {
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +30,7 @@ class _infoTelaState extends State<infoTela> {
             child: Column(
               children: <Widget>[
                 Container(
-                  width: 400,
+                  width: 320,
                   height: 100,
 
                   //margin: EdgeInsets.fromLTRB(30,30,30,30),
@@ -51,7 +60,7 @@ class _infoTelaState extends State<infoTela> {
                           child: Align(
                             alignment: Alignment.center,
                             child: Text(
-                                "Imagem 1"
+                                widget.imag.softwareName
                             ),
                           ),
                         ),
@@ -93,7 +102,7 @@ class _infoTelaState extends State<infoTela> {
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Text(
-                                    "10/07/20",
+                                    widget.imag.dataCriacao,
                                 ),
                               ),
                             ),
@@ -132,7 +141,7 @@ class _infoTelaState extends State<infoTela> {
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                      "20",
+                                      widget.imag.numeroInstalacoes,
                                   ),
                                 ),
                               ),
@@ -176,7 +185,7 @@ class _infoTelaState extends State<infoTela> {
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    "25",
+                                    widget.imag.numeroInstalacoes,
                                   ),
                                 ),
                               ),
@@ -215,7 +224,7 @@ class _infoTelaState extends State<infoTela> {
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    "24/07/20",
+                                    widget.imag.ultimaAtualizacao,
                                   ),
                                 ),
                               ),
