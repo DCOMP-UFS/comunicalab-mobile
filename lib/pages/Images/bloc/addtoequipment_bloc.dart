@@ -51,21 +51,21 @@ Future<List<Equipment>> _fetchEquipments() async {
       id: 2,
       name: 'Equipamento 2',
       isMarked: false,
-      option: "SW",
+      option: "Software",
       disponibility: "Indisponível"
     ),
     Equipment(
       id: 3,
       name: 'Equipamento 3',
       isMarked: false,
-      option: "HW",
+      option: "Hardware",
       disponibility: "Indisponível"
     ),
     Equipment(
       id: 4,
       name: 'Equipamento 4',
       isMarked: false,
-      option: "Rede",
+      option: "OK",
       disponibility: "Disponível"
     ),
   ];

@@ -61,7 +61,7 @@ class _CustomCardState extends State<CustomCard> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Container(
-                              width: screenWidth > 700 ? mediaQuery.width * 0.15 : mediaQuery.width * 0.20,
+                              width: screenWidth > 700 ? mediaQuery.width * 0.22 : mediaQuery.width * 0.28,
                               child: Row(
                                 children: <Widget>[
                                   CircleAvatar(
@@ -105,7 +105,7 @@ class _CustomCardState extends State<CustomCard> {
   }
 
   Color chooseColor(String option) {
-    List<String> listOptions = ["Indisponível"];
+    List<String> listOptions = ["Indisponível", "Rede", "Software", "Hardware"];
     if (listOptions.contains(option)) {
       return Colors.red;
     } else {
