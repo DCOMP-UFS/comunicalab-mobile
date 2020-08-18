@@ -1,13 +1,24 @@
+import 'package:comunica_mobile/pages/Laboratory/addLabImage.dart';
+import 'package:comunica_mobile/pages/Laboratory/bloc/addLabImage_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:comunica_mobile/icons/custom_icons_icons.dart';
 import 'package:comunica_mobile/pages/Images/addToEquipment.dart';
 import 'package:comunica_mobile/pages/Images/bloc/addtoequipment_bloc.dart';
 import 'package:comunica_mobile/pages/Images/bloc/addtoequipment_event.dart';
 import 'package:comunica_mobile/pages/Images/imagesList.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:comunica_mobile/pages/Software/bloc/software_bloc.dart';
+import 'package:comunica_mobile/pages/Software/software.dart';
+import 'package:comunica_mobile/pages/Equipment/resources/bloc/imgSoftList_bloc.dart';
+import 'package:comunica_mobile/pages/Equipment/resources/imgSoftList.dart';
+import 'package:comunica_mobile/pages/Equipment/tickets/ticketList/bloc/bloc.dart';
+import 'package:comunica_mobile/pages/Equipment/tickets/ticketList/equipmentTicketList.dart';
+import 'package:comunica_mobile/pages/UserTicket/bloc/bloc.dart';
+import 'package:comunica_mobile/pages/UserTicket/userTicketList.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/filterlaboratory_bloc.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/lablist_bloc.dart';
 import 'package:comunica_mobile/pages/Laboratory/labList.dart';
+import 'package:comunica_mobile/widgets/CustomBottomNavigationBar/bloc/customBottomNavigationBar_bloc.dart';
 
 final headerTextStyle = TextStyle(color: Color(0xFFFFFFFF), fontSize: 14.0);
 
@@ -36,6 +47,28 @@ Widget handlerSideBar(BuildContext context) {
               onDetailsPressed: () {},
             ),
             ListTile(
+                leading:
+                    Icon(CustomIcons.running_repair_man_with_wrench_and_kit),
+                title: Text('Chamados'),
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (BuildContext context) {
+                    return MultiBlocProvider(
+                      providers: [
+                        BlocProvider<UserTicketListBloc>(
+                          create: (BuildContext context) =>
+                              UserTicketListBloc()..add(FetchUserTickets()),
+                        ),
+                        BlocProvider<CustomBottomNavigationBarBloc>(
+                          create: (BuildContext context) =>
+                              CustomBottomNavigationBarBloc(),
+                        ),
+                      ],
+                      child: UserTicketList(),
+                    );
+                  }));
+                }),
+            ListTile(
               leading: Icon(CustomIcons.aplicativo),
               title: Text('Imagem e Software'),
               onTap: () {
@@ -52,13 +85,18 @@ Widget handlerSideBar(BuildContext context) {
               leading: Icon(Icons.directions_subway),
               children: <Widget>[
                 ListTile(
-                  title: Text(
-                    'Cadastrar software',
-                    style: TextStyle(
-                      color: Color(0xFF6A5ACD),
-                    ),
-                  ),
-                  onTap: () {},
+                  title: Text('Cadastrar software', style: TextStyle(color: Color(0xFF6A5ACD))),
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context){
+                          return BlocProvider<SoftwareBloc>(
+                              create: (_) => SoftwareBloc(),
+                              child: Software()
+                          );
+                        }
+                    )
+                    );
+                  },
                 ),
                 ListTile(
                   title: Text(
@@ -101,7 +139,24 @@ Widget handlerSideBar(BuildContext context) {
                     'Ver instalações',
                     style: TextStyle(color: Color(0xFF6A5ACD)),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (BuildContext context) {
+                        return MultiBlocProvider(
+                          providers: [
+                            BlocProvider<ImgSoftListBloc>(
+                                create: (BuildContext context) =>
+                                    ImgSoftListBloc()),
+                            BlocProvider<CustomBottomNavigationBarBloc>(
+                              create: (BuildContext context) =>
+                                  CustomBottomNavigationBarBloc(),
+                            ),
+                          ],
+                          child: ImgSoftList(),
+                        );
+                      }),
+                    );
+                  },
                 )
               ],
             ),
@@ -140,7 +195,26 @@ Widget handlerSideBar(BuildContext context) {
                       color: Color(0xFF6A5ACD),
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (BuildContext context) {
+                        return MultiBlocProvider(
+                          providers: [
+                            BlocProvider<CustomBottomNavigationBarBloc>(
+                              create: (BuildContext context) =>
+                                  CustomBottomNavigationBarBloc(),
+                            ),
+                            BlocProvider<EquipmentTicketListBloc>(
+                              create: (BuildContext context) =>
+                                  EquipmentTicketListBloc()
+                                    ..add(FetchEquipmentTickets()),
+                            ),
+                          ],
+                          child: TicketList(),
+                        );
+                      }),
+                    );
+                  },
                 ),
                 ListTile(
                   title: Text(
@@ -173,7 +247,15 @@ Widget handlerSideBar(BuildContext context) {
                       color: Color(0xFF6A5ACD),
                     ),
                   ),
-                  onTap: () {
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context){
+                        return BlocProvider<AddLabImage_Bloc>(
+                          create: (_) => AddLabImage_Bloc(),
+                          child: AddLabImage(),
+                        );
+                      }
+                    ));
                     // Navigator.of(context).push(MaterialPageRoute(
                     //     builder: (BuildContext context) =>
                     //         LabList()));

@@ -19,9 +19,11 @@ class _CustomCardState extends State<CustomCard> {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context).size;
+
     final devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
 
     final screenWidth = mediaQuery.width * devicePixelRatio;
+
     return Container(
       width: MediaQuery.of(context).size.width * 0.9,
       child: Card(
