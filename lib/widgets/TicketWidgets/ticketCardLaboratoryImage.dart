@@ -15,29 +15,29 @@ class TicketCardLaboratoryImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Padding(
-            padding: EdgeInsets.all(5),
-            child: Center(
-              child: Container(
-                  width: 350,
-                  height: 75,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(14),
-                    boxShadow: [
-                      BoxShadow(
-                          //color: Color.fromRGBO(0, 0, 0, 0.25),
-                          //offset: Offset(4, 4),
-                          )
-                    ],
-                  ),
-                  child: Row(
-                    children: [
-                      BlocBuilder<AddLabImage_Bloc, int>(
-                          builder: (context, _) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        height: 85,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(14),
+          boxShadow: [
+            BoxShadow(
+              //color: Color.fromRGBO(0, 0, 0, 0.25),
+              //offset: Offset(4, 4),
+            )
+          ],
+        ),
+        //crossAxisAlignment: CrossAxisAlignment.center,
+        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child:
+          Column(
+            children: [
+              Row(
+                children: [
+                  BlocBuilder<AddLabImage_Bloc, int>(
+                      builder: (context, _) {
                         return Theme(
                           data: ThemeData(unselectedWidgetColor: Colors.black),
                           child: Checkbox(
@@ -56,59 +56,83 @@ class TicketCardLaboratoryImage extends StatelessWidget {
                           ),
                         );
                       }),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(8),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              nameLab,
-                              style: TextStyle(
-                                  fontSize: 16, color: Color(0xFF000080)),
-                            ),
-                            Text(
-                              nameDepart,
-                              style: TextStyle(
-                                  fontSize: 14, color: Color(0xFF000080)),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 10),
-                              child: Row(
-                                children: [
-                                  BlocBuilder<TicketCardLaboryImage_bloc, String>(
-                                      builder: (context, _) {
-                                    return Theme(
-                                      data: ThemeData(
-                                          unselectedWidgetColor: Colors.black),
-                                      child: Row(
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            nameLab,
+                            style: TextStyle(
+                                fontSize: 16, color: Color(0xFF000080)),
+                          ),
+                          Text(
+                            nameDepart,
+                            style: TextStyle(
+                                fontSize: 14, color: Color(0xFF000080)),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 10),
+                            child: Row(
+                              children: [
+                                BlocBuilder<TicketCardLaboryImage_bloc, String>(
+                                    builder: (context, state) {
+                                      return Row(
                                         children: [
-                                          Icon(Icons.brightness_1,
-                                              color: Colors.green, size: 14
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Icon(Icons.brightness_1,
+                                                  color: cor(ticket.status),
+                                                  size: 14
+                                              ),
+                                              SizedBox(
+                                                width: 3,
+                                              ),
+                                              Text(
+                                                ticket.status,
+                                                style: TextStyle(fontSize: 10),
+                                              ),
+                                            ],
                                           ),
                                           SizedBox(
-                                            width: 3,
+                                            width: 100,
                                           ),
-                                          Text(
-                                            BlocProvider.of<TicketCardLaboryImage_bloc>(context).state,
-                                            style: TextStyle(fontSize: 10),
-                                          )
+                                          (ticket.status == "Reservado")
+                                              ? Row(
+                                            children: [
+                                              Icon(Icons.access_time, size: 14,),
+                                              Text("12:00")
+                                            ],
+                                          ): Container()
                                         ],
-                                      )
-                                    );
-                                  }),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  )),
-            )),
-      ],
+                                      );
+                                    }),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+      ),
     );
+    
+  }
+  Color cor(String cor){
+    if(cor == "Ocupado"){
+        return Colors.red;
+    }else if (cor == "Reservado")
+      return Colors.yellow;
+    else 
+      return Colors.green;
   }
 }

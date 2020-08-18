@@ -1,22 +1,26 @@
 import 'package:bloc/bloc.dart';
 
+enum TicketCardLaboryImage_event {Livre, Reservado, Ocupado}
 
-class TicketCardLaboryImage_bloc extends Bloc<String, String>{
+class TicketCardLaboryImage_bloc extends Bloc<TicketCardLaboryImage_event, String>{
   @override
   get initialState => "Livre";
 
   @override
-  Stream<String> mapEventToState(event) async* {
+  Stream<String> mapEventToState(TicketCardLaboryImage_event event) async* {
+
     switch(event){
-      case "Livre":
-        yield state;
+      case TicketCardLaboryImage_event.Livre:
+        yield "Livre";
         break;
-      case "Reservado":
-        yield state;
+      case TicketCardLaboryImage_event.Ocupado:
+        yield "Ocupado";
         break;
-      case "Ocupado":
-        yield state;
+      case TicketCardLaboryImage_event.Reservado:
+        yield "Reservado";
         break;
     }
+
+
   }
 }

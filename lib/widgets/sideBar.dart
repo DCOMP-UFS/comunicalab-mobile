@@ -1,5 +1,6 @@
 import 'package:comunica_mobile/pages/Laboratory/addLabImage.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/addLabImage_bloc.dart';
+import 'package:comunica_mobile/pages/Laboratory/bloc/ticketCardLaboryImage_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:comunica_mobile/icons/custom_icons_icons.dart';
@@ -250,10 +251,18 @@ Widget handlerSideBar(BuildContext context) {
                   onTap: (){
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context){
-                        return BlocProvider<AddLabImage_Bloc>(
-                          create: (_) => AddLabImage_Bloc(),
-                          child: AddLabImage(),
+                        return MultiBlocProvider(
+                          providers: [
+                            BlocProvider<AddLabImage_Bloc>(
+                              create: (_) => AddLabImage_Bloc(),
+                            ),
+                            BlocProvider<TicketCardLaboryImage_bloc>(
+                              create: (_) => TicketCardLaboryImage_bloc(),
+                            )
+                          ],
+                          child:  AddLabImage(),
                         );
+
                       }
                     ));
                     // Navigator.of(context).push(MaterialPageRoute(
