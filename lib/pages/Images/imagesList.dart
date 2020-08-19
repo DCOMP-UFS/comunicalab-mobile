@@ -47,9 +47,10 @@ class _ImagesListState extends State<ImagesList> {
 
   // var title = 'Lista de Imagens';
   Widget appbarTitle = Text("Lista de Imagens");
-  //var searchList = List<String>.generate(8, (index) => "Imagem ${index + 1}");
+  //var searchList = List<String>.generate(4, (index) => "Imagem ${index + 1}");
+  //var searchList = response.map((e) => e.softwareName).toList();
 
-  var copyList = List<String>.generate(8, (index) => "Imagem ${index + 1}");
+  //var copyList = List<String>.generate(4, (index) => "Imagem ${index + 1}");
 
 
   final TextEditingController _controller = new TextEditingController();
@@ -64,10 +65,15 @@ class _ImagesListState extends State<ImagesList> {
 
 
 
+
+
+
   @override
   Widget build(BuildContext context) {
 
     var searchList = response.map((e) => e.softwareName).toList();
+    var copyList = response.map((e) => e.softwareName).toList();
+
 
     print(searchList);
     return Scaffold(
@@ -100,7 +106,8 @@ class _ImagesListState extends State<ImagesList> {
                     ),
                     onSubmitted: (text) {
                       setState(() {
-                        searchList = searchList.where((element) => element == text).toList();
+                        //searchList = searchList.where((element) => element == text).toList();
+                         response.removeWhere((searchList) => searchList.softwareName != text);
                       });
                     },
                     onChanged: (text){

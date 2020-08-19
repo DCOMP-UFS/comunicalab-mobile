@@ -1,4 +1,4 @@
-import 'package:comunica_mobile/widgets/customCard.dart';
+import 'package:comunica_mobile/pages/Images/widgets/customCardSoftware.dart';
 import 'package:flutter/material.dart';
 
 
@@ -15,7 +15,7 @@ class _softwareTelaState extends State<softwareTela> {
       body:Container(
         margin: EdgeInsets.all(20),
         child: ListView.builder(
-          itemCount: 5,
+          itemCount: 4,
           itemBuilder: (context,index){
             return CustomCard('Software ${index +1}');
           },
