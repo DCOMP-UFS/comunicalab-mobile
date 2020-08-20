@@ -12,7 +12,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   Future scan(BuildContext context) async {
     String _barcode;
     try {
@@ -20,12 +19,14 @@ class _HomePageState extends State<HomePage> {
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.CameraAccessDenied) {
         _barcode = '';
-        final _snackBar = SnackBar(content: Text('Não foi permitido acesso a câmera!'));
+        final _snackBar =
+            SnackBar(content: Text('Não foi permitido acesso a câmera!'));
         Scaffold.of(context).showSnackBar(_snackBar);
       } else {
         _barcode = 'Erro desconhecido: $e';
       }
-    } on FormatException{ //Usuário cancelou a leitura
+    } on FormatException {
+      //Usuário cancelou a leitura
       _barcode = '';
     } catch (e) {
       _barcode = 'Erro desconhecido: $e';
@@ -33,65 +34,65 @@ class _HomePageState extends State<HomePage> {
     return _barcode;
   }
 
-  Widget qrNav(BuildContext context){
+  Widget qrNav2(BuildContext context) {
+    return BottomNavigationBar(
+      onTap: (index) async {
+        switch (index) {
+          case 0:
+            String _barcode = await scan(context);
+            if (_barcode != '') {
+              BlocProvider.of<QrBloc>(context).add(Login(code: _barcode));
+            }
+            break;
+          case 1:
+            String _barcode = await scan(context);
+            if (_barcode != '') {
+              BlocProvider.of<QrBloc>(context).add(Login(code: _barcode));
+            }
+        }
+      },
+      items: <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(
+            CustomIcons.enter,
+            color: Color(0xFF000080),
+          ),
+          title: SizedBox.shrink(),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            CustomIcons.search,
+            color: Color(0xFF000080),
+          ),
+          title: SizedBox.shrink(),
+        ),
+      ],
+    );
+  }
+
+  Widget qrNav(BuildContext context) {
     return IconTheme(
       child: Container(
-        padding: EdgeInsets.fromLTRB(0, 12, 0, 12),        
+        padding: EdgeInsets.fromLTRB(0, 12, 0, 12),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            GestureDetector(
-              child: Container(
-                width: 160,
-                height: 32,
-                padding: EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                  color: Color(0xFF000080),
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: Row(
-                  children: <Widget>[
-                    Icon(CustomIcons.enter),
-                    Text(
-                      "           Login",
-                      style: TextStyle(
-                        color: Colors.white
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              onTap: () async {
+            IconButton(
+              icon: Icon(CustomIcons.enter),
+              color: Color(0xFF000080),
+              onPressed: () async {
                 String _barcode = await scan(context);
-                if(_barcode != ''){
+                if (_barcode != '') {
                   BlocProvider.of<QrBloc>(context).add(Login(code: _barcode));
                 }
               },
             ),
-            GestureDetector(
-              child: Container(
-                width: 160,
-                height: 32,
-                padding: EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                  color: Color(0xFF000080),
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: Row(
-                  children: <Widget>[
-                    Icon(CustomIcons.magnifier_with_an_eye),
-                    Text(
-                      "  Ver informações",
-                      style: TextStyle(
-                        color: Colors.white
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              onTap: () async {
+            IconButton(
+              icon: Icon(CustomIcons.search),
+              color: Color(0xFF000080),
+              onPressed: () async {
                 String _barcode = await scan(context);
-                if(_barcode != ''){
+                if (_barcode != '') {
                   BlocProvider.of<QrBloc>(context).add(Login(code: _barcode));
                 }
               },
@@ -99,65 +100,63 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      data: IconThemeData(
-        color: Color(0xFFFFFFFF)
-      ),
+      data: IconThemeData(color: Color(0xFFFFFFFF)),
     );
   }
 
-  Widget qrReader(BuildContext context){
-    return Center(
-      child: BlocBuilder<QrBloc, QrState>(
-        builder: (context, state) {
-          if(state is InitialQrState){
-            return Container(
+  Widget qrReader(BuildContext context) {
+    return Center(child: BlocBuilder<QrBloc, QrState>(
+      builder: (context, state) {
+        if (state is InitialQrState) {
+          return Container(
               padding: EdgeInsets.all(72),
-              child: Icon(CustomIcons.qr_code, size: 200,)
-            );
-          } else {
-            return Text(state.code);
-          }
-        },
-      )
-    );
+              child: Icon(
+                CustomIcons.qr_code,
+                size: 200,
+              ));
+        } else {
+          return Text(state.code);
+        }
+      },
+    ));
   }
 
-  Widget notification(){
+  Widget notification() {
     int _value = 20;
     return Stack(
       children: <Widget>[
         IconButton(
           icon: Icon(CustomIcons.notification),
-          onPressed: (){},
+          onPressed: () {},
         ),
-        _value != 0 ? new Positioned(
-          right: 11,
-          top: 11,
-          child: new Container(
-            padding: EdgeInsets.all(2),
-            decoration: new BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(6),
-            ),
-            constraints: BoxConstraints(
-              minWidth: 14,
-              minHeight: 14,
-            ),
-            child: Text(
-              '$_value',
-              style: TextStyle(
-                color: Color(0xFF000080),
-                fontSize: 8,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ) : new Container()
+        _value != 0
+            ? new Positioned(
+                right: 11,
+                top: 11,
+                child: new Container(
+                  padding: EdgeInsets.all(2),
+                  decoration: new BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  constraints: BoxConstraints(
+                    minWidth: 14,
+                    minHeight: 14,
+                  ),
+                  child: Text(
+                    '$_value',
+                    style: TextStyle(
+                      color: Color(0xFF000080),
+                      fontSize: 8,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              )
+            : new Container()
       ],
     );
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -165,10 +164,13 @@ class _HomePageState extends State<HomePage> {
       onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
-          leading: Builder( //Usando builder para passar o contexto correto para o openDrawer
-            builder: (context){
+          leading: Builder(
+            //Usando builder para passar o contexto correto para o openDrawer
+            builder: (context) {
               return IconButton(
-                icon: Icon(CustomIcons.ajuda),
+                icon: Icon(
+                  Icons.menu,
+                ),
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
                 },
@@ -176,16 +178,10 @@ class _HomePageState extends State<HomePage> {
             },
           ),
           title: Text("Início"),
-          actions: <Widget>[
-            notification()
-          ],
+          actions: <Widget>[notification()],
         ),
         drawer: handlerSideBar(context),
-        bottomNavigationBar: Builder(
-          builder: (context){
-            return qrNav(context);
-          }
-        ),
+        bottomNavigationBar: qrNav2(context),
         body: qrReader(context),
       ),
     );
