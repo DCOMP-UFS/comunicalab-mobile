@@ -9,12 +9,16 @@ class TicketCardLaboratoryImage extends StatelessWidget {
   final String nameDepart;
   final Ticket ticket;
 
+
+
   TicketCardLaboratoryImage(this.ticket, this.nameLab, this.nameDepart);
 
   bool _chekBoxValue = false;
 
   @override
   Widget build(BuildContext context) {
+    double size = MediaQuery.of(context).size.width;
+    print(size);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -29,8 +33,6 @@ class TicketCardLaboratoryImage extends StatelessWidget {
             )
           ],
         ),
-        //crossAxisAlignment: CrossAxisAlignment.center,
-        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
         child:
           Column(
             children: [
@@ -59,64 +61,62 @@ class TicketCardLaboratoryImage extends StatelessWidget {
                   SizedBox(
                     width: 10,
                   ),
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.all(8),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            nameLab,
-                            style: TextStyle(
-                                fontSize: 16, color: Color(0xFF000080)),
+                  Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          nameLab,
+                          style: TextStyle(
+                              fontSize: 16, color: Color(0xFF000080)),
+                        ),
+                        Text(
+                          nameDepart,
+                          style: TextStyle(
+                              fontSize: 14, color: Color(0xFF000080)),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 10),
+                          child: Row(
+                            children: [
+                              BlocBuilder<TicketCardLaboryImage_bloc, String>(
+                                  builder: (context, state) {
+                                    return Row(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Icon(Icons.brightness_1,
+                                                color: cor(ticket.status),
+                                                size: 14
+                                            ),
+                                            SizedBox(
+                                              width: 3,
+                                            ),
+                                            Text(
+                                              ticket.status,
+                                              style: TextStyle(fontSize: 10),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          width: size * 0.4,
+                                        ),
+                                        (ticket.status == "Reservado")
+                                            ? Row(
+                                          children: [
+                                            Icon(Icons.access_time, size: 14, ),
+                                            Text("12:00", style: TextStyle(),)
+                                          ],
+                                        ): Container()
+                                      ],
+                                    );
+                                  }),
+                            ],
                           ),
-                          Text(
-                            nameDepart,
-                            style: TextStyle(
-                                fontSize: 14, color: Color(0xFF000080)),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 10),
-                            child: Row(
-                              children: [
-                                BlocBuilder<TicketCardLaboryImage_bloc, String>(
-                                    builder: (context, state) {
-                                      return Row(
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Icon(Icons.brightness_1,
-                                                  color: cor(ticket.status),
-                                                  size: 14
-                                              ),
-                                              SizedBox(
-                                                width: 3,
-                                              ),
-                                              Text(
-                                                ticket.status,
-                                                style: TextStyle(fontSize: 10),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            width: 100,
-                                          ),
-                                          (ticket.status == "Reservado")
-                                              ? Row(
-                                            children: [
-                                              Icon(Icons.access_time, size: 14,),
-                                              Text("12:00")
-                                            ],
-                                          ): Container()
-                                        ],
-                                      );
-                                    }),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+                        )
+                      ],
                     ),
                   )
                 ],
