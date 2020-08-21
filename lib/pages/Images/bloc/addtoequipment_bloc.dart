@@ -21,17 +21,14 @@ class AddToEquipmentBloc extends Bloc<AddToEquipmentEvent, AddToEquipmentState> 
       if (currentState is AddToEquipmentSuccess) {
         final List<Equipment> updateEquipments = currentState.equipments
             .map(
-              (eqp) => eqp.id == event.equipment.id 
-              ? eqp.copyWith(isMarked: event.equipment.isMarked) 
-              : eqp,
+              (eqp) => eqp.id == event.equipment.id ? eqp.copyWith(isMarked: event.equipment.isMarked) : eqp,
             )
             .toList();
         yield AddToEquipmentSuccess(equipments: updateEquipments);
       }
     } else if (event is ClearMarkedEquipments) {
       if (currentState is AddToEquipmentSuccess) {
-        final List<Equipment> updateEquipments = currentState.equipments
-        .map((eqp) {
+        final List<Equipment> updateEquipments = currentState.equipments.map((eqp) {
           return eqp.copyWith(isMarked: false);
         }).toList();
         yield AddToEquipmentSuccess(equipments: updateEquipments);
@@ -43,10 +40,34 @@ class AddToEquipmentBloc extends Bloc<AddToEquipmentEvent, AddToEquipmentState> 
 Future<List<Equipment>> _fetchEquipments() async {
   //Simula a resposta do servidor.
   var response = <Equipment>[
-    Equipment(id: 1, name: 'Equipamento 1', isMarked: false),
-    Equipment(id: 2, name: 'Equipamento 2', isMarked: false),
-    Equipment(id: 3, name: 'Equipamento 3', isMarked: false),
-    Equipment(id: 4, name: 'Equipamento 4', isMarked: false),
+    Equipment(
+      id: 1,
+      name: 'Equipamento 1',
+      isMarked: false,
+      option: "Rede",
+      disponibility: "Disponível"
+    ),
+    Equipment(
+      id: 2,
+      name: 'Equipamento 2',
+      isMarked: false,
+      option: "Software",
+      disponibility: "Indisponível"
+    ),
+    Equipment(
+      id: 3,
+      name: 'Equipamento 3',
+      isMarked: false,
+      option: "Hardware",
+      disponibility: "Indisponível"
+    ),
+    Equipment(
+      id: 4,
+      name: 'Equipamento 4',
+      isMarked: false,
+      option: "OK",
+      disponibility: "Disponível"
+    ),
   ];
 
   await Future.delayed(Duration(seconds: 2)); //simula latência
