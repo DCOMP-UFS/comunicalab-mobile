@@ -16,6 +16,7 @@ class CustomCard extends StatelessWidget {
         elevation: 5.0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
+          side: BorderSide(width: 1.5,color: Colors.grey)
         ),
         child: InkWell(
           borderRadius: BorderRadius.circular(10.0),
@@ -28,8 +29,8 @@ class CustomCard extends StatelessWidget {
             children: <Widget>[
               ListTile(
                 //contentPadding: ,
-                title: Text(softwareName),
-                subtitle: Text("Categoria"),
+                title: Text("      $softwareName",style:TextStyle(color: Colors.black),),
+                subtitle: Text("      Categoria",style:TextStyle(color: Colors.black),),
               ),
             ],
           ),
