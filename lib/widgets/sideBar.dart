@@ -1,3 +1,4 @@
+import 'package:comunica_mobile/pages/Images/listComments.dart';
 import 'package:comunica_mobile/pages/Laboratory/addLabImage.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/addLabImage_bloc.dart';
 import 'package:flutter/material.dart';
@@ -114,7 +115,13 @@ Widget handlerSideBar(BuildContext context) {
                       color: Color(0xFF6A5ACD),
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => ListComments()
+                      )
+                    );
+                  },
                 ),
                 ListTile(
                   title: Text(
