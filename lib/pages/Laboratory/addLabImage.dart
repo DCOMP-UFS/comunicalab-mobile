@@ -99,7 +99,7 @@ class AddLabImage extends StatelessWidget {
           child: Container(
             padding: EdgeInsets.fromLTRB(130, 10, 130, 10),
             height: 60,
-            width: 90,
+            width: 360,
             child: BlocBuilder<AddLabImage_Bloc, int>(
               builder: (context, state){
                 return  RaisedButton(
@@ -113,7 +113,7 @@ class AddLabImage extends StatelessWidget {
                       "Adicionar",
                       style: TextStyle(color: Colors.white, fontSize: 15),
                     ),
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(0),
                   );
               },
             ),
