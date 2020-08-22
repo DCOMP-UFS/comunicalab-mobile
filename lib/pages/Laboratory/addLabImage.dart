@@ -76,9 +76,9 @@ class AddLabImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
+    final mediaQuery = MediaQuery.of(context).size;
     return Scaffold(
+
         appBar: AppBar(
           title:Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,7 +97,7 @@ class AddLabImage extends StatelessWidget {
         bottomNavigationBar: Card(
           elevation: 8,
           child: Container(
-            padding: EdgeInsets.fromLTRB(130, 10, 130, 10),
+            padding: EdgeInsets.fromLTRB(mediaQuery.width * 0.30, 10, mediaQuery.width * 0.30, 10),
             height: 60,
             width: 360,
             child: BlocBuilder<AddLabImage_Bloc, int>(
