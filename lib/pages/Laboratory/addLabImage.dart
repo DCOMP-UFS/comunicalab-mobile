@@ -76,7 +76,7 @@ class AddLabImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context).size;
+    final mediaQuery = MediaQuery.of(context).devicePixelRatio * MediaQuery.of(context).size.width;
     return Scaffold(
 
         appBar: AppBar(
@@ -97,7 +97,8 @@ class AddLabImage extends StatelessWidget {
         bottomNavigationBar: Card(
           elevation: 8,
           child: Container(
-            padding: EdgeInsets.fromLTRB(mediaQuery.width * 0.30, 10, mediaQuery.width * 0.30, 10),
+
+            padding: (mediaQuery > 700)? EdgeInsets.fromLTRB(90, 10, 90, 10) : EdgeInsets.fromLTRB(30, 10, 30, 10),
             height: 60,
             width: 360,
             child: BlocBuilder<AddLabImage_Bloc, int>(
