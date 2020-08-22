@@ -18,7 +18,6 @@ class TicketCardLaboratoryImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double size = MediaQuery.of(context).size.width;
-    print(size);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -76,45 +75,37 @@ class TicketCardLaboratoryImage extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 14, color: Color(0xFF000080)),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 10),
-                          child: Row(
-                            children: [
-                              BlocBuilder<TicketCardLaboryImage_bloc, String>(
+                        SizedBox(
+                          height: 30,
+                          child: BlocBuilder<TicketCardLaboryImage_bloc, String>(
                                   builder: (context, state) {
                                     return Row(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Icon(Icons.brightness_1,
-                                                color: cor(ticket.status),
-                                                size: 14
-                                            ),
-                                            SizedBox(
-                                              width: 3,
-                                            ),
-                                            Text(
-                                              ticket.status,
-                                              style: TextStyle(fontSize: 10),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          width: size * 0.4,
-                                        ),
-                                        (ticket.status == "Reservado")
-                                            ? Row(
-                                          children: [
-                                            Icon(Icons.access_time, size: 14, ),
-                                            Text("12:00", style: TextStyle(),)
-                                          ],
-                                        ): Container()
-                                      ],
-                                    );
+                                        children: [
+                                          Icon(Icons.brightness_1,
+                                              color: cor(ticket.status),
+                                              size: 14
+                                          ),
+                                          SizedBox(
+                                            width: 3,
+                                          ),
+                                          Text(
+                                            ticket.status,
+                                            style: TextStyle(fontSize: 10),
+                                          ),
+                                          SizedBox(
+                                            width: size * 0.25,
+                                          ),
+                                          (ticket.status == "Reservado")
+                                              ? Row(
+                                                children: [
+                                                  Icon(Icons.access_time, size: 14, ),
+                                                  Text("12:00", style: TextStyle(),)
+                                                ],
+                                              )
+                                              :Container()
+                                        ],
+                                      );
                                   }),
-                            ],
-                          ),
                         )
                       ],
                     ),
