@@ -17,7 +17,7 @@ class TicketCardLaboratoryImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double size = MediaQuery.of(context).size;
+    double size = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(

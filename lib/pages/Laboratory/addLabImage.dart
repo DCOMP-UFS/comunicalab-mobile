@@ -78,7 +78,6 @@ class AddLabImage extends StatelessWidget {
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context).devicePixelRatio * MediaQuery.of(context).size.width;
     return Scaffold(
-
         appBar: AppBar(
           title:Column(
             crossAxisAlignment: CrossAxisAlignment.start,
