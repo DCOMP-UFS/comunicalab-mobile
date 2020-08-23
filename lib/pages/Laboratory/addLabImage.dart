@@ -1,3 +1,5 @@
+import 'package:comunica_mobile/models/ticket.dart';
+import 'package:comunica_mobile/widgets/TicketWidgets/ticketCardLaboratoryImage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'addLabImage_List.dart';
@@ -5,6 +7,10 @@ import 'bloc/addLabImage_bloc.dart';
 
 
 class AddLabImage extends StatelessWidget {
+
+   Ticket _ticket1 = new Ticket(status: "Livre");
+   Ticket _ticket2 = new Ticket(status: "Reservado");
+   Ticket _ticket3 = new Ticket(status: "Ocupado");
 
 
   showAlertDialog1(BuildContext context)
@@ -70,6 +76,7 @@ class AddLabImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context).devicePixelRatio * MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
           title:Column(
@@ -89,9 +96,10 @@ class AddLabImage extends StatelessWidget {
         bottomNavigationBar: Card(
           elevation: 8,
           child: Container(
-            padding: EdgeInsets.fromLTRB(130, 10, 130, 10),
+
+            padding: (mediaQuery > 700)? EdgeInsets.fromLTRB(90, 10, 90, 10) : EdgeInsets.fromLTRB(30, 10, 30, 10),
             height: 60,
-            width: 90,
+            width: 360,
             child: BlocBuilder<AddLabImage_Bloc, int>(
               builder: (context, state){
                 return  RaisedButton(
@@ -105,7 +113,7 @@ class AddLabImage extends StatelessWidget {
                       "Adicionar",
                       style: TextStyle(color: Colors.white, fontSize: 15),
                     ),
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(0),
                   );
               },
             ),
@@ -118,12 +126,12 @@ class AddLabImage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    AddLabImage_List("Laboratório 1"),
-                    AddLabImage_List("Laboratório 1"),
-                    AddLabImage_List("Laboratório 1"),
-                    AddLabImage_List("Laboratório 1"),
-                    AddLabImage_List("Laboratório 1"),
-                    AddLabImage_List("Laboratório 1"),
+                    TicketCardLaboratoryImage(_ticket1, "Laboratório de Hardware", "Departamento"),
+                    TicketCardLaboratoryImage(_ticket1, "Laboratório de Hardware 2", "Departamento"),
+                    TicketCardLaboratoryImage(_ticket2, "Laboratório de Hardware", "Departamento"),
+                    TicketCardLaboratoryImage(_ticket2, "Laboratório de Hardware", "Departamento"),
+                    TicketCardLaboratoryImage(_ticket3, "Laboratório de Hardware", "Departamento"),
+
                   ],
                 ),
               ),
