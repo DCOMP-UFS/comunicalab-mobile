@@ -39,7 +39,7 @@ class _imagesDetailsState extends State<imagesDetails> {
 
   @override
   Widget build(BuildContext context) {
-
+      final mediaq =  MediaQuery.of(context);
       return DefaultTabController(
         length: 2,
         child: Scaffold(

@@ -1,8 +1,6 @@
 import 'package:comunica_mobile/pages/Images/widgets/customCardSoftware.dart';
 import 'package:flutter/material.dart';
 
-
-
 class softwareTela extends StatefulWidget {
   @override
   _softwareTelaState createState() => _softwareTelaState();
@@ -20,12 +18,11 @@ class _softwareTelaState extends State<softwareTela> {
             return CustomCard('Software ${index +1}');
           },
         ),
-      ),
         bottomNavigationBar: Container(
             height: 60,
             child: Card(
                 elevation: 8,
-                child:Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
@@ -36,10 +33,14 @@ class _softwareTelaState extends State<softwareTela> {
                           child: Icon(
                             Icons.add,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => CustomDialog()
+                            );
+                          },
                         ))
                   ],
-                )))
-    );
+                ))));
   }
 }
