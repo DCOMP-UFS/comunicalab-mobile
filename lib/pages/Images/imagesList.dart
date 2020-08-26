@@ -11,6 +11,7 @@ class ImagesList extends StatefulWidget {
 }
 
 class _ImagesListState extends State<ImagesList> {
+
   _ImagesListState();
 
   List<imagesInfo> searchList = [
@@ -87,25 +88,19 @@ class _ImagesListState extends State<ImagesList> {
     });
   }
 
-  //IconData icon = Icons.search;
 
   @override
   Widget build(BuildContext context) {
-    print('search: ${searchList.map((e) => e.softwareName).toList()}');
-    print('copia:${response.map((e) => e.softwareName).toList()}');
     return Scaffold(
       appBar: AppBar(
         title: appbarTitle,
         actions: <Widget>[
           IconButton(
-            //icon: Icon(icon),
             icon: Icon(_controller.text.length>0 ? Icons.close : Icons.search),
             onPressed: () {
-             // if(icon == Icons.close){
                 switchSearchBarState();
                 _controller.clear();
                 searchList = response.map((e) => e).toList();
-              //}
               setState(() {
                 appbarTitle = Container(
                   height: 30,
@@ -117,7 +112,13 @@ class _ImagesListState extends State<ImagesList> {
                   child: TextField(
                     textAlign: TextAlign.center,
                     controller: _controller,
-                    decoration: InputDecoration.collapsed(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      disabledBorder: InputBorder.none,
+                      contentPadding: EdgeInsets.only(bottom:14),
                       hintText: "Digite o nome da imagem",
                       hintStyle: TextStyle(color: Colors.grey),
                     ),
@@ -128,15 +129,9 @@ class _ImagesListState extends State<ImagesList> {
                       });
                     },
                     onChanged: (text){
-                      //if(text.length == 0){
                         setState(() {
                           searchList = response.map((e) => e).toList();
-                          //icon = Icons.search;
-                          //icon = Icons.close;
                         });
-                     // } //else {
-                        //icon = Icons.close;
-                     // }
                     },
                   ),
                 );

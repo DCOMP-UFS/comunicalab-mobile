@@ -16,7 +16,7 @@ class CustomCard extends StatelessWidget {
         elevation: 5.0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
-          side: BorderSide(width: 1.5,color: Colors.grey)
+          side: BorderSide(width: 1.5,color: Colors.black54)
         ),
         child: InkWell(
           borderRadius: BorderRadius.circular(10.0),
