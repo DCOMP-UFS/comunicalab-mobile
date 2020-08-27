@@ -5,8 +5,9 @@ import 'bloc/software_bloc.dart';
 
 class SoftwareList extends StatelessWidget {
   final String nomeSoft;
+  final String categoria;
 
-  SoftwareList(this.nomeSoft);
+  SoftwareList(this.nomeSoft, this.categoria);
 
   bool _chekBoxValue = false;
 
@@ -17,11 +18,11 @@ class SoftwareList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Padding(
-            padding: EdgeInsets.all(5),
+            padding: EdgeInsets.all(8),
             child: Center(
               child: Container(
                   width: 350,
-                  height: 50,
+                  height: 70,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(14),
@@ -31,7 +32,8 @@ class SoftwareList extends StatelessWidget {
                     )],
                   ),
                   child: Row(
-                    children: [
+                    //crossAxisAlignment: CrossAxisAlignment.start,
+                   children: [
                       BlocBuilder<SoftwareBloc, int>(
                           builder: (context, _ ) {
                             return Theme(
@@ -55,13 +57,27 @@ class SoftwareList extends StatelessWidget {
                             );
                           }
                       ),
-                      SizedBox(
-                        width: 90,
-                      ),
-                      Text(
-                        nomeSoft,
-                        style: TextStyle(fontSize: 16, color: Color(0xFF000080)),
+                     // SizedBox(
+                      //  width: 90,
+                      //),  //// Color(0xFF000080))
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(top: 10),
+                            child: Text(
+                              nomeSoft,
+                              style: TextStyle(fontSize: 20, color: Colors.black),
+                            ),
+                          ),
+
+                          Text(
+                            categoria,
+                            style: TextStyle(fontSize: 14, color: Colors.black),
+                          )
+                        ],
                       )
+
                     ],
                   )
               ),

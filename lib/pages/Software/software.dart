@@ -68,6 +68,7 @@ class Software extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    double mediaQuery = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
           title:Column(
@@ -87,7 +88,7 @@ class Software extends StatelessWidget{
         bottomNavigationBar: Card(
           elevation: 8,
           child: Container(
-            padding: EdgeInsets.fromLTRB(130, 10, 130, 10),
+           padding: (mediaQuery > 700)? EdgeInsets.fromLTRB(90, 10, 90, 10) : EdgeInsets.fromLTRB(30, 10, 30, 10),
             height: 60,
             width: 90,
             child: BlocBuilder<SoftwareBloc, int>(
@@ -116,13 +117,12 @@ class Software extends StatelessWidget{
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SoftwareList("Software 1"),
-                    SoftwareList("Software 1"),
-                    SoftwareList("Software 1"),
-                    SoftwareList("Software 1"),
-                    SoftwareList("Software 1"),
-                    SoftwareList("Software 1"),
-                    SoftwareList("Software 1"),
+                    SoftwareList("Software 1", "Categoria"),
+                    SoftwareList("Software 1", "Categoria"),
+                    SoftwareList("Software 1", "Categoria"),
+                    SoftwareList("Software 1", "Categoria"),
+                    SoftwareList("Software 1", "Categoria"),
+                    SoftwareList("Software 1", "Categoria"),
                   ],
                 ),
               ),
