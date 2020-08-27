@@ -1,21 +1,16 @@
-import 'package:comunica_mobile/pages/Images/infoTela.dart';
-import 'package:comunica_mobile/pages/Images/softwareTela.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:comunica_mobile/pages/Equipment/resources/bloc/imgSoftList_bloc.dart';
 import 'package:comunica_mobile/widgets/sideBar.dart';
+import 'package:comunica_mobile/widgets/customCard.dart';
+import 'package:comunica_mobile/widgets/CustomBottomNavigationBar/customBottomNavigationBar.dart';
 
-
-class imagesDetails extends StatefulWidget {
-
-  final String softwareName;
-  imagesDetails(this.softwareName);
-
+class ImgSoftList extends StatefulWidget {
   @override
-  _imagesDetailsState createState() => _imagesDetailsState();
+  _ImgSoftListState createState() => _ImgSoftListState();
 }
 
-
-class _imagesDetailsState extends State<imagesDetails> {
-
+class _ImgSoftListState extends State<ImgSoftList> {
   Widget customTab(String label) {
     return Tab(
       child: Container(
@@ -38,12 +33,12 @@ class _imagesDetailsState extends State<imagesDetails> {
 
   @override
   Widget build(BuildContext context) {
-      final mediaq =  MediaQuery.of(context);
+    return BlocBuilder<ImgSoftListBloc, int>(builder: (context, count) {
       return DefaultTabController(
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            title: Text(widget.softwareName),
+            title: Text("Imagens e Softwares"),
             bottom: PreferredSize(
               preferredSize: Size.fromHeight(50.0),
               child: Container(
@@ -51,7 +46,16 @@ class _imagesDetailsState extends State<imagesDetails> {
                 margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 7.0),
                 child: TabBar(
                   onTap: (tab) {
-
+                    switch (tab) {
+                      case 0:
+                        BlocProvider.of<ImgSoftListBloc>(context)
+                            .add(ImgSoftEvent.isImage);
+                        break;
+                      case 1:
+                        BlocProvider.of<ImgSoftListBloc>(context)
+                            .add(ImgSoftEvent.isSoftware);
+                        break;
+                    }
                   },
                   labelColor: Color(0xFF000080),
                   unselectedLabelColor: Colors.white,
@@ -61,7 +65,7 @@ class _imagesDetailsState extends State<imagesDetails> {
                     color: Colors.white,
                   ),
                   tabs: [
-                    customTab("Informações"),
+                    customTab("Imagens"),
                     customTab("Softwares"),
                   ],
                 ),
@@ -70,15 +74,29 @@ class _imagesDetailsState extends State<imagesDetails> {
           ),
           drawer: handlerSideBar(context),
           body: Container(
-            margin: EdgeInsets.all(0.0),
+            margin: EdgeInsets.all(20.0),
             child: TabBarView(
               children: <Widget>[
-                infoTela(),
-                softwareTela()
+                //Image Content
+                ListView.builder(
+                  itemCount: 3,
+                  itemBuilder: (context, index) {
+                    return CustomCard('Imagem ${index + 1}');
+                  },
+                ),
+                //Software Content
+                ListView.builder(
+                  itemCount: 4,
+                  itemBuilder: (context, index) {
+                    return CustomCard('Imagem ${index + 1}');
+                  },
+                ),
               ],
             ),
           ),
+          bottomNavigationBar: CustomBottomNavigationBar(),
         ),
       );
+    });
   }
 }
