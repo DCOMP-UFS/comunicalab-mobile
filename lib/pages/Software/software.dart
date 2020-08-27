@@ -68,6 +68,7 @@ class Software extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    double mediaQuery = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
           title:Column(
@@ -87,7 +88,7 @@ class Software extends StatelessWidget{
         bottomNavigationBar: BlocBuilder<SoftwareBloc, int>(
           builder: (context, state){
             return Padding(
-              padding: EdgeInsets.only(bottom: 10, left: 55, right: 55,),
+              padding: (mediaQuery > 700)? EdgeInsets.fromLTRB(90, 10, 90, 10) : EdgeInsets.fromLTRB(30, 10, 30, 10),
               child: RaisedButton(
                 onPressed: state > 0 ? () {
                   showAlertDialog2(context);
