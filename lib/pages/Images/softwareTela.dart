@@ -1,22 +1,24 @@
-import 'package:comunica_mobile/pages/Images/widgets/customDialog.dart';
-import 'package:comunica_mobile/widgets/customCard.dart';
+import 'package:comunica_mobile/pages/Images/widgets/customCardSoftware.dart';
 import 'package:flutter/material.dart';
+
+
 
 class softwareTela extends StatefulWidget {
   @override
   _softwareTelaState createState() => _softwareTelaState();
 }
 
+
 class _softwareTelaState extends State<softwareTela> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
+        body:Container(
           margin: EdgeInsets.all(20),
           child: ListView.builder(
-            itemCount: 5,
-            itemBuilder: (context, index) {
-              return CustomCard('Software ${index + 1}');
+            itemCount: 4,
+            itemBuilder: (context,index){
+              return CustomCard('Software ${index +1}');
             },
           ),
         ),
@@ -24,7 +26,7 @@ class _softwareTelaState extends State<softwareTela> {
             height: 60,
             child: Card(
                 elevation: 8,
-                child: Row(
+                child:Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
@@ -35,14 +37,10 @@ class _softwareTelaState extends State<softwareTela> {
                           child: Icon(
                             Icons.add,
                           ),
-                          onPressed: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) => CustomDialog()
-                            );
-                          },
+                          onPressed: () {},
                         ))
                   ],
-                ))));
+                )))
+    );
   }
 }

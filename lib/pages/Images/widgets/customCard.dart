@@ -1,10 +1,12 @@
 import 'package:comunica_mobile/pages/Images/imagesDetails.dart';
+import 'package:comunica_mobile/pages/Images/imagesInfo.dart';
 import 'package:flutter/material.dart';
 
 class CustomCard extends StatelessWidget {
-  final String softwareName;
 
-  CustomCard(this.softwareName);
+  final imagesInfo imag;
+
+  CustomCard(this.imag);
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +21,12 @@ class CustomCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.0),
           onTap: (){
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (context)=>imagesDetails(softwareName)
+                builder: (context)=>imagesDetails(imag)
             ));
           },
           child: Container(
             padding: EdgeInsets.all(12.0),
-            child: Text(softwareName),
+            child: Text(imag.softwareName),
           ),
         ),
       ),

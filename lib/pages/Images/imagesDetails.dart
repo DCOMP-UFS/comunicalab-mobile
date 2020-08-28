@@ -1,3 +1,4 @@
+import 'package:comunica_mobile/pages/Images/imagesInfo.dart';
 import 'package:comunica_mobile/pages/Images/infoTela.dart';
 import 'package:comunica_mobile/pages/Images/softwareTela.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +7,8 @@ import 'package:comunica_mobile/widgets/sideBar.dart';
 
 class imagesDetails extends StatefulWidget {
 
-  final String softwareName;
-  imagesDetails(this.softwareName);
+  final imagesInfo imag;
+  imagesDetails(this.imag);
 
   @override
   _imagesDetailsState createState() => _imagesDetailsState();
@@ -43,7 +44,7 @@ class _imagesDetailsState extends State<imagesDetails> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            title: Text(widget.softwareName),
+            title: Text(widget.imag.softwareName),
             bottom: PreferredSize(
               preferredSize: Size.fromHeight(50.0),
               child: Container(
@@ -68,12 +69,12 @@ class _imagesDetailsState extends State<imagesDetails> {
               ),
             ),
           ),
-          drawer: handlerSideBar(context),
+          //drawer: handlerSideBar(context),
           body: Container(
             margin: EdgeInsets.all(0.0),
             child: TabBarView(
               children: <Widget>[
-                infoTela(),
+                infoTela(widget.imag),
                 softwareTela()
               ],
             ),
