@@ -1,10 +1,10 @@
 import 'package:comunica_mobile/icons/custom_icons_icons.dart';
-import 'package:comunica_mobile/pages/Images/widgets/customBottomNavigationBar.dart';
-import 'package:comunica_mobile/pages/Images/widgets/customListItemComment.dart';
+import 'package:comunica_mobile/pages/Calls/widgets/customBottomNavigationBar.dart';
+import 'package:comunica_mobile/pages/Calls/widgets/listItemComment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-class Comment extends StatelessWidget {
+class ListComments extends StatelessWidget {
   String textBig = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum sapien quam, interdum' +
       'interdum lacus egestas ac. Maecenas arcu odio, maximus at fringilla sit amet, '
           'interdum lacus egestas ac. Maecenas arcu odio, maximus at fringilla sit amet, ';
@@ -29,13 +29,16 @@ class Comment extends StatelessWidget {
           ],
         ),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Colors.blue, Colors.blueAccent],
-          ),
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: ListView.builder(
+          itemCount: 8,
+          itemBuilder: (_, index) {
+            return Container(
+              margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+              child: CustomSlidable(),
+            );
+          },
         ),
       ),
       bottomNavigationBar: CustomBottomNavigationBar(),

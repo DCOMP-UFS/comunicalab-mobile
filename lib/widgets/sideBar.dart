@@ -1,4 +1,4 @@
-import 'package:comunica_mobile/pages/Images/listComments.dart';
+import 'package:comunica_mobile/pages/Calls/listComments.dart';
 import 'package:comunica_mobile/pages/Laboratory/addLabImage.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/addLabImage_bloc.dart';
 import 'package:flutter/material.dart';

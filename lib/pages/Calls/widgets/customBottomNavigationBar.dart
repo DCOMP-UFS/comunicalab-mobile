@@ -10,30 +10,34 @@ class CustomBottomNavigationBar extends StatelessWidget {
     final width = MediaQuery.of(context).orientation == Orientation.portrait ? MediaQuery.of(context).size.width : MediaQuery.of(context).size.height;
 
     return BottomNavigationBar(
+      currentIndex: 0,
+      type: BottomNavigationBarType.fixed,
+      selectedFontSize: 14,
       selectedItemColor: Color(0xFF4B8CED),
+      unselectedFontSize: 14,
       unselectedItemColor: Color(0xFF000080),
       onTap: (s) {},
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(
-            CustomIcons.running_repair_man_with_wrench_and_kit,
+            CustomIcons.allcoments,
             size: width * 0.08,
           ),
-          title: Text('Abrir Chamado'),
+          title: Text('Comentários'),
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            CustomIcons.ticket_magnifier,
+            CustomIcons.meuscomentarios,
             size: width * 0.08,
           ),
-          title: Text('Ver Chamados'),
+          title: Text('Meu Comentário'),
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            CustomIcons.computador,
+            CustomIcons.fazercomentario,
             size: width * 0.08,
           ),
-          title: Text('Equipamentos'),
+          title: Text('Fazer Comentário'),
         ),
       ],
     );
