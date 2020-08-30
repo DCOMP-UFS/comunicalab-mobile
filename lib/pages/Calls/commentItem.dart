@@ -1,4 +1,5 @@
 import 'package:comunica_mobile/icons/custom_icons_icons.dart';
+import 'package:comunica_mobile/models/call.dart';
 import 'package:comunica_mobile/pages/Calls/widgets/buttonItemComment.dart';
 import 'package:comunica_mobile/pages/Calls/widgets/cardItemComment.dart';
 import 'package:comunica_mobile/pages/Calls/widgets/customBackground.dart';
@@ -8,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class Comment extends StatelessWidget {
+  final Call call;
+  Comment(this.call);
   String textBig = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum sapien quam, interdum' +
       'interdum lacus egestas ac. Maecenas arcu odio, maximus at fringilla sit amet, '
           'interdum lacus egestas ac. Maecenas arcu odio, maximus at fringilla sit amet, ';
@@ -66,7 +69,7 @@ class Comment extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
-                child: CardComment(),
+                child: CardComment(call),
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(15, 10, 15, 10),

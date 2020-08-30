@@ -1,3 +1,5 @@
+import 'package:comunica_mobile/pages/Calls/bloc/callList_bloc.dart';
+import 'package:comunica_mobile/pages/Calls/bloc/callList_event.dart';
 import 'package:comunica_mobile/pages/Calls/listComments.dart';
 import 'package:comunica_mobile/pages/Laboratory/addLabImage.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/addLabImage_bloc.dart';
@@ -118,7 +120,16 @@ Widget handlerSideBar(BuildContext context) {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (_) => ListComments()
+                        builder: (_){
+                          return MultiBlocProvider(
+                            providers: [
+                              BlocProvider<CallListBloc>(
+                                create: (BuildContext context) => CallListBloc()..add(FetchCalls()),
+                              ),
+                            ],
+                            child: ListComments(),
+                          );
+                        }
                       )
                     );
                   },

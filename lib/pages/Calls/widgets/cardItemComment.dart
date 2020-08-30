@@ -1,7 +1,10 @@
 import 'package:comunica_mobile/icons/custom_icons_icons.dart';
+import 'package:comunica_mobile/models/call.dart';
 import 'package:flutter/material.dart';
 
 class CardComment extends StatelessWidget {
+  final Call call;
+  CardComment(this.call);
   String textBig = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum sapien quam, interdum' +
       'interdum lacus egestas ac. Maecenas arcu odio, maximus at fringilla sit amet, ' +
       'interdum lacus egestas ac. Maecenas arcu odio, maximus at fringilla sit amet, ' +
@@ -30,6 +33,7 @@ class CardComment extends StatelessWidget {
                   child: Row(
                     children: [
                       CircleAvatar(
+                        maxRadius: 15,
                         backgroundColor: Colors.grey,
                         child: Icon(
                           Icons.person,
@@ -46,7 +50,7 @@ class CardComment extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Nome de Usuário",
+                      call.name,
                       style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                     ),
                   ],
@@ -56,7 +60,8 @@ class CardComment extends StatelessWidget {
           ),
           Flexible(
             flex: 9,
-                      child: Row(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Espaço em Branco
                 Flexible(
@@ -67,12 +72,12 @@ class CardComment extends StatelessWidget {
                 Flexible(
                   flex: 6,
                   child: SingleChildScrollView(
-                          child: Text(
-                            textBig,
-                            maxLines: 100000,
-                            // overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
+                    child: Text(
+                      call.message,
+                      maxLines: 100000,
+                      // overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
                 )
               ],
             ),
@@ -99,7 +104,7 @@ class CardComment extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  '20',
+                                  call.liked.toString(),
                                   style: TextStyle(fontSize: 20),
                                 ),
                                 Padding(
@@ -115,7 +120,7 @@ class CardComment extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  '1',
+                                  call.disliked.toString(),
                                   style: TextStyle(fontSize: 20),
                                 ),
                                 Padding(
