@@ -6,11 +6,19 @@ abstract class CallListEvent {}
 
 class FetchCalls extends CallListEvent {}
 
-class EditCalls extends CallListEvent {}
+class EditCall extends CallListEvent {}
 
-class DeleteCalls extends CallListEvent {}
+class DeleteCall extends CallListEvent {
+  final Call call;
 
-class HideCalls extends CallListEvent {}
+  DeleteCall({this.call});
+}
+
+class HideCall extends CallListEvent {
+  final Call call;
+
+  HideCall({this.call});
+}
 
 class CallSelected extends CallListEvent {
   final Call call;

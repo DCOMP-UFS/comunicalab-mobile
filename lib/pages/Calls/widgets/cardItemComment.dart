@@ -5,16 +5,6 @@ import 'package:flutter/material.dart';
 class CardComment extends StatelessWidget {
   final Call call;
   CardComment(this.call);
-  String textBig = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum sapien quam, interdum' +
-      'interdum lacus egestas ac. Maecenas arcu odio, maximus at fringilla sit amet, ' +
-      'interdum lacus egestas ac. Maecenas arcu odio, maximus at fringilla sit amet, ' +
-      'interdum lacus egestas ac. Maecenas arcu odio, maximus at fringilla sit amet, ' +
-      'interdum lacus egestas ac. Maecenas arcu odio, maximus at fringilla sit amet, ' +
-      'interdum lacus egestas ac. Maecenas arcu odio, maximus at fringilla sit amet, ' +
-      'interdum lacus egestas ac. Maecenas arcu odio, maximus at fringilla sit amet, ' +
-      'interdum lacus egestas ac. Maecenas arcu odio, maximus at fringilla sit amet, ' +
-      'interdum lacus egestas ac. Maecenas arcu odio, maximus at fringilla sit amet, ' +
-      'interdum lacus egestas ac. Maecenas arcu odio, maximus at fringilla sit amet, ';
   @override
   Widget build(BuildContext context) {
     return Container(

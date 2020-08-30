@@ -1,36 +1,53 @@
 import 'package:comunica_mobile/icons/custom_icons_icons.dart';
 import 'package:comunica_mobile/models/call.dart';
+import 'package:comunica_mobile/pages/Calls/bloc/callList_bloc.dart';
+import 'package:comunica_mobile/pages/Calls/bloc/callList_event.dart';
 import 'package:comunica_mobile/pages/Calls/widgets/buttonItemComment.dart';
 import 'package:comunica_mobile/pages/Calls/widgets/cardItemComment.dart';
 import 'package:comunica_mobile/pages/Calls/widgets/customBackground.dart';
 import 'package:comunica_mobile/pages/Calls/widgets/customBottomNavigationBar.dart';
 import 'package:comunica_mobile/pages/Calls/widgets/listItemComment.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class Comment extends StatelessWidget {
   final Call call;
   Comment(this.call);
-  String textBig = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur condimentum sapien quam, interdum' +
-      'interdum lacus egestas ac. Maecenas arcu odio, maximus at fringilla sit amet, '
-          'interdum lacus egestas ac. Maecenas arcu odio, maximus at fringilla sit amet, ';
 
-  bool isUser = false;
+  bool isUser = true;
 
   @override
   Widget build(BuildContext context) {
+    final bloc = BlocProvider.of<CallListBloc>(context);
+
     Widget widget = isUser
         ? Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ButtonComment('Editar'),
-              ButtonComment('Excluir'),
+              GestureDetector(
+                child: ButtonComment('Editar'),
+                onTap: () {},
+              ),
+              GestureDetector(
+                child: ButtonComment('Excluir'),
+                onTap: () {
+                  bloc.add(DeleteCall(call: call));
+                  Navigator.of(context).pop();
+                },
+              ),
             ],
           )
         : Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ButtonComment('Ocultar'),
+              GestureDetector(
+                child: ButtonComment('Ocultar'),
+                onTap: (){
+                  bloc.add(HideCall(call: call));
+                  Navigator.of(context).pop();
+                },
+              ),
             ],
           );
     return Scaffold(

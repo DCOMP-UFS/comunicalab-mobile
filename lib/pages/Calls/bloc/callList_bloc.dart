@@ -17,6 +17,18 @@ class CallListBloc extends Bloc<CallListEvent, CallListState> {
         final calls = await _fetchCalls();
         yield CallListSuccess(calls: calls);
       }
+    } else if (event is DeleteCall) {
+      if (currentState is CallListSuccess) {
+        currentState.calls.removeWhere((element) => element.id == event.call.id);
+        final calls = currentState.calls;
+        yield CallListSuccess(calls: calls);
+      }
+    } else if (event is HideCall) {
+      if (currentState is CallListSuccess) {
+        currentState.calls.removeWhere((element) => element.id == event.call.id);
+        final calls = currentState.calls;
+        yield CallListSuccess(calls: calls);
+      }
     }
   }
 }

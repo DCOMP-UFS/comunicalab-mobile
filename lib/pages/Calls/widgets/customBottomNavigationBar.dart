@@ -4,17 +4,17 @@ import 'package:comunica_mobile/icons/custom_icons_icons.dart';
 import 'package:comunica_mobile/widgets/CustomBottomNavigationBar/bloc/customBottomNavigationBar_bloc.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).orientation == Orientation.portrait ? MediaQuery.of(context).size.width : MediaQuery.of(context).size.height;
-
+    var mediaQuery = MediaQuery.of(context).devicePixelRatio;
+    var screenWidth = MediaQuery.of(context).size.width * mediaQuery;
     return BottomNavigationBar(
-      currentIndex: 0,
+      currentIndex: 2,
       type: BottomNavigationBarType.fixed,
-      selectedFontSize: 14,
+      selectedFontSize: screenWidth < 700 ? 13 : 14,
       selectedItemColor: Color(0xFF4B8CED),
-      unselectedFontSize: 14,
+      unselectedFontSize: screenWidth < 700 ? 13 : 14,
       unselectedItemColor: Color(0xFF000080),
       onTap: (s) {},
       items: <BottomNavigationBarItem>[

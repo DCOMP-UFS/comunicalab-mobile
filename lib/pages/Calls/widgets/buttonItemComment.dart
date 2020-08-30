@@ -1,7 +1,11 @@
+import 'package:comunica_mobile/pages/Calls/bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
 class ButtonComment extends StatelessWidget {
   final String text;
+  // final CallListBloc bloc;
+  // final dynamic Function(CallListEvent) fn;
+
   ButtonComment(this.text);
 
   @override
@@ -13,10 +17,7 @@ class ButtonComment extends StatelessWidget {
       decoration: BoxDecoration(
         color: Color(0xFF000080),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          color: Colors.white,
-          width: 2
-        ),
+        border: Border.all(color: Colors.white, width: 2),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
