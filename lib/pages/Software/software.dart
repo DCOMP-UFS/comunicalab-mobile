@@ -96,7 +96,7 @@ class Software extends StatelessWidget{
                 return  RaisedButton(
                   onPressed: state > 0 ? () {
                     showAlertDialog2(context);
-                  }: null,
+                   }: null,
                   color: Color(0xFF000080),
                   shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(30.0)),

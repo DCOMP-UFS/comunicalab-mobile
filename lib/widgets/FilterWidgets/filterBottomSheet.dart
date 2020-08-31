@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const MaterialColor customPrimarySwatch =
-    MaterialColor(0xFF000080, <int, Color>{
+MaterialColor(0xFF000080, <int, Color>{
   50: Color(0xFFEAE3F3),
   100: Color(0xFFC9BBE2),
   200: Color(0xFFa68fcf),
