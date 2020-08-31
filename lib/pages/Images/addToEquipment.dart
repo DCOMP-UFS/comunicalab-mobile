@@ -1,7 +1,7 @@
 import 'package:comunica_mobile/pages/Images/bloc/bloc.dart';
 import 'package:comunica_mobile/pages/Images/widgets_addToEquipment.dart/customCard.dart';
+import 'package:comunica_mobile/pages/Images/widgets_addToEquipment.dart/filterBottomSheet.dart';
 import 'package:flutter/material.dart';
-import 'package:comunica_mobile/widgets/sideBar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddToEquipment extends StatefulWidget {
@@ -36,12 +36,21 @@ class _AddToEquipmentState extends State<AddToEquipment> {
         ),
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              filterBottomSheet(
+                context: context,
+                name: 'Renato',
+                category: 'Rede',
+              ).then((filter) {
+                BlocProvider.of<AddToEquipmentBloc>(context).add(ApplyFilter(filter));
+              });
+            },
             icon: Icon(Icons.filter_list),
             color: Colors.white,
           )
         ],
       ),
+      resizeToAvoidBottomInset: false,
       body: BlocBuilder<AddToEquipmentBloc, AddToEquipmentState>(
         builder: (context, state) {
           if (state is AddToEquipmentSuccess) {
