@@ -11,10 +11,11 @@ class CustomSlidable extends StatelessWidget {
 
   CustomSlidable(this.call);
 
-  bool isUser = true;
+  // bool isUser = true;
 
   @override
   Widget build(BuildContext context) {
+    var orientacao = MediaQuery.of(context).orientation;
     var mediaQuery = MediaQuery.of(context).devicePixelRatio;
     var screenWidth = MediaQuery.of(context).size.width * mediaQuery;
     return Slidable(
@@ -22,7 +23,7 @@ class CustomSlidable extends StatelessWidget {
       actionExtentRatio: 0.20,
       child: Container(
         margin: EdgeInsets.fromLTRB(10, 5, 10, 0),
-        height: screenWidth < 700 ? MediaQuery.of(context).size.height * 0.25 : MediaQuery.of(context).size.height * 0.18,
+        height: orientacao == Orientation.portrait ? screenWidth < 700 ? MediaQuery.of(context).size.height * 0.25 : MediaQuery.of(context).size.height * 0.18 : MediaQuery.of(context).size.height * 0.30,
         color: Colors.white,
         child: Column(
           children: [
@@ -154,48 +155,44 @@ class CustomSlidable extends StatelessWidget {
           ],
         ),
       ),
-      actions: isUser == true
-          ? <Widget>[
-              IconSlideAction(
-                caption: 'Editar',
-                color: Colors.green,
-                icon: CustomIcons.caneta,
-                onTap: () {},
-              ),
-              IconSlideAction(
-                caption: 'Excluir',
-                color: Colors.red,
-                icon: CustomIcons.lixeira,
-                onTap: () {
-                  BlocProvider.of<CallListBloc>(context).add(DeleteCall(call: call));
-                  final snackBar = SnackBar(
-                    content: Text('Comentário excluído'),
-                    duration: Duration(seconds: 2),
-                  );
+      actions: <Widget>[
+        IconSlideAction(
+          caption: 'Editar',
+          color: Colors.green,
+          icon: CustomIcons.caneta,
+          onTap: () {},
+        ),
+        IconSlideAction(
+          caption: 'Excluir',
+          color: Colors.red,
+          icon: CustomIcons.lixeira,
+          onTap: () {
+            BlocProvider.of<CallListBloc>(context).add(DeleteCall(call: call));
+            final snackBar = SnackBar(
+              content: Text('Comentário excluído'),
+              duration: Duration(seconds: 2),
+            );
 
-                  Scaffold.of(context).showSnackBar(snackBar);
-                },
-              ),
-            ]
-          : null,
-      secondaryActions: isUser == false
-          ? <Widget>[
-              IconSlideAction(
-                caption: 'Ocultar',
-                color: Colors.lightBlue,
-                icon: CustomIcons.ocultar,
-                onTap: () {
-                  BlocProvider.of<CallListBloc>(context).add(HideCall(call: call));
-                  final snackBar = SnackBar(
-                    content: Text('Comentário ocultado'),
-                    duration: Duration(seconds: 2),
-                  );
+            Scaffold.of(context).showSnackBar(snackBar);
+          },
+        ),
+      ],
+      secondaryActions: <Widget>[
+        IconSlideAction(
+          caption: 'Ocultar',
+          color: Colors.lightBlue,
+          icon: CustomIcons.ocultar,
+          onTap: () {
+            BlocProvider.of<CallListBloc>(context).add(HideCall(call: call));
+            final snackBar = SnackBar(
+              content: Text('Comentário ocultado'),
+              duration: Duration(seconds: 2),
+            );
 
-                  Scaffold.of(context).showSnackBar(snackBar);
-                },
-              ),
-            ]
-          : null,
+            Scaffold.of(context).showSnackBar(snackBar);
+          },
+        ),
+      ],
     );
   }
 }

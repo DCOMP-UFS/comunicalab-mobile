@@ -7,11 +7,12 @@ class CardComment extends StatelessWidget {
   CardComment(this.call);
   @override
   Widget build(BuildContext context) {
+    var orientacao = MediaQuery.of(context).orientation;
     return Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.white),
       margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
       padding: EdgeInsets.all(10),
-      height: MediaQuery.of(context).size.height * 0.60,
+      height: orientacao == Orientation.portrait ? MediaQuery.of(context).size.height * 0.60 : MediaQuery.of(context).size.height * 0.47 ,
       // color: Colors.white,
       child: Column(
         children: [

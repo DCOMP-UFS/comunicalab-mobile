@@ -19,6 +19,7 @@ class Comment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var orientacao = MediaQuery.of(context).orientation;
     final bloc = BlocProvider.of<CallListBloc>(context);
 
     Widget widget = isUser
