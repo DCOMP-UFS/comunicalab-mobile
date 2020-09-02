@@ -12,7 +12,7 @@ void modalBottomSheet(context){
       context: context,
       builder: (BuildContext bc){
         return Container(
-          height: MediaQuery.of(context).size.height / 2,
+          height: MediaQuery.of(context).size.height ,
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(20.0),
@@ -66,7 +66,44 @@ void modalBottomSheet(context){
                       'Nome do Software',
                       style: TextStyle(
                         fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextField(
+                          autofocus: false,
+                          style: TextStyle(color: Colors.black),
+                          decoration: new InputDecoration(
+                            hintText: "Digite o nome do equipamento",
+                            enabledBorder: const OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.black26, width: 0.0),
+                            ),
+                            border: const OutlineInputBorder(),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 10.0),
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                              vertical: 8.0,
+                              horizontal: 4.0,
+                            ),
+                            child: Text(
+                              'Categoria',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        
+                      ],
                     ),
                   ),
                 ],
