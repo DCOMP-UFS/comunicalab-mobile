@@ -1,3 +1,4 @@
+import 'package:comunica_mobile/pages/Images/comentarioTela.dart';
 import 'package:comunica_mobile/pages/Images/imagesDetails.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,9 @@ class CustomCard extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(10.0),
           onTap: (){
-
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context)=>comentarioTela()
+            ));
           },
           child: Column(
             //crossAxisAlignment: CrossAxisAlignment.start,
