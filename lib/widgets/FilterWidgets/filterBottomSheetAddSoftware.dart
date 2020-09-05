@@ -1,9 +1,16 @@
+import 'package:comunica_mobile/pages/Software/bloc/filterBottomSheet_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FilterBottomSheetAddSoftware{
 
-void modalBottomSheet(context){
-  showModalBottomSheet(
+  String _dropDown;
+  FilterBottomSheet_Bloc bloc = FilterBottomSheet_Bloc();
+
+// ignore: missing_return
+WidgetBuilder modalBottomSheet(context){
+
+   showModalBottomSheet(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(10.0)
@@ -76,9 +83,9 @@ void modalBottomSheet(context){
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          padding: EdgeInsets.only(top: 18),
                           height: 45,
-                          alignment: Alignment.centerLeft,
+                          //alignment: Alignment.centerLeft,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
                             border: Border.all(
@@ -91,8 +98,8 @@ void modalBottomSheet(context){
                               primaryColor: Colors.transparent,
                               primaryColorDark: Colors.transparent,
                             ),
-                            child: TextField(
-                              autofocus: true,
+                            child: TextField( 
+                              autofocus: false,
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                   color: Colors.black45,
@@ -129,45 +136,79 @@ void modalBottomSheet(context){
                           splashFactory: InkRipple.splashFactory,
                           borderRadius: BorderRadius.circular(8.0),
                           onTap: () {},
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                            height: 45,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.0),
-                              border: Border.all(
-                                color: Color(0xFFE0DFDF),
-                                width: 2,
-                              ),
-                            ),
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton<String>(
-                                icon: Icon(Icons.keyboard_arrow_down),
-                              //  value: filter["troubleType"],
-                                hint: Text(
-                                  'Escolha um tipo de problema',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black45,
+                          child: BlocBuilder<FilterBottomSheet_Bloc, String>(
+                            bloc: bloc,
+                            builder: (context, state){
+                              return Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                                height: 45,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  border: Border.all(
+                                    color: Color(0xFFE0DFDF),
+                                    width: 2,
                                   ),
                                 ),
-                                isExpanded: true,
-                                onChanged: (String newValue) {
-                                 // updatePreferences(() {
-                                 //   filter["troubleType"] = newValue;
-                                 // });
-                                },
-                                items: <String>[
-                                  'Tipo de Problema 1',
-                                  'Tipo de Problema 2',
-                                  'Tipo de Problema 3',
-                                  'Tipo de Problema 4'
-                                ].map<DropdownMenuItem<String>>((String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(value),
-                                  );
-                                }).toList(),
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButton(
+                                    value: _dropDown,
+                                    icon: Icon(Icons.keyboard_arrow_down),
+                                    onChanged: (String newValue){
+                                      _dropDown = newValue;
+                                      //BlocProvider.of<FilterBottomSheet_Bloc>(context).add(newValue);
+                                      if(newValue == "Categoria 1")
+                                        BlocProvider.of<FilterBottomSheet_Bloc>(context).add(FilterEvent.cat1);                                        else if(newValue == "Categoria 2")
+                                        BlocProvider.of<FilterBottomSheet_Bloc>(
+                                            context).add(FilterEvent.cat2);
+                                      else if(newValue == "Categoria 3")
+                                        BlocProvider.of<FilterBottomSheet_Bloc>(
+                                            context).add(FilterEvent.cat3);
+                                      else if(newValue == "Categoria 4")
+                                        BlocProvider.of<FilterBottomSheet_Bloc>(
+                                            context).add(FilterEvent.cat4);
+
+                                    },
+                                    hint: Text(
+                                      "Selecione uma Categoria", style: TextStyle(
+                                        fontSize: 16.0, color: Colors.black45
+                                    ),
+                                    ),
+                                    items: <String> ["Categoria 1", "Categoria 2", "Categoria 3", "Categoria 4"]
+                                        .map<DropdownMenuItem<String>>(( String value){
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(value),
+                                      );
+                                    }).toList(),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                          ),
+                        Container(
+                          margin: EdgeInsets.symmetric(
+                            vertical: 25.0,
+                            horizontal: 2.0,
+                          ),
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: FlatButton(
+                              color: Color(0xFF000080),
+                              padding: EdgeInsets.symmetric(vertical: 10.0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
                               ),
+                              child: Text(
+                                'Aplicar filtro',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                ),
+                              ),
+                              onPressed: () async {
+                                Navigator.pop(context);
+                              },
                             ),
                           ),
                         ),

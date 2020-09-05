@@ -1,3 +1,4 @@
+import 'package:comunica_mobile/pages/Software/bloc/filterBottomSheet_bloc.dart';
 import 'package:comunica_mobile/pages/Software/bloc/software_bloc.dart';
 import 'package:comunica_mobile/pages/Software/software_list.dart';
 import 'package:comunica_mobile/widgets/FilterWidgets/filterBottomSheetAddSoftware.dart';
@@ -83,7 +84,7 @@ class Software extends StatelessWidget{
             IconButton(
               icon: Icon(Icons.filter_list),
               onPressed: () {
-                FilterBottomSheetAddSoftware().modalBottomSheet(context);
+              FilterBottomSheetAddSoftware().modalBottomSheet(context);
               },
             )
           ],
