@@ -26,6 +26,7 @@ Future filterBottomSheet<Map>({@required BuildContext context, String name, Stri
         "name": name,
         "category": category,
       };
+
       String teste = '';
 
       return StatefulBuilder(builder: (BuildContext context, StateSetter updatePreferences) {
@@ -79,11 +80,11 @@ Future filterBottomSheet<Map>({@required BuildContext context, String name, Stri
                               ),
                             ),
                             onTap: () {
-                              updatePreferences(() {
-                                print(filter);
-                                print(teste);
-                                filter.updateAll((key, value) => null);
-                              });
+                              // updatePreferences(() {
+                              //   filter.updateAll((key, value) => null);
+                              // });
+                              print(filter);
+                              print(teste);
                             },
                           ),
                         ],
@@ -119,25 +120,18 @@ Future filterBottomSheet<Map>({@required BuildContext context, String name, Stri
                         width: 2,
                       ),
                     ),
-                    // child: TextFormField(
-                    //     decoration: InputDecoration(
-                    //       labelText: filter['name'],
-                    //       fillColor: Colors.white,
-                    //       border: InputBorder.none,
-                    //       focusedBorder: InputBorder.none,
-                    //       enabledBorder: InputBorder.none,
-                    //       errorBorder: InputBorder.none,
-                    //       disabledBorder: InputBorder.none,
-                    //       contentPadding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                    //       hintText: "Digite o nome da imagem",
-                    //     ),
-                    //     onChanged: (text) {
-                    //       print(text);
-                    //       updatePreferences(() {
-                    //         filter['name'] = text;
-                    //         teste = text;
-                    //       });
-                    //     }),
+                    child: TextField(
+                      autofocus: false,
+                      decoration: null,
+                      onChanged: (text) {
+                        // updatePreferences(() {
+                          filter["name"] = text;
+                          teste = text;
+                        // });
+                        print(teste);
+                        print(filter);
+                      },
+                    ),
                   ),
                 ),
                 Container(
@@ -214,6 +208,7 @@ Future filterBottomSheet<Map>({@required BuildContext context, String name, Stri
                         ),
                       ),
                       onPressed: () async {
+                        // filter["name"] = controller.text;
                         print(filter);
                         Navigator.pop(context, filter);
                       },

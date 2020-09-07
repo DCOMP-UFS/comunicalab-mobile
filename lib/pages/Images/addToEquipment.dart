@@ -1,6 +1,7 @@
 import 'package:comunica_mobile/pages/Images/bloc/bloc.dart';
 import 'package:comunica_mobile/pages/Images/widgets_addToEquipment.dart/customCard.dart';
 import 'package:comunica_mobile/pages/Images/widgets_addToEquipment.dart/filterBottomSheet.dart';
+import 'package:comunica_mobile/pages/Images/widgets_addToEquipment.dart/filterBottomSheet2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,13 +38,27 @@ class _AddToEquipmentState extends State<AddToEquipment> {
         actions: <Widget>[
           IconButton(
             onPressed: () async {
-              filterBottomSheet(
+              // BlocProvider.of<AddToEquipmentBloc>(context).add(FillList(equipments: eq));
+              showModalBottomSheet(
                 context: context,
-                name: 'Renato',
-                category: 'Rede',
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(10.0),
+                  ),
+                ),
+                builder: (_) {
+                  return ModalCustom('Renato', 'Rede');
+                },
               ).then((filter) {
                 BlocProvider.of<AddToEquipmentBloc>(context).add(ApplyFilter(filter));
               });
+              // filterBottomSheet(
+              //   context: context,
+              //   name: 'Renato',
+              //   category: 'Rede',
+              // ).then((filter) {
+              //   BlocProvider.of<AddToEquipmentBloc>(context).add(ApplyFilter(filter));
+              // });
             },
             icon: Icon(Icons.filter_list),
             color: Colors.white,

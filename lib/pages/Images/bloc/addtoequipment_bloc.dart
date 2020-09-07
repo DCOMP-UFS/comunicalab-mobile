@@ -35,12 +35,12 @@ class AddToEquipmentBloc extends Bloc<AddToEquipmentEvent, AddToEquipmentState> 
       }
     } else if (event is ApplyFilter){
       if (currentState is AddToEquipmentSuccess) {
-          // yield currentState.copyWith(
-          //   filter: event?.filter,
-          // );
-          final List<Equipment> updateEquipments = currentState.equipments.where((eqp) => eqp.name == event.filter['name'] &&
-          eqp.option == event.filter['category'] ).toList();
-          yield AddToEquipmentSuccess(equipments: updateEquipments);
+          yield currentState.copyWith(
+            filter: event?.filter,
+          );
+          // final List<Equipment> updateEquipments = currentState.equipments.where((eqp) => eqp.name == event.filter['name'] ||
+          // eqp.option == event.filter['category'] ).toList();
+          // yield AddToEquipmentSuccess(equipments: updateEquipments);
         }
     }
   }

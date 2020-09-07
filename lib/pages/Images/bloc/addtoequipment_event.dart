@@ -12,6 +12,12 @@ class AddImageToEquipments extends AddToEquipmentEvent {
   AddImageToEquipments({this.equipments});
 }
 
+class FillList extends AddToEquipmentEvent {
+  final List<Equipment> equipments;
+
+  FillList({this.equipments});
+}
+
 class ClearMarkedEquipments extends AddToEquipmentEvent {}
 
 class ApplyFilter extends AddToEquipmentEvent {
