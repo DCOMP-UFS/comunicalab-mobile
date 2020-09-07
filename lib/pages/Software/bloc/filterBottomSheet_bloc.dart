@@ -1,17 +1,24 @@
 import 'package:bloc/bloc.dart';
+import 'package:comunica_mobile/pages/Software/bloc/filterBottomSheet_event.dart';
+import 'package:comunica_mobile/pages/Software/bloc/filterBottomSheet_state.dart';
 
-enum FilterEvent {cat1,cat2,cat3,cat4}
+//enum FilterEvent {cat1,cat2,cat3,cat4}
 
 // ignore: camel_case_types
-class FilterBottomSheet_Bloc extends Bloc<FilterEvent, String>{
+class FilterBottomSheet_Bloc extends Bloc<FilterBottomSheet_event, FilterBottomSheet_state>{
 
   @override
-  String get initialState => "Categoria 1";
+   CategoryState get initialState => CategoryState(" ");
 
 
   @override
-  Stream<String> mapEventToState(FilterEvent event) async*{
-    switch(event){
+  Stream<CategoryState> mapEventToState(FilterBottomSheet_event event) async*{
+
+    if(event is CategoryEvent){
+      yield CategoryState(event.category);
+    }
+
+    /*switch(event){
       case FilterEvent.cat1:
         print("object 1");
         yield "Categoria 1";
@@ -28,7 +35,6 @@ class FilterBottomSheet_Bloc extends Bloc<FilterEvent, String>{
         print("object 4");
         yield "Categoria 4";
         break;
-    }
+    }*/
   }
-
 }

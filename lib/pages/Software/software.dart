@@ -84,7 +84,7 @@ class Software extends StatelessWidget{
             IconButton(
               icon: Icon(Icons.filter_list),
               onPressed: () {
-              FilterBottomSheetAddSoftware().modalBottomSheet(context);
+                FilterBottomSheetAddSoftware().build(context);
               },
             )
           ],
