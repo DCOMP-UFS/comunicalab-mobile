@@ -19,6 +19,7 @@ environment:
 dependencies:
   dio:
   bloc: ^4.0.0
+  equatable: ^1.2.4
   flutter_bloc: ^4.0.0
   barcode_scan: 2.0.2 #Versões superiores a esta quebram o projeto. É necessário refatorar as classes que utilizam esta dependência.
   google_fonts: ^1.1.0

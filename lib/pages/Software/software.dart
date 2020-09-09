@@ -1,5 +1,7 @@
+import 'package:comunica_mobile/pages/Software/bloc/filterBottomSheet_bloc.dart';
 import 'package:comunica_mobile/pages/Software/bloc/software_bloc.dart';
 import 'package:comunica_mobile/pages/Software/software_list.dart';
+import 'package:comunica_mobile/widgets/FilterWidgets/filterBottomSheetAddSoftware.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,7 +83,9 @@ class Software extends StatelessWidget{
           actions: [
             IconButton(
               icon: Icon(Icons.filter_list),
-              onPressed: () {},
+              onPressed: () {
+                FilterBottomSheetAddSoftware().build(context);
+              },
             )
           ],
         ),
@@ -96,7 +100,7 @@ class Software extends StatelessWidget{
                 return  RaisedButton(
                   onPressed: state > 0 ? () {
                     showAlertDialog2(context);
-                  }: null,
+                   }: null,
                   color: Color(0xFF000080),
                   shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(30.0)),

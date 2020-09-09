@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 
 enum AddLabImageEvent {increment, decrement}
 
+// ignore: camel_case_types
 class AddLabImage_Bloc extends Bloc<AddLabImageEvent, int>{
 
   @override
@@ -21,6 +22,4 @@ class AddLabImage_Bloc extends Bloc<AddLabImageEvent, int>{
 
   }
 
-
-  
 }
