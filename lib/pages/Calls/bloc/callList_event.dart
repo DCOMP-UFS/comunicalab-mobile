@@ -8,6 +8,12 @@ class FetchCalls extends CallListEvent {}
 
 class EditCall extends CallListEvent {}
 
+class AddCall extends CallListEvent {
+  final Call call;
+
+  AddCall({this.call});
+}
+
 class DeleteCall extends CallListEvent {
   final Call call;
 
