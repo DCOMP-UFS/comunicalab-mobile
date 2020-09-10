@@ -27,6 +27,7 @@ class _ModalCustomState extends State<ModalCustom> {
     "name": null,
     "category": null,
   };
+  final controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -81,11 +82,12 @@ class _ModalCustomState extends State<ModalCustom> {
                           ),
                         ),
                         onTap: () {
-                          // updatePreferences(() {
-                          //   filter.updateAll((key, value) => null);
-                          // });
                           print(filter);
-                          print(teste);
+                          setState(() {
+                            filter.updateAll((key, value) => null);
+                            controller.text = "";
+                          });
+                          print(filter);
                         },
                       ),
                     ],
@@ -110,34 +112,37 @@ class _ModalCustomState extends State<ModalCustom> {
               splashFactory: InkRipple.splashFactory,
               borderRadius: BorderRadius.circular(8.0),
               onTap: () async {},
-              child: Container(
-                width: double.infinity,
-                height: 45,
-                padding: const EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.0),
-                  border: Border.all(
-                    color: Color(0xFFE0DFDF),
-                    width: 2,
+              child: Center(
+                child: Container(
+                  width: double.infinity,
+                  height: 45,
+                  padding: const EdgeInsets.all(10.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    border: Border.all(
+                      color: Color(0xFFE0DFDF),
+                      width: 2,
+                    ),
                   ),
-                ),
-                child: TextField(
-                  autofocus: false,
-                  decoration: InputDecoration(
-                    hintText: 'Digite o nome do equipamento',
-                    border: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    disabledBorder: InputBorder.none
+                  child: Center(
+                    child: TextField(
+                      controller: controller,
+                      autofocus: false,
+                      decoration: InputDecoration(
+                        hintText: filter['name'] == null ? 'Digite o nome do equipamento' : filter['name'],
+                        border: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        disabledBorder: InputBorder.none,
+                      ),
+                      onChanged: (text) {
+                        setState(() {
+                          filter["name"] = text;
+                        });
+                        print(filter);
+                      },
+                    ),
                   ),
-                  onChanged: (text) {
-                    // updatePreferences(() {
-                    filter["name"] = text;
-                    teste = text;
-                    // });
-                    print(teste);
-                    print(filter);
-                  },
                 ),
               ),
             ),
