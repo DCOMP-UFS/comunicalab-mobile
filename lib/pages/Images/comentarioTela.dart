@@ -50,8 +50,8 @@ class _comentarioTelaState extends State<comentarioTela> {
               child: Column(
                 children: <Widget>[
                   Container(
-                    width: 320,//MediaQuery.of(context).size.width * 1,//320,
-                    height: 352,//MediaQuery.of(context).size.width * 1,//352,
+                    width: MediaQuery.of(context).size.width * 1,//320,
+                    height: MediaQuery.of(context).size.width * 1,//352,
                     decoration: BoxDecoration(
                       color: Color(0xFFF9FDFF),
                       borderRadius: BorderRadius.circular(20),
