@@ -24,8 +24,8 @@ class _ModalCustomState extends State<ModalCustom> {
   });
 
   var filter = <String, dynamic>{
-    "name": 'Renato',
-    "category": 'Rede',
+    "name": null,
+    "category": null,
   };
 
   @override
@@ -123,7 +123,13 @@ class _ModalCustomState extends State<ModalCustom> {
                 ),
                 child: TextField(
                   autofocus: false,
-                  decoration: null,
+                  decoration: InputDecoration(
+                    hintText: 'Digite o nome do equipamento',
+                    border: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    disabledBorder: InputBorder.none
+                  ),
                   onChanged: (text) {
                     // updatePreferences(() {
                     filter["name"] = text;

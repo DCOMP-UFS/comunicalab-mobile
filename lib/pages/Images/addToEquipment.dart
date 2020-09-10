@@ -45,7 +45,7 @@ class _AddToEquipmentState extends State<AddToEquipment> {
                   ),
                 ),
                 builder: (_) {
-                  return ModalCustom('Renato', 'Rede');
+                  return ModalCustom(null, null);
                 },
               ).then((filter) {
                 BlocProvider.of<AddToEquipmentBloc>(context).add(ApplyFilter(filter));
