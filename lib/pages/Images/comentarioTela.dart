@@ -77,7 +77,8 @@ class _comentarioTelaState extends State<comentarioTela> {
                         Container(
                           margin: EdgeInsets.fromLTRB(15,0,15,8),
                           //color: Colors.red,
-                          height: 280,
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          height: MediaQuery.of(context).size.width * 0.8,//280,
                           decoration: BoxDecoration(
                             color: Color(0xFFF9FDFF),
                             borderRadius: BorderRadius.circular(20),
