@@ -116,7 +116,7 @@ class _ModalCustomState extends State<ModalCustom> {
                 child: Container(
                   width: double.infinity,
                   height: 45,
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.only(left: 10,top: 18),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
                     border: Border.all(
@@ -124,24 +124,25 @@ class _ModalCustomState extends State<ModalCustom> {
                       width: 2,
                     ),
                   ),
-                  child: Center(
-                    child: TextField(
-                      controller: controller,
-                      autofocus: false,
-                      decoration: InputDecoration(
+                  child: TextField(
+                    controller: controller,
+                    autofocus: false,
+                    textAlignVertical: TextAlignVertical.center,
+                    style: TextStyle(height: 1.5),
+                    decoration: InputDecoration(
                         hintText: filter['name'] == null ? 'Digite o nome do equipamento' : filter['name'],
                         border: InputBorder.none,
                         enabledBorder: InputBorder.none,
                         focusedBorder: InputBorder.none,
                         disabledBorder: InputBorder.none,
-                      ),
-                      onChanged: (text) {
-                        setState(() {
-                          filter["name"] = text;
-                        });
-                        print(filter);
-                      },
-                    ),
+                        errorBorder: InputBorder.none,
+                        focusedErrorBorder: InputBorder.none),
+                    onChanged: (text) {
+                      setState(() {
+                        filter["name"] = text;
+                      });
+                      print(filter);
+                    },
                   ),
                 ),
               ),
