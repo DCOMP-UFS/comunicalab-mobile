@@ -93,8 +93,8 @@ class _comentarioTelaState extends State<comentarioTela> {
                                     alignment: Alignment.topCenter,
                                     child: Icon(Icons.account_circle,size: 50, color: Colors.grey,),
                                   ),
-                                  height: 300,
-                                  width: 50,
+                                  height: MediaQuery.of(context).size.height * 0.8,//300,
+                                  width: MediaQuery.of(context).size.width * 0.14,//50,
                                   decoration: BoxDecoration(
                                       color: Color(0xFFF9FDFF),
                                       borderRadius: BorderRadius.circular(20),
@@ -102,8 +102,8 @@ class _comentarioTelaState extends State<comentarioTela> {
                                   ),
                                 ),
                                 Container(
-                                  height: 280,
-                                  width: 230,
+                                  height: MediaQuery.of(context).size.width * 0.8,//280,
+                                  width: MediaQuery.of(context).size.width * 0.5,//230,
                                   decoration: BoxDecoration(
                                       color: Color(0xFFF9FDFF),
                                       borderRadius: BorderRadius.circular(20),
