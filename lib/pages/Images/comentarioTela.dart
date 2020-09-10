@@ -38,16 +38,20 @@ class _comentarioTelaState extends State<comentarioTela> {
         ),
       ),
       body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
         child: CustomPaint(
           painter: customBackground(),
           child: Container(
+            width: MediaQuery.of(context).size.width * 1,
+            height: MediaQuery.of(context).size.width * 1,
             padding: EdgeInsets.all(20),
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
                   Container(
-                    width: MediaQuery.of(context).size.width * 1,//320,
-                    height: MediaQuery.of(context).size.width * 1,//352,
+                    width: 320,//MediaQuery.of(context).size.width * 1,//320,
+                    height: 352,//MediaQuery.of(context).size.width * 1,//352,
                     decoration: BoxDecoration(
                       color: Color(0xFFF9FDFF),
                       borderRadius: BorderRadius.circular(20),
