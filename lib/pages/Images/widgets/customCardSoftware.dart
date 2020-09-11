@@ -1,6 +1,10 @@
+import 'package:comunica_mobile/pages/Calls/bloc/callList_bloc.dart';
+import 'package:comunica_mobile/pages/Calls/bloc/callList_event.dart';
+import 'package:comunica_mobile/pages/Images/comentarioTela.dart';
 import 'package:comunica_mobile/pages/Images/imagesDetails.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomCard extends StatelessWidget {
   final String softwareName;
