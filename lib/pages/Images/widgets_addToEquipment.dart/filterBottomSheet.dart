@@ -31,7 +31,6 @@ class _ModalCustomState extends State<ModalCustom> {
 
   @override
   Widget build(BuildContext context) {
-    String teste = '';
     return Container(
       height: MediaQuery.of(context).size.height / 2,
       padding: EdgeInsets.all(20.0),
@@ -96,7 +95,6 @@ class _ModalCustomState extends State<ModalCustom> {
               ),
             ),
             Container(
-              //padding: const EdgeInsets.all(4.0),
               margin: EdgeInsets.symmetric(
                 vertical: 8.0,
                 horizontal: 4.0,
@@ -190,7 +188,7 @@ class _ModalCustomState extends State<ModalCustom> {
                         filter["category"] = newValue;
                       });
                     },
-                    items: <String>['Rede', 'Software', 'Hardware', 'OK'].map<DropdownMenuItem<String>>((String value) {
+                    items: <String>['Ar Condicionado', 'Gabinete', 'Monitor', 'Teclado'].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value),
@@ -221,7 +219,6 @@ class _ModalCustomState extends State<ModalCustom> {
                     ),
                   ),
                   onPressed: () async {
-                    // filter["name"] = controller.text;
                     print(filter);
                     Navigator.pop(context, filter);
                   },
