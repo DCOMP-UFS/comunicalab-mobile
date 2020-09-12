@@ -33,6 +33,12 @@ class AddToEquipmentBloc extends Bloc<AddToEquipmentEvent, AddToEquipmentState> 
         }).toList();
         yield AddToEquipmentSuccess(equipments: updateEquipments);
       }
+    } else if (event is ApplyFilter){
+      if (currentState is AddToEquipmentSuccess) {
+          final List<Equipment> updateEquipments = currentState.equipments.where((eqp) => eqp.name == event.filter['name'] ||
+          eqp.option == event.filter['category'] ).toList();
+          yield AddToEquipmentSuccess(equipments: updateEquipments);
+        }
     }
   }
 }
