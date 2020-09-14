@@ -71,7 +71,7 @@ class FilterBottomSheetAddSoftware extends StatelessWidget{
                                       splashFactory: InkRipple.splashFactory,
                                       child: Container(
                                               child:Text(
-                                                "Reset", style: TextStyle(color: Color(0xFF625F5F), fontSize: 16),
+                                                "Limpar", style: TextStyle(color: Color(0xFF625F5F), fontSize: 16),
                                               ),
                                           ),
                                       onTap: () {

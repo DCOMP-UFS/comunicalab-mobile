@@ -1,4 +1,5 @@
 import 'package:comunica_mobile/models/ticket.dart';
+import 'package:comunica_mobile/widgets/FilterWidgets/filterBottomSheetAddLaboratory.dart';
 import 'package:comunica_mobile/widgets/TicketWidgets/ticketCardLaboratoryImage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -89,7 +90,9 @@ class AddLabImage extends StatelessWidget {
           actions: [
             IconButton(
               icon: Icon(Icons.filter_list),
-              onPressed: () {},
+              onPressed: () {
+                FilterBottomSheetAddLaboratory().build(context);
+              },
             )
           ],
         ),
