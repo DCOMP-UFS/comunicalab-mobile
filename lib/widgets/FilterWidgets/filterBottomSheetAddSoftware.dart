@@ -1,6 +1,6 @@
-import 'package:comunica_mobile/pages/Software/bloc/filterBottomSheet_bloc.dart';
-import 'package:comunica_mobile/pages/Software/bloc/filterBottomSheet_event.dart';
-import 'package:comunica_mobile/pages/Software/bloc/filterBottomSheet_state.dart';
+import 'package:comunica_mobile/pages/Software/bloc/filterBottomSheetAddSoftware_bloc.dart';
+import 'package:comunica_mobile/pages/Software/bloc/filterBottomSheetAddSoftware_event.dart';
+import 'package:comunica_mobile/pages/Software/bloc/filterBottomSheetAddSoftware_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -175,7 +175,6 @@ class FilterBottomSheetAddSoftware extends StatelessWidget{
                                             icon: Icon(Icons.keyboard_arrow_down),
                                             onChanged: (String newValue){
                                               _dropDown = newValue;
-                                              print(_dropDown);
                                               BlocProvider.of<FilterBottomSheet_Bloc>(context).add(CategoryEvent(_dropDown));
                                             },
                                             hint: Text(

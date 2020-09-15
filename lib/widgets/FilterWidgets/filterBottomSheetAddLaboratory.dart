@@ -1,7 +1,7 @@
 import 'package:comunica_mobile/models/ticket.dart';
-import 'package:comunica_mobile/pages/Software/bloc/filterBottomSheet_bloc.dart';
-import 'package:comunica_mobile/pages/Software/bloc/filterBottomSheet_event.dart';
-import 'package:comunica_mobile/pages/Software/bloc/filterBottomSheet_state.dart';
+import 'package:comunica_mobile/pages/Laboratory/bloc/filterBottomSheetAddLaboratory_bloc.dart';
+import 'package:comunica_mobile/pages/Laboratory/bloc/filterBottomSheetAddLaboratory_event.dart';
+import 'package:comunica_mobile/pages/Laboratory/bloc/filterBottomSheetAddLaboratory_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class FilterBottomSheetAddLaboratory extends StatelessWidget{
 
   String _dropDown;
-  Ticket _ticket = new Ticket(status: null);
+  String _status;
 
 
   TextEditingController _textControl = new TextEditingController();
@@ -80,7 +80,8 @@ class FilterBottomSheetAddLaboratory extends StatelessWidget{
                                         onTap: () {
                                           _textControl.clear();
                                           _dropDown = null;
-                                          BlocProvider.of<FilterBottomSheet_Bloc>(context).add(CategoryEvent(_dropDown));
+                                          _status = null;
+                                          BlocProvider.of<FilterBottomSheet_Bloc>(context).add(StateEvent(_dropDown));
                                         },
                                       ),
                                     ],
@@ -178,8 +179,7 @@ class FilterBottomSheetAddLaboratory extends StatelessWidget{
                                           icon: Icon(Icons.keyboard_arrow_down),
                                           onChanged: (String newValue){
                                             _dropDown = newValue;
-                                            print(_dropDown);
-                                            BlocProvider.of<FilterBottomSheet_Bloc>(context).add(CategoryEvent(_dropDown));
+                                            BlocProvider.of<FilterBottomSheet_Bloc>(context).add(StateEvent(_dropDown));
                                           },
                                           hint: Text(
                                             "Escolha uma Localização", style: TextStyle(
@@ -197,69 +197,78 @@ class FilterBottomSheetAddLaboratory extends StatelessWidget{
                                       ),
                                     ),
                                   ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    children: <Widget>[
-                                      FlatButton(
-                                        color: _ticket.status == 'Livre'
-                                      ? Color(0xFF00FF29)
-                                      : Color(0xFFEAEAEA),
+                                  BlocBuilder<FilterBottomSheet_Bloc, FilterBottomSheet_state>(
+                                    builder: (context, state) {
+                                      return Padding(
+                                        padding: EdgeInsets.only(top: 12),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            FlatButton(
+                                              color: _status == 'Livre'
+                                            ? Color(0xFF00FF29)
+                                            : Color(0xFFEAEAEA),
+                                              highlightColor: Color(0xFF00FF29),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(10.0),
+                                              ),
+                                              child: Text(
+                                                'Livre',
+                                                style: TextStyle(
+                                                  color: Colors.black87,
+                                                ),
+                                              ),
+                                              onPressed: () {
+                                                _status = "Livre";
+                                                BlocProvider.of<FilterBottomSheet_Bloc>(context).add(StateEvent(_status));
+                                                },
+                                            ),
+                                            FlatButton(
+                                               color: _status == 'Reservado'
+                                            ? Color(0xFFFFF500)
+                                            : Color(0xFFEAEAEA),
 
-                                        highlightColor: Color(0xFF00FF29),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10.0),
-                                        ),
-                                        child: Text(
-                                          'Livre',
-                                          style: TextStyle(
-                                            color: Colors.black87,
-                                          ),
-                                        ),
-                                        onPressed: () {
-                                   
-                                        },
-                                      ),
-                                      FlatButton(
-                                         color: _ticket.status == 'Reservado'
-                                      ? Color(0xFFFFF500)
-                                      : Color(0xFFEAEAEA),
+                                              highlightColor: Color(0xFFFFF500),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(10.0),
+                                              ),
+                                              child: Text(
+                                                'Reservado',
+                                                style: TextStyle(
+                                                  color: Colors.black87,
+                                                ),
+                                              ),
+                                              onPressed: () {
+                                                 _status = "Reservado";
+                                                 BlocProvider.of<FilterBottomSheet_Bloc>(context).add(StateEvent(_status));
+                                              },
+                                            ),
+                                            FlatButton(
+                                               color: _status == 'Ocupado'
+                                            ? Color(0xFFFF0000)
+                                            : Color(0xFFEAEAEA),
 
-                                        highlightColor: Color(0xFFFFF500),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10.0),
+                                              highlightColor: Color(0xFFFF0000),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(10.0),
+                                              ),
+                                              child: Text(
+                                                'Ocupado',
+                                                style: TextStyle(
+                                                  color: _status == 'Ocupado'
+                                                ? Colors.white
+                                                : Colors.black87,
+                                                ),
+                                              ),
+                                              onPressed: () {
+                                                 _status = "Ocupado";
+                                                 BlocProvider.of<FilterBottomSheet_Bloc>(context).add(StateEvent(_status));
+                                              },
+                                            ),
+                                          ],
                                         ),
-                                        child: Text(
-                                          'Reservado',
-                                          style: TextStyle(
-                                            color: Colors.black87,
-                                          ),
-                                        ),
-                                        onPressed: () {
-
-                                        },
-                                      ),
-                                      FlatButton(
-                                         color: _ticket.status == 'Ocupado'
-                                      ? Color(0xFFFF0000)
-                                      : Color(0xFFEAEAEA),
-
-                                        highlightColor: Color(0xFFFF0000),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10.0),
-                                        ),
-                                        child: Text(
-                                          'Ocupado',
-                                          style: TextStyle(
-                                            color: _ticket.status == 'Ocupado'
-                                          ? Colors.white
-                                          : Colors.black87,
-                                          ),
-                                        ),
-                                        onPressed: () {
-
-                                        },
-                                      ),
-                                    ],
+                                      );
+                                    }
                                   ),
                                   Container(
                                     margin: EdgeInsets.symmetric(
@@ -302,14 +311,6 @@ class FilterBottomSheetAddLaboratory extends StatelessWidget{
           );
         }
     );
-  }
-  Color cor(String cor){
-    if(cor == "Ocupado"){
-      return Colors.red;
-    }else if (cor == "Reservado")
-      return Colors.yellow;
-    else
-      return Colors.green;
   }
 
 }

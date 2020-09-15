@@ -5,7 +5,7 @@ import 'package:comunica_mobile/pages/Images/comentarioTela.dart';
 import 'package:comunica_mobile/pages/Laboratory/addLabImage.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/addLabImage_bloc.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/ticketCardLaboryImage_bloc.dart';
-import 'package:comunica_mobile/pages/Software/bloc/filterBottomSheet_bloc.dart';
+import 'package:comunica_mobile/pages/Software/bloc/filterBottomSheetAddSoftware_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:comunica_mobile/icons/custom_icons_icons.dart';

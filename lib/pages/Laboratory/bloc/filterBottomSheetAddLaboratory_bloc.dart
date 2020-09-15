@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:comunica_mobile/pages/Software/bloc/filterBottomSheet_event.dart';
-import 'package:comunica_mobile/pages/Software/bloc/filterBottomSheet_state.dart';
+import 'filterBottomSheetAddLaboratory_event.dart';
+import 'filterBottomSheetAddLaboratory_state.dart';
 
 //enum FilterEvent {cat1,cat2,cat3,cat4}
 
@@ -8,14 +8,15 @@ import 'package:comunica_mobile/pages/Software/bloc/filterBottomSheet_state.dart
 class FilterBottomSheet_Bloc extends Bloc<FilterBottomSheet_event, FilterBottomSheet_state>{
 
   @override
-   CategoryState get initialState => CategoryState(" ");
+  State get initialState => State(" ");
 
 
   @override
-  Stream<CategoryState> mapEventToState(FilterBottomSheet_event event) async*{
+  Stream<State> mapEventToState(FilterBottomSheet_event event) async*{
 
-    if(event is CategoryEvent){
-      yield CategoryState(event.category);
+    if(event is StateEvent){
+      yield State(event.state);
+
     }
 
     /*switch(event){
