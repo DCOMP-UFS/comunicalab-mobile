@@ -1,4 +1,4 @@
-import 'package:comunica_mobile/pages/Software/bloc/filterBottomSheet_bloc.dart';
+import 'package:comunica_mobile/pages/Software/bloc/filterBottomSheetAddSoftware_bloc.dart';
 import 'package:comunica_mobile/pages/Software/bloc/software_bloc.dart';
 import 'package:comunica_mobile/pages/Software/software_list.dart';
 import 'package:comunica_mobile/widgets/FilterWidgets/filterBottomSheetAddSoftware.dart';
