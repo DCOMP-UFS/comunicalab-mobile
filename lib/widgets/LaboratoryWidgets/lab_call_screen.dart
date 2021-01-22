@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../models/my_custom_clipper.dart';
 
+//Chamado de Laboratorio
+
 class LabCallScreen extends StatefulWidget {
   final Map<String, dynamic> labData;
 

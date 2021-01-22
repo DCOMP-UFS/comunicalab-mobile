@@ -14,22 +14,25 @@ class LabPage extends StatefulWidget {
 }
 
 class _LabPageState extends State<LabPage> {
-
   static const List<Icon> _icons = [
     Icon(CustomIcons.running_repair_man_with_wrench_and_kit),
     Icon(CustomIcons.aplicativo), //Mudar para o correto depois
     Icon(CustomIcons.computador),
   ];
 
-  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const TextStyle titleStyle = TextStyle(color: Colors.white, fontSize: 18);
-  static const TextStyle subtitleStyle = TextStyle(color: Colors.white, fontSize: 12);
-
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const TextStyle titleStyle =
+      TextStyle(color: Colors.white, fontSize: 18);
+  static const TextStyle subtitleStyle =
+      TextStyle(color: Colors.white, fontSize: 12);
 
   @override
   Widget build(BuildContext context) {
-    Map labData = ModalRoute.of(context).settings.arguments; //Dados do laboratório estão nessa variável
-    
+    Map labData = ModalRoute.of(context)
+        .settings
+        .arguments; //Dados do laboratório estão nessa variável
+
     List<AppBar> _titles = [
       AppBar(
         title: Column(
@@ -57,8 +60,8 @@ class _LabPageState extends State<LabPage> {
       ),
     ];
 
-
-    List<Widget> _options = <Widget>[ //Colocar aqui nessa lista os widgets referentes a tela de exibir um laboratório.
+    List<Widget> _options = <Widget>[
+      //Colocar aqui nessa lista os widgets referentes a tela de exibir um laboratório.
       //Tela de Abrir Chamados de Laboratório
       LabCallScreen(labData),
 
@@ -79,7 +82,11 @@ class _LabPageState extends State<LabPage> {
 
     return BlocProvider(
       create: (context) => FilterticketBloc(),
-      child: CommomNavigator(options: _options, icons: _icons, titles: _titles),  //Widget para gerar uma tela com botões e widgets cutomizados
+      child: CommomNavigator(
+          options: _options,
+          icons: _icons,
+          titles:
+              _titles), //Widget para gerar uma tela com botões e widgets cutomizados
     );
   }
 }

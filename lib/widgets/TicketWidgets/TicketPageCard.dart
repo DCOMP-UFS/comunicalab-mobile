@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+//Define o estilo do cartão de cada informação do chamado
+
 class TicketPageCard extends StatelessWidget {
   final BuildContext context;
   final String mainTitle;
@@ -10,7 +12,6 @@ class TicketPageCard extends StatelessWidget {
   final double height;
   final int mainTitleFlex;
   final int subCardFlex;
-
 
   const TicketPageCard({
     @required this.context,

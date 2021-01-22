@@ -48,7 +48,8 @@ class LabDetailScreen extends StatelessWidget {
                       text: labData['location_id'].toString(),
                     ),
                     customGridTile(
-                      label: 'Chamados Abertos:',
+                      label:
+                          'Chamados Abertos:', //TODO inserir aqui a quantidade de chamados ao laboratorio
                     ),
                   ],
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
