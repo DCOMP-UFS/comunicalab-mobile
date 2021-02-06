@@ -1,3 +1,4 @@
+import 'package:comunica_mobile/widgets/TicketWidgets/slidable_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:comunica_mobile/pages/Software/bloc/bloc.dart';
@@ -6,6 +7,7 @@ import 'package:comunica_mobile/widgets/loadingWidget.dart';
 import 'package:comunica_mobile/widgets/errorWidget.dart';
 import 'package:comunica_mobile/widgets/sideBar.dart';
 import 'package:comunica_mobile/widgets/TicketWidgets/ticketCard.dart';
+import 'package:comunica_mobile/models/user.dart';
 
 class SoftwareTicketList extends StatefulWidget {
   @override
@@ -13,6 +15,8 @@ class SoftwareTicketList extends StatefulWidget {
 }
 
 class _SoftwareTicketListState extends State<SoftwareTicketList> {
+  User _user = new User(); // PARA DEBUG, SIMULANDO O USUARIO LOGADO
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SoftwareTicketListBloc, SoftwareTicketListState>(
@@ -48,22 +52,54 @@ class _SoftwareTicketListState extends State<SoftwareTicketList> {
                   ? ListView.builder(
                       itemCount: state?.userTickets?.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return TicketCard(
-                          ticket: state.userTickets[index],
-                          onTap: () {},
-                          onPressedLike: () {
-                            BlocProvider.of<SoftwareTicketListBloc>(context)
-                                .add(SoftwareTicketLiked(
-                              state.userTickets[index],
-                            ));
-                          },
-                          onPressedDislike: () {
-                            BlocProvider.of<SoftwareTicketListBloc>(context)
-                                .add(SoftwareTicketDisliked(
-                              state.userTickets[index],
-                            ));
-                          },
-                        );
+                        //retorne o menu slidable se for o dono do ticket e se tambem for pedente
+                        return _user.getUser ==
+                                    state.userTickets[index].requestingUser &&
+                                state.userTickets[index].status ==
+                                    'Pendente' //TODO: checar o usuario pelo nome do usuario(username) e não o nome completo literal
+                            ? SlidableWidget(
+                                onDismissed: (action) => BlocProvider.of<
+                                        SoftwareTicketListBloc>(context)
+                                    .add(SoftwareTicketMenu(
+                                        state.userTickets[index],
+                                        action)), //_dismissSlidableItem(context, index, action),
+                                child: TicketCard(
+                                  ticket: state.userTickets[index],
+                                  onTap: () {},
+                                  onPressedLike: () {
+                                    BlocProvider.of<SoftwareTicketListBloc>(
+                                            context)
+                                        .add(SoftwareTicketLiked(
+                                      state.userTickets[index],
+                                    ));
+                                  },
+                                  onPressedDislike: () {
+                                    BlocProvider.of<SoftwareTicketListBloc>(
+                                            context)
+                                        .add(SoftwareTicketDisliked(
+                                      state.userTickets[index],
+                                    ));
+                                  },
+                                ),
+                              )
+                            : TicketCard(
+                                ticket: state.userTickets[index],
+                                onTap: () {},
+                                onPressedLike: () {
+                                  BlocProvider.of<SoftwareTicketListBloc>(
+                                          context)
+                                      .add(SoftwareTicketLiked(
+                                    state.userTickets[index],
+                                  ));
+                                },
+                                onPressedDislike: () {
+                                  BlocProvider.of<SoftwareTicketListBloc>(
+                                          context)
+                                      .add(SoftwareTicketDisliked(
+                                    state.userTickets[index],
+                                  ));
+                                },
+                              );
                       },
                     )
                   : ErrorMessageWidget(

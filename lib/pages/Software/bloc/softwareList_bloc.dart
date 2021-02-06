@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:comunica_mobile/api.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:comunica_mobile/models/ticket.dart';
 import 'package:comunica_mobile/pages/Software/bloc/softwareList_event.dart';
 import 'package:comunica_mobile/pages/Software/bloc/softwareList_state.dart';
+import 'package:comunica_mobile/widgets/TicketWidgets/slidable_widget.dart';
 
 class SoftwareTicketListBloc
     extends Bloc<SoftwareTicketListEvent, SoftwareTicketListState> {
@@ -52,6 +54,21 @@ class SoftwareTicketListBloc
               .toList();
           yield currentState.copyWith(userTickets: _updatedSoftwareTickets);
         }
+      } else if (event is SoftwareTicketMenu) {
+        if (currentState is SoftwareTicketListLoadSuccess) {
+          //TODO: Inserir aqui as ações do menu do ticket
+          switch (event.action) {
+            case SlidableAction.edit:
+              print("Botao Edit clicado.");
+              break;
+
+            case SlidableAction.delete:
+              print("Botao Delete clicado.");
+              //Colocar um Alert Dialog aqui antes de executar o comando
+              //deleteSoftwareTicket();
+              break;
+          }
+        }
       }
     } catch (_) {
       yield SoftwareTicketListLoadFailure();
@@ -63,6 +80,7 @@ class SoftwareTicketListBloc
     final response = <Ticket>[
       Ticket(
         id: 1,
+        title: "Teclado Quebrado",
         requestingUser: "Fulano da Silva Santos",
         category: "Equipamento",
         type: "Tipo de Problema 1",
@@ -97,6 +115,50 @@ class SoftwareTicketListBloc
       Ticket(
         id: 4,
         requestingUser: "Java Martins",
+        category: "Software",
+        type: "Tipo de Problema 4",
+        dateTime: DateTime.now(),
+        status: "Pendente",
+        likes: 396,
+        dislikes: 1204,
+        liked: 'N',
+      ),
+      Ticket(
+        id: 8,
+        requestingUser: "Java Martins",
+        category: "Software",
+        type: "Tipo de Problema 3",
+        dateTime: DateTime.now(),
+        status: "Andamento",
+        likes: 231,
+        dislikes: 550,
+        liked: 'N',
+      ),
+      Ticket(
+        id: 5,
+        requestingUser: "Jose Santos",
+        category: "Software",
+        type: "Tipo de Problema 4",
+        dateTime: DateTime.now(),
+        status: "Pendente",
+        likes: 396,
+        dislikes: 1204,
+        liked: 'N',
+      ),
+      Ticket(
+        id: 6,
+        requestingUser: "Karlson Ruas",
+        category: "Software",
+        type: "Tipo de Problema 4",
+        dateTime: DateTime.now(),
+        status: "Pendente",
+        likes: 396,
+        dislikes: 1204,
+        liked: 'N',
+      ),
+      Ticket(
+        id: 7,
+        requestingUser: "Gilberto Barros",
         category: "Software",
         type: "Tipo de Problema 4",
         dateTime: DateTime.now(),

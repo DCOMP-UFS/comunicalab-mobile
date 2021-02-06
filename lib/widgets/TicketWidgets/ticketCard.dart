@@ -31,7 +31,9 @@ class TicketCard extends StatelessWidget {
             height: 5,
             width: (ticket.status == "Pendente")
                 ? 11
-                : (ticket.status == "Andamento") ? 26 : 37,
+                : (ticket.status == "Andamento")
+                    ? 26
+                    : 37,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.horizontal(left: Radius.circular(12)),
               color: (ticket.status == "Pendente")
@@ -45,6 +47,9 @@ class TicketCard extends StatelessWidget {
         Text(
           ticket.status,
           textScaleFactor: MediaQuery.of(context).size.width * 0.0020,
+          style: TextStyle(
+            fontFamily: 'Poppins',
+          ),
         ),
       ],
     );
@@ -52,19 +57,25 @@ class TicketCard extends StatelessWidget {
 
   Widget ticketTimeRow(BuildContext context, DateTime date) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 8.0),
+      margin: EdgeInsets.symmetric(vertical: 10.0),
       child: Row(
         children: <Widget>[
           Icon(Icons.brightness_1, color: Colors.black26, size: 13),
           Text(
             " ${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year.toString()} ",
             textScaleFactor: MediaQuery.of(context).size.width * 0.0020,
+            style: TextStyle(
+              fontFamily: 'Poppins',
+            ),
           ),
           SizedBox(width: 7.0),
           Icon(Icons.access_time, size: 13),
           Text(
             " ${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}",
             textScaleFactor: MediaQuery.of(context).size.width * 0.0020,
+            style: TextStyle(
+              fontFamily: 'Poppins',
+            ),
           ),
         ],
       ),
@@ -75,42 +86,63 @@ class TicketCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Container(
-          height: 130,
-          padding: EdgeInsets.fromLTRB(16, 8, 16, 0),
-          child: Card(
-            elevation: 5,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(12))),
-            child: InkWell(
-              borderRadius: BorderRadius.circular(12.0),
-              child: Container(
-                padding: EdgeInsets.fromLTRB(40, 12, 57, 7),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      ticket.requestingUser,
-                      textScaleFactor:
-                          MediaQuery.of(context).size.width * 0.0035,
+        Column(children: <Widget>[
+          Container(
+            height: MediaQuery.of(context).size.width * 0.40, //150.0,
+            child: Card(
+              margin: EdgeInsets.zero,
+              elevation: 0.0,
+              child: InkWell(
+                onTap: onTap ?? () {},
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                  child: Row(children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
+                      width: 40,
+                      child: Align(
+                        alignment: Alignment.topCenter,
+                        child: Icon(
+                          Icons.account_circle_rounded,
+                          size: 40,
+                        ),
+                      ),
                     ),
-                    SizedBox(
-                      height: 3.0,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          ticket.requestingUser,
+                          textScaleFactor:
+                              MediaQuery.of(context).size.width * 0.0035,
+                          style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w600),
+                        ),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                        Text(ticket.type,
+                            textScaleFactor:
+                                MediaQuery.of(context).size.width * 0.0030,
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                            )),
+                        ticketTimeRow(context, ticket.dateTime),
+                        ticketProgressRow(context, ticket.status),
+                      ],
                     ),
-                    Text(
-                      ticket.type,
-                      textScaleFactor:
-                          MediaQuery.of(context).size.width * 0.0030,
-                    ),
-                    ticketTimeRow(context, ticket.dateTime),
-                    ticketProgressRow(context, ticket.status),
-                  ],
+                  ]),
                 ),
               ),
-              onTap: onTap ?? () {},
             ),
           ),
-        ),
+          Divider(
+            height: 2,
+            thickness: 1,
+            color: Color.fromRGBO(0, 0, 128, 0.3),
+          ),
+        ]),
         Positioned(
           bottom: MediaQuery.of(context).size.width * 0.0125,
           right: MediaQuery.of(context).size.width * 0.08,

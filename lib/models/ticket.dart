@@ -1,6 +1,8 @@
 class Ticket implements Comparable<Ticket> {
   final int id;
+  final String title;
   final String requestingUser;
+  final String description;
   final String category;
   final String type;
   final DateTime dateTime;
@@ -11,7 +13,9 @@ class Ticket implements Comparable<Ticket> {
 
   Ticket(
       {this.id,
+      this.title,
       this.requestingUser,
+      this.description,
       this.category,
       this.type,
       this.dateTime,
@@ -22,7 +26,9 @@ class Ticket implements Comparable<Ticket> {
 
   Ticket copyWith({
     final int id,
+    final String title,
     final String requestingUser,
+    final String description,
     final String category,
     final String type,
     final DateTime dateTime,
@@ -33,7 +39,9 @@ class Ticket implements Comparable<Ticket> {
   }) {
     return Ticket(
       id: id ?? this.id,
+      title: title ?? this.title,
       requestingUser: requestingUser ?? this.requestingUser,
+      description: description ?? this.description,
       category: category ?? this.category,
       type: type ?? this.type,
       dateTime: dateTime ?? this.dateTime,
@@ -46,7 +54,9 @@ class Ticket implements Comparable<Ticket> {
 
   Ticket.fromJson(Map<String, dynamic> json)
       : id = json['id'],
+        title = json['title'],
         requestingUser = json['requestingUser'],
+        description = json['description'],
         category = json['category'],
         type = json['type'],
         dateTime = DateTime.parse(json['dateTime']),
@@ -57,7 +67,9 @@ class Ticket implements Comparable<Ticket> {
 
   Map<String, dynamic> toJson() => {
         'id': id,
+        'title': title,
         'requestingUser': requestingUser,
+        'description': description,
         'category': category,
         'type': type,
         'dateTime': dateTime.toString(),
