@@ -8,6 +8,7 @@ import 'package:comunica_mobile/widgets/errorWidget.dart';
 import 'package:comunica_mobile/widgets/sideBar.dart';
 import 'package:comunica_mobile/widgets/TicketWidgets/ticketCard.dart';
 import 'package:comunica_mobile/models/user.dart';
+import 'package:comunica_mobile/widgets/FilterWidgets/filterBottomSheet.dart';
 
 class SoftwareTicketList extends StatefulWidget {
   @override
@@ -43,6 +44,27 @@ class _SoftwareTicketListState extends State<SoftwareTicketList> {
               ),
             ],
           ),
+          actions: <Widget>[
+            IconButton(
+              onPressed: state is! SoftwareTicketListLoadSuccess
+                  ? null
+                  : () async {
+                      if (state is SoftwareTicketListLoadSuccess) {
+                        filterBottomSheet(
+                                context: context,
+                                dateTime: state.filter["dateTime"],
+                                ticketStatus: state.filter["ticketStatus"],
+                                troubleType: state.filter["troubleType"])
+                            .then((filter) {
+                          BlocProvider.of<SoftwareTicketListBloc>(context)
+                              .add(ApplyFilterSoftware(filter));
+                        });
+                      }
+                    },
+              icon: Icon(Icons.filter_list),
+              color: Colors.white,
+            )
+          ],
         ),
         drawer: handlerSideBar(context),
         body: SafeArea(

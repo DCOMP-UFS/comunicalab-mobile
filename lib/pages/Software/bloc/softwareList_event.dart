@@ -21,6 +21,13 @@ class SoftwareTicketDisliked extends SoftwareTicketListEvent {
   SoftwareTicketDisliked(this.ticket);
 }
 
+class ApplyFilterSoftware extends SoftwareTicketListEvent {
+  //Futuramente esses parametros podem ser substituídos pela model que trata a integração com a API
+  final Map<String, dynamic> filter;
+
+  const ApplyFilterSoftware(this.filter);
+}
+
 class SoftwareTicketMenu extends SoftwareTicketListEvent {
   final Ticket ticket;
   final SlidableAction action;

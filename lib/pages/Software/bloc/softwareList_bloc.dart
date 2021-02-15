@@ -15,11 +15,29 @@ class SoftwareTicketListBloc
   @override
   Stream<SoftwareTicketListState> mapEventToState(event) async* {
     final currentState = state;
+
     try {
       if (event is FetchSoftwareTickets) {
         if (currentState is SoftwareTicketListLoadInProgress) {
           final tickets = await _fetchSoftwareTickets();
-          yield SoftwareTicketListLoadSuccess(userTickets: tickets);
+
+          yield SoftwareTicketListLoadSuccess(
+            userTickets: tickets,
+          );
+        }
+      } else if (event is ApplyFilterSoftware) {
+        if (currentState is SoftwareTicketListLoadSuccess) {
+          //Existe uma forma mais prática de filtrar esses tickets? sem precisar recarregar?
+
+          //TODO: Como apresentar o Loading Widget toda vez que eu chamar esse evento?
+          //TODO: Tratar o date time como receberia no json para poder usá-lo no filtro corretamente
+          //print(event.filter);
+          if (event.filter != null) {
+            final filteredTickets =
+                _filterTickets(event?.filter, await _fetchSoftwareTickets());
+            yield currentState.copyWith(
+                userTickets: filteredTickets, filter: event?.filter);
+          }
         }
       } else if (event is SoftwareTicketLiked) {
         if (currentState is SoftwareTicketListLoadSuccess) {
@@ -73,6 +91,69 @@ class SoftwareTicketListBloc
     } catch (_) {
       yield SoftwareTicketListLoadFailure();
     }
+  }
+
+  //Deve existir alguma forma mais eficiente e bonita de se fazer isso.
+  List<Ticket> _filterTickets(
+      Map<String, dynamic> filter, List<Ticket> tickets) {
+    List<Ticket> _filteredTickets;
+
+    //sem filtro
+    if (filter["ticketStatus"] == null &&
+        filter["dateTime"] == null &&
+        filter["troubleType"] == null) {
+      _filteredTickets = tickets;
+      //Só Status do Ticket
+    } else if (filter["ticketStatus"] != null &&
+        filter["dateTime"] == null &&
+        filter["troubleType"] == null) {
+      _filteredTickets = tickets
+          .where((element) => element.status == filter["ticketStatus"])
+          .toList();
+      //Só Data
+    } else if (filter["ticketStatus"] == null &&
+        filter["dateTime"] != null &&
+        filter["troubleType"] == null) {
+      _filteredTickets = tickets
+          .where((element) => element.dateTime == filter["dateTime"])
+          .toList();
+      //Só tipo de problema
+    } else if (filter["ticketStatus"] == null &&
+        filter["dateTime"] == null &&
+        filter["troubleType"] != null) {
+      _filteredTickets = tickets
+          .where((element) => element.type == filter["troubleType"])
+          .toList();
+      //Só o status e data
+    } else if (filter["ticketStatus"] != null &&
+        filter["dateTime"] != null &&
+        filter["troubleType"] == null) {
+      _filteredTickets = tickets
+          .where((element) =>
+              element.status == filter["ticketStatus"] &&
+              element.dateTime == filter["dateTime"])
+          .toList();
+      //Só a data e o tipo
+    } else if (filter["ticketStatus"] == null &&
+        filter["dateTime"] != null &&
+        filter["troubleType"] != null) {
+      _filteredTickets = tickets
+          .where((element) =>
+              element.type == filter["troubleType"] &&
+              element.dateTime == filter["dateTime"])
+          .toList();
+      //So o status e o tipo
+    } else if (filter["ticketStatus"] != null &&
+        filter["dateTime"] == null &&
+        filter["troubleType"] != null) {
+      _filteredTickets = tickets
+          .where((element) =>
+              element.status == filter["ticketStatus"] &&
+              element.type == filter["troubleType"])
+          .toList();
+    }
+
+    return _filteredTickets;
   }
 
   Future<List<Ticket>> _fetchSoftwareTickets() async {
@@ -160,7 +241,7 @@ class SoftwareTicketListBloc
         id: 7,
         requestingUser: "Gilberto Barros",
         category: "Software",
-        type: "Tipo de Problema 4",
+        type: "Tipo de Problema 1",
         dateTime: DateTime.now(),
         status: "Pendente",
         likes: 396,
@@ -170,7 +251,7 @@ class SoftwareTicketListBloc
     ].where((element) => element.category == 'Software').toList();
 
     response.sort(); //Ordena os chamados de acordo com o seu status;
-    await Future.delayed(Duration(seconds: 3)); //simula latência
+    await Future.delayed(Duration(seconds: 2)); //simula latência
     return response;
   }
 }
