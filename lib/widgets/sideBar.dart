@@ -28,21 +28,21 @@ Widget handlerSideBar(BuildContext context) {
               accountEmail: Text('email@email.com', style: headerTextStyle),
               onDetailsPressed: () {},
             ),
-            ListTile(
-              //SOMENTE PARA DEBUG , Quando der o OnTap em algum dos chamados da lista, usar esse bloc Provider e receber o ticket ja carregado
-              title:
-                  Text('Chamado', style: TextStyle(color: Color(0xFF6A5ACD))),
-              onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (BuildContext context) {
-                  return BlocProvider(
-                    create: (BuildContext context) => UserTicketBloc()
-                      ..add(GetUserTicketEvent(ticket: response)),
-                    child: UserTicket(),
-                  );
-                }));
-              },
-            ),
+            // ListTile(
+            //   //SOMENTE PARA DEBUG , Quando der o OnTap em algum dos chamados da lista, usar esse bloc Provider e receber o ticket ja carregado
+            //   title:
+            //       Text('Chamado', style: TextStyle(color: Color(0xFF6A5ACD))),
+            //   onTap: () {
+            //     Navigator.of(context)
+            //         .push(MaterialPageRoute(builder: (BuildContext context) {
+            //       return BlocProvider(
+            //         create: (BuildContext context) => UserTicketBloc()
+            //           ..add(GetUserTicketEvent(ticket: response)),
+            //         child: UserTicket(),
+            //       );
+            //     }));
+            //   },
+            // ),
             ExpansionTile(
               title: Text('Software'),
               leading: Icon(Icons.directions_subway),
