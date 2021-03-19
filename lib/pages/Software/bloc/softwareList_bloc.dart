@@ -26,18 +26,17 @@ class SoftwareTicketListBloc
           );
         }
       } else if (event is ApplyFilterSoftware) {
-        if (currentState is SoftwareTicketListLoadSuccess) {
-          //Existe uma forma mais prática de filtrar esses tickets? sem precisar recarregar?
-
-          //TODO: Como apresentar o Loading Widget toda vez que eu chamar esse evento?
-          //TODO: Tratar o date time como receberia no json para poder usá-lo no filtro corretamente
-          //print(event.filter);
-          if (event.filter != null) {
-            final filteredTickets =
-                _filterTickets(event?.filter, await _fetchSoftwareTickets());
-            yield currentState.copyWith(
-                userTickets: filteredTickets, filter: event?.filter);
-          }
+        yield SoftwareTicketListLoadInProgress();
+        //TODO: Tratar o date time como receberia no json para poder usá-lo no filtro corretamente (usar parse?ver filtro do lab (feature 91))
+        //print(event.filter);
+        if (event.filter != null) {
+          final filteredTickets =
+              _filterTickets(event?.filter, await _fetchSoftwareTickets());
+          yield SoftwareTicketListLoadSuccess(
+              userTickets: filteredTickets, filter: event?.filter);
+        } else {
+          yield SoftwareTicketListLoadSuccess(
+              userTickets: await _fetchSoftwareTickets());
         }
       } else if (event is SoftwareTicketLiked) {
         if (currentState is SoftwareTicketListLoadSuccess) {
