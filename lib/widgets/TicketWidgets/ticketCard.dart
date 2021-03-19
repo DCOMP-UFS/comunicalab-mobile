@@ -60,7 +60,7 @@ class TicketCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 10.0),
       child: Row(
         children: <Widget>[
-          Icon(Icons.brightness_1, color: Colors.black26, size: 13),
+          Icon(Icons.date_range, color: Colors.black26, size: 13),
           Text(
             " ${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year.toString()} ",
             textScaleFactor: MediaQuery.of(context).size.width * 0.0020,
