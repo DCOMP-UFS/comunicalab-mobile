@@ -39,21 +39,21 @@ class CustomBottomNavigationBar extends StatelessWidget {
               CustomIcons.running_repair_man_with_wrench_and_kit,
               size: width * 0.08,
             ),
-            title: Text('Abrir Chamado'),
+            label: 'Abrir Chamado',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               CustomIcons.ticket_magnifier,
               size: width * 0.08,
             ),
-            title: Text('Ver Chamados'),
+            label: 'Ver Chamados',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               CustomIcons.computador,
               size: width * 0.08,
             ),
-            title: Text('Equipamentos'),
+            label: 'Equipamentos',
           ),
         ],
       );
