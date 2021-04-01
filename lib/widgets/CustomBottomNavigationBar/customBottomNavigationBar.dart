@@ -4,7 +4,6 @@ import 'package:comunica_mobile/icons/custom_icons_icons.dart';
 import 'package:comunica_mobile/widgets/CustomBottomNavigationBar/bloc/customBottomNavigationBar_bloc.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CustomBottomNavigationBarBloc, int>(
@@ -30,6 +29,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
           }
         },
         items: <BottomNavigationBarItem>[
+          //TODO:Receber como variaveis do widget os Icones a serem utilizadas e suas respectivas "labels " (title - nome depreceado), junto com as funções chamadas
           BottomNavigationBarItem(
             activeIcon: Container(
               width: 350,

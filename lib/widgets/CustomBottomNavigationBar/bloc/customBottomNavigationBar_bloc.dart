@@ -8,6 +8,8 @@ class CustomBottomNavigationBarBloc
   int get initialState => 0;
 
   //TODO: Funções que podem ser utilizadas para controle da Bottom Navigation Bar
+  //TODO: O bloc pode receber como variavel uma Function para executar abrir a pagina desejada
+
   void opcao1Handler() {
     print('Opção 1 da Bottom Navigation Bar selecionada');
   }

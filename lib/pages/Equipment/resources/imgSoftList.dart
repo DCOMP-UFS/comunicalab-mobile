@@ -74,7 +74,7 @@ class _ImgSoftListState extends State<ImgSoftList> {
           ),
           drawer: handlerSideBar(context),
           body: Container(
-            margin: EdgeInsets.all(20.0),
+            margin: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 15.0),
             child: TabBarView(
               children: <Widget>[
                 //Image Content
@@ -88,7 +88,7 @@ class _ImgSoftListState extends State<ImgSoftList> {
                 ListView.builder(
                   itemCount: 4,
                   itemBuilder: (context, index) {
-                    return CustomCard('Imagem ${index + 1}');
+                    return CustomCard('Software ${index + 1}');
                   },
                 ),
               ],
