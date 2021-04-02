@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:comunica_mobile/icons/custom_icons_icons.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/bloc.dart';
-import 'package:comunica_mobile/widgets/ListTicket/listTicket.dart';
+import 'package:comunica_mobile/widgets/LabListTicket/listTicket.dart';
 import 'package:comunica_mobile/widgets/FilterWidgets/filterBottomSheetAddLaboratory.dart';
 import 'package:comunica_mobile/widgets/errorWidget.dart';
 import 'package:comunica_mobile/widgets/loadingWidget.dart';
@@ -91,7 +91,7 @@ Widget labCard(BuildContext context, Map labData) {
               children: <Widget>[
                 Text(labData['name'],
                     style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 18,
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.w500)),
                 Text(labData['location_id'].toString(),
@@ -100,6 +100,9 @@ Widget labCard(BuildContext context, Map labData) {
                         fontFamily: 'Poppins',
                         fontWeight:
                             FontWeight.normal)), //TODO integrar com backend
+                SizedBox(
+                  height: 5,
+                ),
                 labStatusRow(labData),
               ],
             ),

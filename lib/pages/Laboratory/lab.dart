@@ -1,7 +1,7 @@
 import 'package:comunica_mobile/icons/custom_icons_icons.dart';
 import 'package:comunica_mobile/widgets/CommomNavigator/commomNavigator.dart';
-import 'package:comunica_mobile/widgets/ListTicket/bloc/bloc.dart';
-import 'package:comunica_mobile/widgets/ListTicket/listTicket.dart';
+import 'package:comunica_mobile/widgets/LabListTicket/bloc/bloc.dart';
+import 'package:comunica_mobile/widgets/LabListTicket/listTicket.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,22 +14,25 @@ class LabPage extends StatefulWidget {
 }
 
 class _LabPageState extends State<LabPage> {
-
   static const List<Icon> _icons = [
     Icon(CustomIcons.running_repair_man_with_wrench_and_kit),
     Icon(CustomIcons.aplicativo), //Mudar para o correto depois
     Icon(CustomIcons.computador),
   ];
 
-  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const TextStyle titleStyle = TextStyle(color: Colors.white, fontSize: 18);
-  static const TextStyle subtitleStyle = TextStyle(color: Colors.white, fontSize: 12);
-
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const TextStyle titleStyle =
+      TextStyle(color: Colors.white, fontSize: 18);
+  static const TextStyle subtitleStyle =
+      TextStyle(color: Colors.white, fontSize: 12);
 
   @override
   Widget build(BuildContext context) {
-    Map labData = ModalRoute.of(context).settings.arguments; //Dados do laboratório estão nessa variável
-    
+    Map labData = ModalRoute.of(context)
+        .settings
+        .arguments; //Dados do laboratório estão nessa variável
+
     List<AppBar> _titles = [
       AppBar(
         title: Column(
@@ -41,7 +44,8 @@ class _LabPageState extends State<LabPage> {
           ],
         ),
       ),
-      listTicketAppbar(labData),
+      null,
+      //listTicketAppbar(labData, context),
       AppBar(
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,13 +61,17 @@ class _LabPageState extends State<LabPage> {
       ),
     ];
 
-
-    List<Widget> _options = <Widget>[ //Colocar aqui nessa lista os widgets referentes a tela de exibir um laboratório.
+    List<Widget> _options = <Widget>[
+      //Colocar aqui nessa lista os widgets referentes a tela de exibir um laboratório.
       //Tela de Abrir Chamados de Laboratório
       LabCallScreen(labData),
 
       //Tela de Listagem de Chamados do Laboratório
-      listTicketBody(labData),
+      BlocProvider<ListTicketBloc>(
+        create: (BuildContext context) =>
+            ListTicketBloc()..add(ListTicketLoad(labId: labData['id'])),
+        child: listTicketBody(labData),
+      ),
 
       //Tela de Listagem de Equipamentos do Laboratório
       Center(
@@ -77,9 +85,17 @@ class _LabPageState extends State<LabPage> {
       LabDetailScreen(labData),
     ];
 
-    return BlocProvider(
-      create: (context) => FilterticketBloc(),
-      child: CommomNavigator(options: _options, icons: _icons, titles: _titles),  //Widget para gerar uma tela com botões e widgets cutomizados
+    //TODO trocar o commonnavigator pelo custombottomnavigator( de forma funcional)
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ListTicketBloc>(
+            create: (BuildContext context) => ListTicketBloc())
+      ],
+      child: CommomNavigator(
+        options: _options,
+        icons: _icons,
+        titles: _titles,
+      ), //Widget para gerar uma tela com botões e widgets cutomizados
     );
   }
 }
