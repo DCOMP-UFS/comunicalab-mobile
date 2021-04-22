@@ -22,6 +22,7 @@ class _softwareTelaState extends State<softwareTela> {
             },
           ),
         ),
+
         bottomNavigationBar: Container(
             height: 60,
             child: Card(

@@ -21,7 +21,7 @@ class CustomCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.0),
           onTap: (){
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (context)=>imagesDetails(imag)
+                builder: (context)=>ImagesDetails(imag)
             ));
           },
           child: Container(
