@@ -1,6 +1,7 @@
 import 'package:comunica_mobile/pages/Images/imagesInfo.dart';
 import 'package:comunica_mobile/pages/Images/infoTela.dart';
 import 'package:comunica_mobile/pages/Images/softwareTela.dart';
+import 'package:comunica_mobile/widgets/FilterWidgets/filterBottomSheetAddSoftware.dart';
 import 'package:flutter/material.dart';
 
 class ImagesDetails extends StatefulWidget {
@@ -98,7 +99,10 @@ class ImagesDetailsState extends State<ImagesDetails>
             Padding(
                 padding: EdgeInsets.only(right: 20.0),
                 child: GestureDetector(
-                    onTap: () {}, child: Icon(Icons.filter_list)))
+                    onTap: () {
+                      FilterBottomSheetAddSoftware().build(context);
+                    },
+                    child: Icon(Icons.filter_list)))
           ];
         }
     }
