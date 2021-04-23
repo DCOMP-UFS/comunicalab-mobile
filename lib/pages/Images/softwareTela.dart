@@ -1,4 +1,6 @@
+import 'package:comunica_mobile/pages/Images/addToEquipment.dart';
 import 'package:comunica_mobile/pages/Images/widgets/customCardSoftware.dart';
+import 'package:comunica_mobile/pages/Images/widgets/customDialog.dart';
 import 'package:flutter/material.dart';
 
 
@@ -38,7 +40,13 @@ class _softwareTelaState extends State<softwareTela> {
                           child: Icon(
                             Icons.add,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (_) {
+                                return CustomDialog();
+                              });
+                          },
                         ))
                   ],
                 )))
