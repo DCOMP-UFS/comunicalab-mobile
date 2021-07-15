@@ -38,6 +38,7 @@ class LabDetailScreen extends StatelessWidget {
                   children: <Widget>[
                     customGridTile(
                       label: 'Status:',
+                      text: labData['status'].toString(),
                     ),
                     customGridTile(
                       label: 'Capacidade:',

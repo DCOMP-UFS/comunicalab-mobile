@@ -44,7 +44,7 @@ class Ticket implements Comparable<Ticket> {
     );
   }
 
-  Ticket.fromJson(Map<String, dynamic> json)
+  Ticket.fromJson(Map<dynamic, dynamic> json)
       : id = json['id'],
         requestingUser = json['requestingUser'],
         category = json['category'],
@@ -117,4 +117,65 @@ class Ticket implements Comparable<Ticket> {
     }
     return null;
   }
+}
+
+List<Ticket> filterTickets(Map<String, dynamic> filter, List<Ticket> tickets) {
+  List<Ticket> _filteredTickets;
+
+  //sem filtro
+  if (filter["ticketStatus"] == null &&
+      filter["dateTime"] == null &&
+      filter["troubleType"] == null) {
+    _filteredTickets = tickets;
+    //Só Status do Ticket
+  } else if (filter["ticketStatus"] != null &&
+      filter["dateTime"] == null &&
+      filter["troubleType"] == null) {
+    _filteredTickets = tickets
+        .where((element) => element.status == filter["ticketStatus"])
+        .toList();
+    //Só Data
+  } else if (filter["ticketStatus"] == null &&
+      filter["dateTime"] != null &&
+      filter["troubleType"] == null) {
+    _filteredTickets = tickets
+        .where((element) => element.dateTime == filter["dateTime"])
+        .toList();
+    //Só tipo de problema
+  } else if (filter["ticketStatus"] == null &&
+      filter["dateTime"] == null &&
+      filter["troubleType"] != null) {
+    _filteredTickets = tickets
+        .where((element) => element.type == filter["troubleType"])
+        .toList();
+    //Só o status e data
+  } else if (filter["ticketStatus"] != null &&
+      filter["dateTime"] != null &&
+      filter["troubleType"] == null) {
+    _filteredTickets = tickets
+        .where((element) =>
+            element.status == filter["ticketStatus"] &&
+            element.dateTime == filter["dateTime"])
+        .toList();
+    //Só a data e o tipo
+  } else if (filter["ticketStatus"] == null &&
+      filter["dateTime"] != null &&
+      filter["troubleType"] != null) {
+    _filteredTickets = tickets
+        .where((element) =>
+            element.type == filter["troubleType"] &&
+            element.dateTime == filter["dateTime"])
+        .toList();
+    //So o status e o tipo
+  } else if (filter["ticketStatus"] != null &&
+      filter["dateTime"] == null &&
+      filter["troubleType"] != null) {
+    _filteredTickets = tickets
+        .where((element) =>
+            element.status == filter["ticketStatus"] &&
+            element.type == filter["troubleType"])
+        .toList();
+  }
+
+  return _filteredTickets;
 }
