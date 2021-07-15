@@ -21,7 +21,6 @@ import 'package:comunica_mobile/pages/Equipment/tickets/ticketList/bloc/bloc.dar
 import 'package:comunica_mobile/pages/Equipment/tickets/ticketList/equipmentTicketList.dart';
 import 'package:comunica_mobile/pages/UserTicket/bloc/bloc.dart';
 import 'package:comunica_mobile/pages/UserTicket/userTicketList.dart';
-import 'package:comunica_mobile/pages/Laboratory/bloc/filterlaboratory_bloc.dart';
 import 'package:comunica_mobile/pages/Laboratory/bloc/lablist_bloc.dart';
 import 'package:comunica_mobile/pages/Laboratory/labList.dart';
 import 'package:comunica_mobile/widgets/CustomBottomNavigationBar/bloc/customBottomNavigationBar_bloc.dart';
@@ -91,11 +90,12 @@ Widget handlerSideBar(BuildContext context) {
               leading: Icon(Icons.directions_subway),
               children: <Widget>[
                 ListTile(
-                  title: Text('Cadastrar software', style: TextStyle(color: Color(0xFF6A5ACD))),
-                  onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context){
-                          return /*MultiBlocProvider(
+                  title: Text('Cadastrar software',
+                      style: TextStyle(color: Color(0xFF6A5ACD))),
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (BuildContext context) {
+                      return /*MultiBlocProvider(
                             providers: [
                               BlocProvider<SoftwareBloc>(
                                 create: (_) => SoftwareBloc(),
@@ -107,13 +107,9 @@ Widget handlerSideBar(BuildContext context) {
                             child:  Software(),
                           );*/
 
-                            BlocProvider<SoftwareBloc>(
-                              create: (_) => SoftwareBloc(),
-                              child: Software()
-                          );
-                        }
-                    )
-                    );
+                          BlocProvider<SoftwareBloc>(
+                              create: (_) => SoftwareBloc(), child: Software());
+                    }));
                   },
                 ),
                 ListTile(
@@ -133,20 +129,17 @@ Widget handlerSideBar(BuildContext context) {
                     ),
                   ),
                   onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_){
-                          return MultiBlocProvider(
-                            providers: [
-                              BlocProvider<CallListBloc>(
-                                create: (BuildContext context) => CallListBloc()..add(FetchCalls()),
-                              ),
-                            ],
-                            child: ListComments(),
-                          );
-                        }
-                      )
-                    );
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                      return MultiBlocProvider(
+                        providers: [
+                          BlocProvider<CallListBloc>(
+                            create: (BuildContext context) =>
+                                CallListBloc()..add(FetchCalls()),
+                          ),
+                        ],
+                        child: ListComments(),
+                      );
+                    }));
                   },
                 ),
                 ListTile(
@@ -157,18 +150,18 @@ Widget handlerSideBar(BuildContext context) {
                     ),
                   ),
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context){
-                          return MultiBlocProvider(
-                            providers: [
-                              BlocProvider<CallListBloc>(
-                                create: (BuildContext context) => CallListBloc()..add(FetchCalls()),
-                              ),
-                            ],
-                            child: comentarioTela(),
-                          );
-                        }
-                    ));
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return MultiBlocProvider(
+                        providers: [
+                          BlocProvider<CallListBloc>(
+                            create: (BuildContext context) =>
+                                CallListBloc()..add(FetchCalls()),
+                          ),
+                        ],
+                        child: comentarioTela(),
+                      );
+                    }));
                   },
                 ),
                 ListTile(
@@ -224,7 +217,9 @@ Widget handlerSideBar(BuildContext context) {
                           return MultiBlocProvider(
                             providers: [
                               BlocProvider<AddToEquipmentBloc>(
-                                create: (BuildContext context) => AddToEquipmentBloc()..add(FetchEquipments()),
+                                create: (BuildContext context) =>
+                                    AddToEquipmentBloc()
+                                      ..add(FetchEquipments()),
                               ),
                             ],
                             child: AddToEquipment(),
@@ -293,23 +288,21 @@ Widget handlerSideBar(BuildContext context) {
                       color: Color(0xFF6A5ACD),
                     ),
                   ),
-                  onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context){
-                        return MultiBlocProvider(
-                          providers: [
-                            BlocProvider<AddLabImage_Bloc>(
-                              create: (_) => AddLabImage_Bloc(),
-                            ),
-                            BlocProvider<TicketCardLaboryImage_bloc>(
-                              create: (_) => TicketCardLaboryImage_bloc(),
-                            )
-                          ],
-                          child:  AddLabImage(),
-                        );
-
-                      }
-                    ));
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (BuildContext context) {
+                      return MultiBlocProvider(
+                        providers: [
+                          BlocProvider<AddLabImage_Bloc>(
+                            create: (_) => AddLabImage_Bloc(),
+                          ),
+                          BlocProvider<TicketCardLaboryImage_bloc>(
+                            create: (_) => TicketCardLaboryImage_bloc(),
+                          )
+                        ],
+                        child: AddLabImage(),
+                      );
+                    }));
                     // Navigator.of(context).push(MaterialPageRoute(
                     //     builder: (BuildContext context) =>
                     //         LabList()));
@@ -323,14 +316,12 @@ Widget handlerSideBar(BuildContext context) {
                     ),
                   ),
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (BuildContext context) {
                       return MultiBlocProvider(
                         providers: [
                           BlocProvider<LablistBloc>(
                             create: (BuildContext context) => LablistBloc(),
-                          ),
-                          BlocProvider<FilterlaboratoryBloc>(
-                            create: (BuildContext context) => FilterlaboratoryBloc(),
                           ),
                         ],
                         child: LabList(),
