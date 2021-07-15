@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:comunica_mobile/api.dart';
-import 'package:dio/dio.dart';
+import 'package:comunica_mobile/api/client_api.dart';
 import './bloc.dart';
 
 class ListTicketBloc extends Bloc<ListTicketEvent, ListTicketState> {
@@ -15,8 +14,13 @@ class ListTicketBloc extends Bloc<ListTicketEvent, ListTicketState> {
     if (event is ListTicketLoad) {
       yield ListTicketLoading();
       try {
-        Response response = await getLabTickets(event.labId);
-        yield ListTicketSuccess(labs: List<Map>.from(response.data));
+        var api = ClientApi();
+        var result =
+            await api.get(endPoint: '/laboratory/${event.labId}/ticket');
+        result.fold((l) => null, (r) async* {
+          yield ListTicketSuccess(labs: List<Map>.from(r.data));
+        });
+
         // List<Map> response = [
         //   {
         //     "id": 10,
@@ -64,7 +68,6 @@ class ListTicketBloc extends Bloc<ListTicketEvent, ListTicketState> {
       } catch (e) {
         yield ListTicketError(labs: e);
       }
-    } else {
-    }
+    } else {}
   }
 }

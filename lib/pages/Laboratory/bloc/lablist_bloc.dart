@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:comunica_mobile/api.dart';
-import 'package:dio/dio.dart';
+import 'package:comunica_mobile/api/client_api.dart';
 import './bloc.dart';
 
 class LablistBloc extends Bloc<LablistEvent, LablistState> {
@@ -12,12 +11,15 @@ class LablistBloc extends Bloc<LablistEvent, LablistState> {
   Stream<LablistState> mapEventToState(
     LablistEvent event,
   ) async* {
-    if(event is LabListLoad){
+    if (event is LabListLoad) {
       yield LabListLoading();
-      try{
-        Response response = await getLabs();
-        yield LabListSuccess(labs: List<Map>.from(response.data));
-      } catch(e) {
+      try {
+        var api = ClientApi();
+        var result = await api.get(endPoint: '/laboratory');
+        result.fold((l) => null, (r) async* {
+          yield LabListSuccess(labs: List<Map>.from(r.data));
+        });
+      } catch (e) {
         yield LabListError(labs: e);
       }
     }
