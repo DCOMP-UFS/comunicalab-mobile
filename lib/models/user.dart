@@ -6,7 +6,7 @@ enum Users { technician, student, teacher }
 * Futuramente, ela deve ser adaptada ao sistema de login do app.
 * */
 class User {
-  final String _username = 'Java Martins';
+  final String _username = 'Fulano da Silva Santos';
   final Users _userType = Users.student;
 
   String get getUser => _username;

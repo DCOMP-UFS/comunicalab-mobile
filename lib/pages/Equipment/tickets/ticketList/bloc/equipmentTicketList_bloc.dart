@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:comunica_mobile/widgets/TicketWidgets/slidable_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:comunica_mobile/models/ticket.dart';
 import 'package:comunica_mobile/pages/Equipment/tickets/ticketList/bloc/equipmentTicketList_event.dart';
@@ -18,6 +19,21 @@ class EquipmentTicketListBloc
         if (currentState is EquipmentTicketListLoadInProgress) {
           final tickets = await _fetchEquipmentTickets();
           yield EquipmentTicketListLoadSuccess(userTickets: tickets);
+        }
+      } else if (event is ApplyFilterEquipment) {
+        List<Ticket> _oldTickets;
+        if (currentState is EquipmentTicketListLoadSuccess) {
+          _oldTickets = currentState.userTickets;
+        }
+        yield EquipmentTicketListLoadInProgress();
+
+        if (event.filter != null) {
+          final filteredTickets =
+              filterTickets(event?.filter, await _fetchEquipmentTickets());
+          yield EquipmentTicketListLoadSuccess(
+              userTickets: filteredTickets, filter: event?.filter);
+        } else {
+          yield EquipmentTicketListLoadSuccess(userTickets: _oldTickets);
         }
       } else if (event is EquipmentTicketLiked) {
         if (currentState is EquipmentTicketListLoadSuccess) {
@@ -52,6 +68,21 @@ class EquipmentTicketListBloc
               .toList();
           yield currentState.copyWith(userTickets: _updatedEquipmentTickets);
         }
+      } else if (event is EquipmentTicketMenu) {
+        if (currentState is EquipmentTicketListLoadSuccess) {
+          //TODO: Inserir aqui as ações do menu do ticket
+          switch (event.action) {
+            case SlidableAction.edit:
+              print("Botao Edit clicado.");
+              break;
+
+            case SlidableAction.delete:
+              print("Botao Delete clicado.");
+              //Colocar um Alert Dialog aqui antes de executar o comando
+              //deleteSoftwareTicket();
+              break;
+          }
+        }
       }
     } catch (_) {
       yield EquipmentTicketListLoadFailure();
@@ -71,6 +102,17 @@ class EquipmentTicketListBloc
         likes: 200,
         dislikes: 30,
         liked: 'S',
+      ),
+      Ticket(
+        id: 5,
+        requestingUser: "Fulano da Silva Santos",
+        category: "Equipamento",
+        type: "Tipo de Problema 2",
+        dateTime: DateTime.now(),
+        status: "Andamento",
+        likes: 230,
+        dislikes: 4,
+        liked: 'N',
       ),
       Ticket(
         id: 2,
